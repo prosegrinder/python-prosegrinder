@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-"""A Word, the base unit for measuring fiction prose."""
 
-from collections import Counter
 import re
+from collections import Counter
+
 
 class Word:
     """A Word, the base unit for measuring fiction prose."""
