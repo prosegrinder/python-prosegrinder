@@ -10,14 +10,14 @@ from bookworm import Word
 class Dictionary:
     """A reference containing Words."""
 
+    # Only pay the price of loading this once.
+    CMUDICT = cmudict.dict()
+
     # See: https://en.wikipedia.org/wiki/List_of_Unicode_characters
     RE_WORD = re.compile(
         "[\\w’'\u0391-\u03ce\u0400-\u0481\u048a-\u04ff]+")
 
     RE_NUMERIC = re.compile("^[+-]{0,1}\\d{1,3}(?:[,]\\d{3})*(?:[.]\\d*)*$")
-
-    # See: http://www.onebloke.com/2011/06/counting-syllables-accurately-in-python-on-google-app-engine/
-    RE_VOWELS = re.compile('[^aeiouy]+')
 
     # See: http://www.onebloke.com/2011/06/counting-syllables-accurately-in-python-on-google-app-engine/
     RE_SUB_SYLLABLES = [
@@ -180,42 +180,52 @@ class Dictionary:
     ]
 
     def __init__(self, cache=None):
-        self._cmudict = cmudict.dict()
         self._cache = cache
 
     def _syllable_count(self, word):
-        syllables = 0
-        if word in self._cmudict:
-            phones = self._cmudict[word][0]
+        syllable_count = 0
+        if word in Dictionary.CMUDICT:
+            phones = Dictionary.CMUDICT[word][0]
             # There's a more Pythonic way of doing this.
             for phone in phones:
-                syllables += len(re.sub("[^012]", "", phone))
+                syllable_count += len(re.sub("[^012]", "", phone))
         else:
-            syllables = self._heuristic_syllable_count(word)
-        return syllables
+            syllable_count = self._heuristic_syllable_count(word)
+        return syllable_count
 
     def _heuristic_syllable_count(self, word):
-        # See: http://www.onebloke.com/2011/06/counting-syllables-accurately-in-python-on-google-app-engine/
-        parts = re.split(Dictionary.RE_VOWELS, word)
-        valid_parts = []
-        for part in parts:
-            if part != '':
-                valid_parts.append(part)
-        syllables = 0
+        syllable_count = 0
 
-        for regex in Dictionary.RE_ADD_SYLLABLES:
-            match = 0 if re.match(regex, word) is None else 1
-            syllables += match
-        for regex in Dictionary.RE_SUB_SYLLABLES:
-            match = 0 if re.match(regex, word) is None else 1
-            syllables -= 1
+        if self._is_numeric(word):
+            syllable_count = len(re.sub('[^\\d\\+-]', '', word))
+        else:
+            # Add & subtract based on REs
+            for regex in Dictionary.RE_ADD_SYLLABLES:
+                if regex.search(word):
+                    syllable_count += 1
+            for regex in Dictionary.RE_SUB_SYLLABLES:
+                if regex.search(word):
+                    syllable_count -= 1
 
-        syllables = 1 if syllables == 0 else syllables
+            # Count vowel groupings
+            scrugg = list(filter(None, re.split("[^aeiouy]+", word)))
+            scrugg_len = len(scrugg)
+            if scrugg_len > 0 and scrugg[0] == "":
+                syllable_count += scrugg_len - 1
+            else:
+                syllable_count += scrugg_len
 
-        return syllables
+            # Always assume at least one syllable if word is non-empty
+            syllable_count = 1 if word and syllable_count == 0 else syllable_count
+
+        return syllable_count
 
     def _is_numeric(self, word):
-        return re.match(Dictionary.RE_NUMERIC, word)
+        return re.match(Dictionary.RE_NUMERIC, word) != None
 
     def get_word(self, word):
-        pass
+        syllable_count = self._syllable_count(word)
+        is_dictionary_word = word in Dictionary.CMUDICT
+        is_numeric = self._is_numeric(word)
+        word = Word(word, syllable_count, is_dictionary_word, is_numeric)
+        return word
