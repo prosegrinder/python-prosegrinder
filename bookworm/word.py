@@ -26,6 +26,12 @@ class Word:
         self._character_count = len(self._normalized_word)
         self._pov = pointofview.get_word_pov(self._normalized_word)
 
+    def __str__(self):
+        return str(self.__dict__)
+
+    def __eq__(self, other):
+        return self.__dict__ == other.__dict__
+
     @property
     def initial_word(self):
         """Return the word string initially used to create the Word."""
@@ -59,12 +65,12 @@ class Word:
     @property
     def is_complex_word(self):
         """Returns whether or not the Word is considered complex."""
-        return self.syllable_count >= self.MIN_SYLLABLES_COMPLEX_WORD
+        return self.syllable_count >= Word.MIN_SYLLABLES_COMPLEX_WORD
 
     @property
     def is_long_word(self):
         """Returns whether or not the Word is considered long."""
-        return self.character_count >= self.MIN_CHARS_LONG_WORD
+        return self.character_count >= Word.MIN_CHARS_LONG_WORD
 
     @property
     def is_first_person_word(self):
