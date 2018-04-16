@@ -2,7 +2,7 @@
 
 from bookworm import Word
 
-def test_comparators():
+def test_equality():
     w1 = Word('frowning', 2, True, False)
     w2 = Word('frowning', 2, True, False)
     w3 = Word('cafe', 2, True, False)
