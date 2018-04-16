@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import re
-from collections import Counter
 
 import pointofview
 
@@ -11,20 +10,18 @@ class Word:
 
     MIN_SYLLABLES_COMPLEX_WORD = 3
     MIN_CHARS_LONG_WORD = 7
-
-    @staticmethod
-    def get_word_frequency(word_list):
-        """Returns a Counter of word / count pairs based on a list of non-unique words."""
-        return Counter(word_list)
+    # See: https://en.wikipedia.org/wiki/List_of_Unicode_characters
+    RE_WORD = re.compile(
+        "[\\w’'\u0391-\u03ce\u0400-\u0481\u048a-\u04ff]+")
 
     def __init__(self, word_string, syllable_count, is_dictionary_word, is_numeric):
-        self._initial_word = word_string
+        """ Assumes word_string is normalized."""
+        self._word_string = word_string
         self._syllable_count = syllable_count
         self._is_dictionary_word = is_dictionary_word
         self._is_numeric = is_numeric
-        self._normalized_word = word_string.strip().lower()
-        self._character_count = len(self._normalized_word)
-        self._pov = pointofview.get_word_pov(self._normalized_word)
+        self._character_count = len(self._word_string)
+        self._pov = pointofview.get_word_pov(self._word_string)
 
     def __str__(self):
         return str(self.__dict__)
@@ -32,10 +29,13 @@ class Word:
     def __eq__(self, other):
         return self.__dict__ == other.__dict__
 
+    def __hash__(self):
+        return hash(self._word_string)
+
     @property
-    def initial_word(self):
+    def word_string(self):
         """Return the word string initially used to create the Word."""
-        return self._initial_word
+        return self._word_string
 
     @property
     def syllable_count(self):
@@ -53,9 +53,9 @@ class Word:
         return self._is_numeric
 
     @property
-    def normalized_word(self):
+    def initial_word(self):
         """Returns the normalized string of the initial word."""
-        return self._normalized_word
+        return self._word_string
 
     @property
     def character_count(self):
