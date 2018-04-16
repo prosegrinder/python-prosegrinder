@@ -4,18 +4,14 @@ import re
 
 import cmudict
 
-from bookworm import Word
+from bookworm.word import Word
 
 
 class Dictionary:
     """A reference containing Words."""
 
-    # Only pay the price of loading this once.
-    CMUDICT = cmudict.dict()
-
-    # See: https://en.wikipedia.org/wiki/List_of_Unicode_characters
-    RE_WORD = re.compile(
-        "[\\w’'\u0391-\u03ce\u0400-\u0481\u048a-\u04ff]+")
+    # # Only pay the price of loading this once.
+    # CMUDICT = cmudict.dict()
 
     RE_NUMERIC = re.compile("^[+-]{0,1}\\d{1,3}(?:[,]\\d{3})*(?:[.]\\d*)*$")
 
@@ -179,13 +175,18 @@ class Dictionary:
         re.compile('dnt$')
     ]
 
-    def __init__(self, cache=None):
+    @staticmethod
+    def normalize_text(text):
+        return text.strip().lower()
+
+    def __init__(self, cmudict=cmudict.dict(), cache=None):
+        self._cmudict = cmudict
         self._cache = cache
 
     def _syllable_count(self, word):
         syllable_count = 0
-        if word in Dictionary.CMUDICT:
-            phones = Dictionary.CMUDICT[word][0]
+        if word in self._cmudict:
+            phones = self._cmudict[word][0]
             # There's a more Pythonic way of doing this.
             for phone in phones:
                 syllable_count += len(re.sub("[^012]", "", phone))
@@ -224,8 +225,9 @@ class Dictionary:
         return re.match(Dictionary.RE_NUMERIC, word) != None
 
     def get_word(self, word):
-        syllable_count = self._syllable_count(word)
-        is_dictionary_word = word in Dictionary.CMUDICT
-        is_numeric = self._is_numeric(word)
-        word = Word(word, syllable_count, is_dictionary_word, is_numeric)
+        normalized_word = self.normalize_text(word)
+        syllable_count = self._syllable_count(normalized_word)
+        is_dictionary_word = normalized_word in self._cmudict
+        is_numeric = self._is_numeric(normalized_word)
+        word = Word(normalized_word, syllable_count, is_dictionary_word, is_numeric)
         return word
