@@ -10,7 +10,7 @@ sudo: false
 install:
 - pip install -U pip
 - pip install -U -r requirements.txt
-- pip install -U -r requirements-d.txt
+- pip install -U -r requirements-dev.txt
 - python ./setup.py develop
 script:
 - pytest tests/*
@@ -21,4 +21,5 @@ deploy:
   on:
     python: '3.6'
     tags: true
-
+  password:
+    secure: QBCArzGoldifszlTWZNWYmP3SKxfway4caInVW297VWZq2KJEoxToJQowNAFDKTI2+3dyob7lQb2Bdy9hGMOwq80Bnumeor/Bh5jN/kEVwVBHHAg6azWczJUB+qPFb3nTtibM/+kKuNQl53EH6um2fGC3lQuCU7hE3jy2hbl8wuGYwLNmvBwcfOZqc4ELJ1Ykluyj6Y7BZTLiDDP+iYpa46hMA+yHolEk7srH2wFwtJaNzzMBuMTpu88UjZgCkh51gQtfLsTO/nP1jEf6Icxa+SVXnKrdZskE0PHAoyKA4rBDNMcHZRAh9jmeI9kfGuT6Ye7ovrZCbUsjsXT4JxpOt12YQwX96NQQnRq2Bj3RyZgBwIFg4t5ocOPKyCCWEmiGtyirMBR4PlqR789RXaZs5fmIePEZSAutpytc0BsiHQ48kHD8rz5Ggo3BYaPQWDsk8If2b0xVOEfp3AzpGpOhQdbY0en+INwKRI4pI7aQlbN21WiUuDRPTkAhXaeFlJGjT9FP4CgqfMtbWg7XH6VTv/Y40pJIyAw1ddVGfnbeWGv0U1I+B3kpBcc7Xa6CVdoUCqmQ8Rlcsi4B4lEnx/GZOTXn2zYCGwTLpknplkoKgCCp3K/7ysBqVUM89n42U3VdZocX/7EGYOpJJ/DyXk2oyfRaJeb9ZzvKCN97KzwXvU=
