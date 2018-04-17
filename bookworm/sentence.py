@@ -21,34 +21,42 @@ class Sentence():
             ['\")]?          # Optional closing quote.
             (?=\\s|$)
             """,
-                                  flags=re.MULTILINE | re.VERBOSE)
+                             flags=re.MULTILINE | re.VERBOSE)
 
     RE_SMART_QUOTES = re.compile("[“”]")
 
-    def __init__(self, sentence, dictionary):
-        self._sentence_string = sentence
-        self._normalized_sentence = dictionary.normalize_text(sentence)
+    def __init__(self, sentence_string, dictionary):
+        self._sentence_string = sentence_string
+        self._normalized_sentence = dictionary.normalize_text(sentence_string)
         self._dictionary = dictionary
-        self._words = [self._dictionary.get_word(
-            word) for word in re.findall(Word.RE_WORD, self._normalized_sentence)]
+        self._words = [self._dictionary.get_word(word) for word in re.findall(
+            Word.RE_WORD, self._normalized_sentence)]
         self._word_count = len(self._words)
         self._character_count = sum(
             [word.character_count for word in self._words])
         self._syllable_count = sum(
             [word.syllable_count for word in self._words])
         self._complex_word_count = sum(
-            [1 if word.is_complex_word else 0 for word in self._words])
+            [word.is_complex_word for word in self._words])
         self._long_word_count = sum(
-            [1 if word.is_long_word else 0 for word in self._words])
-        self._pov_word_count = sum(
-            [1 if word.is_pov_word else 0 for word in self._words])
+            [word.is_long_word for word in self._words])
+        self._pov_word_count = sum([word.is_pov_word for word in self._words])
         self._first_person_word_count = sum(
-            [1 if word.is_first_person_word else 0 for word in self._words])
+            [word.is_first_person_word for word in self._words])
         self._second_person_word_count = sum(
-            [1 if word.is_second_person_word else 0 for word in self._words])
+            [word.is_second_person_word for word in self._words])
         self._third_person_word_count = sum(
-            [1 if word.is_third_person_word else 0 for word in self._words])
+            [word.is_third_person_word for word in self._words])
         self._word_frequency = Counter(self._words)
+
+    def __str__(self):
+        return str(self.__dict__)
+
+    def __eq__(self, other):
+        return self._sentence_string == other._sentence_string
+
+    def __hash__(self):
+        return hash(self._sentence_string)
 
     @property
     def word_count(self):
@@ -87,5 +95,5 @@ class Sentence():
         return self._sentence_string
 
     @property
-    def frequency(self, word):
-        return self._word_frequency[word]
+    def frequency(self, word_string):
+        return self._word_frequency[word_string]
