@@ -5,7 +5,7 @@ import re
 import pointofview
 
 
-class Word:
+class Word():
     """A Word, the base unit for measuring fiction prose."""
 
     MIN_SYLLABLES_COMPLEX_WORD = 3

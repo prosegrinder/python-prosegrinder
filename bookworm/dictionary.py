@@ -7,7 +7,7 @@ import cmudict
 from bookworm.word import Word
 
 
-class Dictionary:
+class Dictionary():
     """A reference containing Words."""
 
     # # Only pay the price of loading this once.
