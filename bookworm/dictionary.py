@@ -10,9 +10,6 @@ from bookworm.word import Word
 class Dictionary():
     """A reference containing Words."""
 
-    # # Only pay the price of loading this once.
-    # CMUDICT = cmudict.dict()
-
     RE_NUMERIC = re.compile("^[+-]{0,1}\\d{1,3}(?:[,]\\d{3})*(?:[.]\\d*)*$")
 
     # See: http://www.onebloke.com/2011/06/counting-syllables-accurately-in-python-on-google-app-engine/
@@ -223,6 +220,11 @@ class Dictionary():
 
     def _is_numeric(self, word):
         return re.match(Dictionary.RE_NUMERIC, word) != None
+
+    @property
+    def cmudict(self):
+        """Return the word string initially used to create the Word."""
+        return self._cmudict
 
     def get_word(self, word):
         normalized_word = self.normalize_text(word)
