@@ -13,6 +13,7 @@ class Prose():
         self._dictionary = dictionary
         self._paragraphs = [paragraph for paragraph in re.findall(
             Paragraph.RE_PARAGRAPH, self._prose_string)]
+        self._dialogue_fragments = []
         self._word_count = sum([paragraph.word_count()
                                 for paragraph in self._paragraphs])
         self._character_count = sum(
@@ -33,3 +34,13 @@ class Prose():
             [paragraph.third_person_word_count() for paragraph in self._paragraphs])
         self._word_frequency = sum(
             [paragraph.word_frequency() for paragraph in self._paragraphs])
+
+    def __str__(self):
+        return str(self.__dict__)
+
+    def __eq__(self, other):
+        return self._prose_string == other._prose_string
+
+    def __hash__(self):
+        return hash(self._prose_string)
+
