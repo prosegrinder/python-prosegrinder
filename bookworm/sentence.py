@@ -97,3 +97,19 @@ class Sentence():
     @property
     def frequency(self, word_string):
         return self._word_frequency[word_string]
+
+    @property
+    def first_person_word_count(self):
+        return self._first_person_word_count
+
+    @property
+    def second_person_word_count(self):
+        return self._second_person_word_count
+
+    @property
+    def third_person_word_count(self):
+        return self._third_person_word_count
+
+    @property
+    def words(self):
+        return self._words
