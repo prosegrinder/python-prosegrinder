@@ -35,6 +35,7 @@ class Word {
 @enduml
 '''
 
+
 class Word():
     """A Word, the base unit for measuring fiction prose."""
 
