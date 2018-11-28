@@ -4,6 +4,7 @@ import re
 from collections import Counter
 
 from bookworm.sentence import Sentence
+from bookworm.dictionary import Dictionary
 
 
 class Paragraph():
@@ -13,28 +14,29 @@ class Paragraph():
     def __init__(self, paragraph_string, dictionary):
         self._paragraph_string = paragraph_string
         self._dictionary = dictionary
-        self._sentences = [sentence for sentence in re.findall(
+        self._sentences = [Sentence(sentence, dictionary) for sentence in re.findall(
             Sentence.RE_SENTENCE, self._paragraph_string)]
-        self._word_count = sum([sentence.word_count()
+        self._word_count = sum([sentence.word_count
                                 for sentence in self._sentences])
         self._character_count = sum(
-            [sentence.character_count() for sentence in self._sentences])
+            [sentence.character_count for sentence in self._sentences])
         self._syllable_count = sum(
-            [sentence.syllable_count() for sentence in self._sentences])
+            [sentence.syllable_count for sentence in self._sentences])
         self._complex_word_count = sum(
-            [sentence.complex_word_count() for sentence in self._sentences])
+            [sentence.complex_word_count for sentence in self._sentences])
         self._long_word_count = sum(
-            [sentence.long_word_count() for sentence in self._sentences])
+            [sentence.long_word_count for sentence in self._sentences])
         self._pov_word_count = sum(
-            [sentence.pov_word_count() for sentence in self._sentences])
+            [sentence.pov_word_count for sentence in self._sentences])
         self._first_person_word_count = sum(
-            [sentence.first_person_word_count() for sentence in self._sentences])
+            [sentence.first_person_word_count for sentence in self._sentences])
         self._second_person_word_count = sum(
-            [sentence.second_person_word_count() for sentence in self._sentences])
+            [sentence.second_person_word_count for sentence in self._sentences])
         self._third_person_word_count = sum(
-            [sentence.third_person_word_count() for sentence in self._sentences])
-        self._word_frequency = sum(
-            [sentence.word_frequency() for sentence in self._sentences])
+            [sentence.third_person_word_count for sentence in self._sentences])
+        self._word_frequency = Counter()
+        for sentence in self._sentences:
+            self._word_frequency.update(sentence.words)
 
     def __str__(self):
         return str(self.__dict__)
@@ -83,4 +85,8 @@ class Paragraph():
 
     @property
     def frequency(self, word_string):
-        return self._word_frequency[word_string]
+        return self._word_frequency[self._dictionary.get_word(word_string)]
+
+    @property
+    def sentence_count(self):
+        return len(self._sentences)
