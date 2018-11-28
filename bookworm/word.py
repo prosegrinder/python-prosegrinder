@@ -4,6 +4,36 @@ import re
 
 import pointofview
 
+'''
+@startuml
+class Word {
+    +int MIN_SYLLABLES_COMPLEX_WORD
+    +int MIN_CHARS_LONG_WORD
+    +re RE_WORD
+    -str _word_string
+    -int _syllable_count
+    -bool _is_dictionary_word
+    -bool _is_numeric
+    -int _character_count
+    -str _pov
+
+    +str word_string()
+    +int syllable_count()
+    +int syllable_count()
+    +bool is_dictionary_word()
+    +bool is_numeric()
+    +str initial_word()
+    +int character_count()
+    +bool is_complex_word()
+    +bool is_long_word()
+    +bool is_first_person_word()
+    +bool is_second_person_word()
+    +bool is_third_person_word()
+    +bool is_pov_word()
+    +str pov()
+}
+@enduml
+'''
 
 class Word():
     """A Word, the base unit for measuring fiction prose."""
