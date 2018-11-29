@@ -3,8 +3,8 @@
 import re
 from collections import Counter
 
-from bookworm.sentence import Sentence
 from bookworm.dictionary import Dictionary
+from bookworm.sentence import Sentence
 
 
 class Paragraph():
@@ -14,7 +14,7 @@ class Paragraph():
     def __init__(self, paragraph_string, dictionary):
         self._paragraph_string = paragraph_string
         self._dictionary = dictionary
-        self._sentences = [Sentence(sentence, dictionary) for sentence in re.findall(
+        self._sentences = [Sentence(sentence, self._dictionary) for sentence in re.findall(
             Sentence.RE_SENTENCE, self._paragraph_string)]
         self._word_count = sum([sentence.word_count
                                 for sentence in self._sentences])
@@ -68,6 +68,10 @@ class Paragraph():
         return self._long_word_count
 
     @property
+    def unique_word_count(self):
+        return len(self.unique_words)
+
+    @property
     def unique_words(self):
         return self._word_frequency.keys()
 
@@ -90,3 +94,15 @@ class Paragraph():
     @property
     def sentence_count(self):
         return len(self._sentences)
+
+    @property
+    def first_person_word_count(self):
+        return self._first_person_word_count
+
+    @property
+    def second_person_word_count(self):
+        return self._second_person_word_count
+
+    @property
+    def third_person_word_count(self):
+        return self._third_person_word_count
