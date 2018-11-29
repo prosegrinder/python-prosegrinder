@@ -11,29 +11,33 @@ class Prose():
     def __init__(self, prose_string, dictionary):
         self._prose_string = prose_string
         self._dictionary = dictionary
-        self._paragraphs = [paragraph for paragraph in re.findall(
+        self._paragraphs = [Paragraph(paragraph, self._dictionary) for paragraph in re.findall(
             Paragraph.RE_PARAGRAPH, self._prose_string)]
         self._dialogue_fragments = []
-        self._word_count = sum([paragraph.word_count()
-                                for paragraph in self._paragraphs])
         self._character_count = sum(
-            [paragraph.character_count() for paragraph in self._paragraphs])
+            [paragraph.character_count for paragraph in self._paragraphs])
         self._syllable_count = sum(
-            [paragraph.syllable_count() for paragraph in self._paragraphs])
+            [paragraph.syllable_count for paragraph in self._paragraphs])
+        self._word_count = sum(
+            [paragraph.word_count for paragraph in self._paragraphs])
         self._complex_word_count = sum(
-            [paragraph.complex_word_count() for paragraph in self._paragraphs])
+            [paragraph.complex_word_count for paragraph in self._paragraphs])
         self._long_word_count = sum(
-            [paragraph.long_word_count() for paragraph in self._paragraphs])
+            [paragraph.long_word_count for paragraph in self._paragraphs])
         self._pov_word_count = sum(
-            [paragraph.pov_word_count() for paragraph in self._paragraphs])
+            [paragraph.pov_word_count for paragraph in self._paragraphs])
         self._first_person_word_count = sum(
-            [paragraph.first_person_word_count() for paragraph in self._paragraphs])
+            [paragraph.first_person_word_count for paragraph in self._paragraphs])
         self._second_person_word_count = sum(
-            [paragraph.second_person_word_count() for paragraph in self._paragraphs])
+            [paragraph.second_person_word_count for paragraph in self._paragraphs])
         self._third_person_word_count = sum(
-            [paragraph.third_person_word_count() for paragraph in self._paragraphs])
-        self._word_frequency = sum(
-            [paragraph.word_frequency() for paragraph in self._paragraphs])
+            [paragraph.third_person_word_count for paragraph in self._paragraphs])
+        self._word_frequency = Counter()
+        for paragraph in self._paragraphs:
+            self._word_frequency.update(paragraph.word_frequency)
+        self._sentence_count = sum(
+            [paragraph.sentence_count for paragraph in self._paragraphs])
+        self._paragraph_count = len(self._paragraphs)
 
     def __str__(self):
         return str(self.__dict__)
@@ -44,3 +48,50 @@ class Prose():
     def __hash__(self):
         return hash(self._prose_string)
 
+    @property
+    def character_count(self):
+        return self._character_count
+
+    @property
+    def syllable_count(self):
+        return self._syllable_count
+
+    @property
+    def word_count(self):
+        return self._word_count
+
+    @property
+    def complex_word_count(self):
+        return self._complex_word_count
+
+    @property
+    def long_word_count(self):
+        return self._long_word_count
+
+    @property
+    def unique_word_count(self):
+        return len(self._word_frequency)
+
+    @property
+    def pov_word_count(self):
+        return self._pov_word_count
+
+    @property
+    def first_person_word_count(self):
+        return self._first_person_word_count
+
+    @property
+    def second_person_word_count(self):
+        return self._second_person_word_count
+
+    @property
+    def third_person_word_count(self):
+        return self._third_person_word_count
+
+    @property
+    def sentence_count(self):
+        return self._sentence_count
+
+    @property
+    def paragrah_count(self):
+        return self._paragraph_count
