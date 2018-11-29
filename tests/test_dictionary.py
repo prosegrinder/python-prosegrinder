@@ -7,23 +7,23 @@ import cmudict
 
 dictionary = Dictionary()
 
-def test_heuristic_syllable_count():
-    assert(dictionary._heuristic_syllable_count("frowning") == 2)   # nosec
-    assert(dictionary._heuristic_syllable_count("zurkuhlen") == 3)  # nosec
-    assert(dictionary._heuristic_syllable_count("cafe") == 2)       # nosec
-    assert(dictionary._heuristic_syllable_count("20,012.12") == 7)  # nosec
-    assert(dictionary._heuristic_syllable_count("1,904") == 4)      # nosec
-    assert(dictionary._heuristic_syllable_count("0.2315") == 5)     # nosec
-    assert(dictionary._heuristic_syllable_count("-503,012.12") == 9)# nosec
+# def test_heuristic_syllable_count():
+#     assert(dictionary._heuristic_syllable_count("frowning") == 2)   # nosec
+#     assert(dictionary._heuristic_syllable_count("zurkuhlen") == 3)  # nosec
+#     assert(dictionary._heuristic_syllable_count("cafe") == 2)       # nosec
+#     assert(dictionary._heuristic_syllable_count("20,012.12") == 7)  # nosec
+#     assert(dictionary._heuristic_syllable_count("1,904") == 4)      # nosec
+#     assert(dictionary._heuristic_syllable_count("0.2315") == 5)     # nosec
+#     assert(dictionary._heuristic_syllable_count("-503,012.12") == 9)# nosec
 
 def test_syllable_count():
-    assert(dictionary._syllable_count("frowning") == 2)   # nosec
-    assert(dictionary._syllable_count("zurkuhlen") == 3)  # nosec
-    assert(dictionary._syllable_count("cafe") == 2)       # nosec
-    assert(dictionary._syllable_count("20,012.12") == 7)  # nosec
-    assert(dictionary._syllable_count("1,904") == 4)      # nosec
-    assert(dictionary._syllable_count("0.2315") == 5)     # nosec
-    assert(dictionary._syllable_count("-503,012.12") == 9)# nosec
+    assert(dictionary.syllable_count("frowning") == 2)   # nosec
+    assert(dictionary.syllable_count("zurkuhlen") == 3)  # nosec
+    assert(dictionary.syllable_count("cafe") == 2)       # nosec
+    assert(dictionary.syllable_count("20,012.12") == 7)  # nosec
+    assert(dictionary.syllable_count("1,904") == 4)      # nosec
+    assert(dictionary.syllable_count("0.2315") == 5)     # nosec
+    assert(dictionary.syllable_count("-503,012.12") == 9)# nosec
 
 def test_get_word():
     frowning = Word('frowning', 2, True, False)
