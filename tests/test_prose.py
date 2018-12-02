@@ -66,7 +66,7 @@ def test_narrative():
     pass
 
 
-def test_readabilityscores():
+def test_readability_scores():
     assert(AUTOMATED_READABILITY_INDEX ==
            prose.readability_scores.automated_readability_index)
     assert(COLEMAN_LIAU_INDEX == prose.readability_scores.coleman_liau_index)

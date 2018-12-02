@@ -5,7 +5,7 @@ from collections import Counter
 
 from bookworm.dictionary import Dictionary
 from bookworm.paragraph import Paragraph
-from bookworm.readabilityscores import ReadabilityScores
+from bookworm.readability_scores import ReadabilityScores
 
 
 class Prose():
