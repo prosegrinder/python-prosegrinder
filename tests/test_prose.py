@@ -2,13 +2,13 @@
 
 import os
 
-from bookworm import Dictionary, Prose
+from bookworm import Dictionary, Prose, ReadabilityScores
 
 dictionary = Dictionary()
 SHORTSTORY = os.path.join(os.path.dirname(
     __file__), 'resources', 'shortstory.txt')
 text = open(SHORTSTORY).read()
-prose = Prose(text, dictionary)
+prose = Prose(text)
 
 SYLLABLE_COUNT = 2287  # was 2287
 WORD_COUNT = 1528
@@ -21,6 +21,15 @@ SECOND_PERSON_INDICATOR_COUNT = 74  # was 73
 THIRD_PERSON_INDICATOR_COUNT = 31  # was 25
 SENTENCE_COUNT = 90
 PARAGRAPH_COUNT = 77
+
+AUTOMATED_READABILITY_INDEX = 0.28090308159411137
+COLEMAN_LIAU_INDEX = 9.424502617801043
+FLESCH_KINCAID_GRADE_LEVEL = 8.692720767888307
+FLESCH_READING_EASE = 62.97938801628857
+GUNNING_FOG_INDEX = 12.079069226294358
+LIX = 34.97515997673066
+RIX = 3.0555555555555554
+SMOG = 11.687633713980063
 
 
 def test_syllables():
@@ -55,3 +64,16 @@ def test_dialogue():
 
 def test_narrative():
     pass
+
+
+def test_readabilityscores():
+    assert(AUTOMATED_READABILITY_INDEX ==
+           prose.readability_scores.automated_readability_index)
+    assert(COLEMAN_LIAU_INDEX == prose.readability_scores.coleman_liau_index)
+    assert(FLESCH_KINCAID_GRADE_LEVEL ==
+           prose.readability_scores.flesch_kincaid_grade_level)
+    assert(FLESCH_READING_EASE == prose.readability_scores.flesch_reading_ease)
+    assert(GUNNING_FOG_INDEX == prose.readability_scores.gunning_fog_index)
+    assert(LIX == prose.readability_scores.lix)
+    assert(RIX == prose.readability_scores.rix)
+    assert(SMOG == prose.readability_scores.smog)
