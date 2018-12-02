@@ -11,9 +11,9 @@ class Paragraph():
 
     RE_PARAGRAPH = re.compile(".*(?=\\n|$)")
 
-    def __init__(self, paragraph_string, dictionary):
+    def __init__(self, paragraph_string, dictionary = None):
         self._paragraph_string = paragraph_string
-        self._dictionary = dictionary
+        self._dictionary = dictionary if dictionary else Dictionary()
         self._sentences = [Sentence(sentence, self._dictionary) for sentence in re.findall(
             Sentence.RE_SENTENCE, self._paragraph_string)]
         self._word_count = sum([sentence.word_count

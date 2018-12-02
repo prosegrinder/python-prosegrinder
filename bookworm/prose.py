@@ -3,14 +3,16 @@
 import re
 from collections import Counter
 
+from bookworm.dictionary import Dictionary
 from bookworm.paragraph import Paragraph
+from bookworm.readabilityscores import ReadabilityScores
 
 
 class Prose():
 
-    def __init__(self, prose_string, dictionary):
+    def __init__(self, prose_string, dictionary=None):
         self._prose_string = prose_string
-        self._dictionary = dictionary
+        self._dictionary = dictionary if dictionary else Dictionary()
         self._paragraphs = [Paragraph(paragraph, self._dictionary) for paragraph in re.findall(
             Paragraph.RE_PARAGRAPH, self._prose_string)]
         self._dialogue_fragments = []
@@ -38,6 +40,9 @@ class Prose():
         self._sentence_count = sum(
             [paragraph.sentence_count for paragraph in self._paragraphs])
         self._paragraph_count = len(self._paragraphs)
+        self._readability_scores = ReadabilityScores(
+            self._character_count, self._syllable_count, self._word_count,
+            self._complex_word_count, self._long_word_count, self._sentence_count)
 
     def __str__(self):
         return str(self.__dict__)
@@ -95,3 +100,7 @@ class Prose():
     @property
     def paragrah_count(self):
         return self._paragraph_count
+
+    @property
+    def readability_scores(self):
+        return self._readability_scores

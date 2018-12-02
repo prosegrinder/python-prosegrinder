@@ -3,6 +3,7 @@
 import re
 from collections import Counter
 
+from bookworm.dictionary import Dictionary
 from bookworm.word import Word
 
 
@@ -25,10 +26,10 @@ class Sentence():
 
     RE_SMART_QUOTES = re.compile("[“”]")
 
-    def __init__(self, sentence_string, dictionary):
+    def __init__(self, sentence_string, dictionary = None):
         self._sentence_string = sentence_string
+        self._dictionary = dictionary if dictionary else Dictionary()
         self._normalized_sentence = dictionary.normalize_text(sentence_string)
-        self._dictionary = dictionary
         self._words = [self._dictionary.get_word(word) for word in re.findall(
             Word.RE_WORD, self._normalized_sentence)]
         self._word_count = len(self._words)
