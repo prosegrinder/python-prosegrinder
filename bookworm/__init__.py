@@ -7,6 +7,7 @@ from bookworm.dictionary import Dictionary
 from bookworm.sentence import Sentence
 from bookworm.paragraph import Paragraph
 from bookworm.prose import Prose
+from bookworm.readabilityscores import ReadabilityScores
 
 
 __version__ = pkg_resources.resource_string(
