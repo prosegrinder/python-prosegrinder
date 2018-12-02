@@ -6,6 +6,7 @@ from collections import Counter
 from bookworm.dictionary import Dictionary
 from bookworm.paragraph import Paragraph
 from bookworm.readability_scores import ReadabilityScores
+import narrative
 
 
 class Prose():
@@ -15,7 +16,9 @@ class Prose():
         self._dictionary = dictionary if dictionary else Dictionary()
         self._paragraphs = [Paragraph(paragraph, self._dictionary) for paragraph in re.findall(
             Paragraph.RE_PARAGRAPH, self._prose_string)]
-        self._dialogue_fragments = []
+        n = narrative.split(prose_string)
+        self._dialogue = [frag != '' for frag in n['dialogue']]
+        self._narrative = [frag != '' for frag in n['narrative']]
         self._character_count = sum(
             [paragraph.character_count for paragraph in self._paragraphs])
         self._syllable_count = sum(
@@ -105,3 +108,11 @@ class Prose():
     @property
     def readability_scores(self):
         return self._readability_scores
+
+    @property
+    def dialogue(self):
+        return self._dialogue
+
+    @property
+    def narrative(self):
+        return self._narrative
