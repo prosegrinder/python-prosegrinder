@@ -23,6 +23,7 @@ setup(
     description="A text analytics library for prose fiction.",
     long_description=LONG_DESCRIPTION,
 
+    python_requires='>=3.4',
     packages=[
         'bookworm'
     ],
