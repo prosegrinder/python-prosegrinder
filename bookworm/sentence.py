@@ -48,7 +48,7 @@ class Sentence():
             [word.is_second_person_word for word in self._words])
         self._third_person_word_count = sum(
             [word.is_third_person_word for word in self._words])
-        self._word_frequency = Counter(self._words)
+        self._word_frequency = dict(Counter(self._words))
 
     def __str__(self):
         return str(self.__dict__)

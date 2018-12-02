@@ -34,9 +34,10 @@ class Prose():
             [paragraph.second_person_word_count for paragraph in self._paragraphs])
         self._third_person_word_count = sum(
             [paragraph.third_person_word_count for paragraph in self._paragraphs])
-        self._word_frequency = Counter()
+        wf = Counter()
         for paragraph in self._paragraphs:
-            self._word_frequency.update(paragraph.word_frequency)
+            wf.update(paragraph.word_frequency)
+        self._word_frequency = dict(wf)
         self._sentence_count = sum(
             [paragraph.sentence_count for paragraph in self._paragraphs])
         self._paragraph_count = len(self._paragraphs)

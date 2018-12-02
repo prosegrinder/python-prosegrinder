@@ -34,9 +34,10 @@ class Paragraph():
             [sentence.second_person_word_count for sentence in self._sentences])
         self._third_person_word_count = sum(
             [sentence.third_person_word_count for sentence in self._sentences])
-        self._word_frequency = Counter()
+        wf = Counter()
         for sentence in self._sentences:
-            self._word_frequency.update(sentence.words)
+            wf.update(sentence.words)
+        self._word_frequency = dict(wf)
 
     def __str__(self):
         return str(self.__dict__)
