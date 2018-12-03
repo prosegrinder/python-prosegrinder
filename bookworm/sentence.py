@@ -3,6 +3,8 @@
 import re
 from collections import Counter
 
+import pointofview
+
 from bookworm.dictionary import Dictionary
 from bookworm.word import Word
 
@@ -26,7 +28,7 @@ class Sentence():
 
     RE_SMART_QUOTES = re.compile("[“”]")
 
-    def __init__(self, sentence_string, dictionary = None):
+    def __init__(self, sentence_string, dictionary=None):
         self._sentence_string = sentence_string
         self._dictionary = dictionary if dictionary else Dictionary()
         self._normalized_sentence = dictionary.normalize_text(sentence_string)
@@ -49,6 +51,13 @@ class Sentence():
         self._third_person_word_count = sum(
             [word.is_third_person_word for word in self._words])
         self._word_frequency = dict(Counter(self._words))
+        self._pov = pointofview.NONE
+        if self._first_person_word_count > 0:
+            self._pov = pointofview.FIRST
+        elif self._second_person_word_count > 0:
+            self._pov = pointofview.SECOND
+        elif self._third_person_word_count > 0:
+            self._pov = pointofview.THIRD
 
     def __str__(self):
         return str(self.__dict__)
@@ -114,3 +123,7 @@ class Sentence():
     @property
     def words(self):
         return self._words
+
+    @property
+    def pov(self):
+        return self._pov
