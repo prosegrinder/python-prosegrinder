@@ -3,18 +3,20 @@
 import re
 from collections import Counter
 
+import narrative
+import pointofview
+
 from prosegrinder.dictionary import Dictionary
 from prosegrinder.sentence import Sentence
-import narrative
 
 
 class Paragraph():
 
     RE_PARAGRAPH = re.compile(".*(?=\\n|$)")
 
-    def __init__(self, paragraph_string, dictionary=None):
+    def __init__(self, paragraph_string, dictionary=Dictionary()):
         self._paragraph_string = paragraph_string
-        self._dictionary = dictionary if dictionary else Dictionary()
+        self._dictionary = dictionary
         self._sentences = [Sentence(sentence, self._dictionary) for sentence in re.findall(
             Sentence.RE_SENTENCE, self._paragraph_string)]
         self._word_count = sum([sentence.word_count
@@ -39,16 +41,17 @@ class Paragraph():
         for sentence in self._sentences:
             wf.update(sentence.words)
         self._word_frequency = dict(wf)
-        self._pov = None
+        self._pov = pointofview.NONE
         self._dialogue = {'character_count': 0, 'syllable_count': 0,
                           'word_count': 0, 'first_person_word_count': 0,
                           'second_person_word_count': 0, 'third_person_word_count': 0,
-                          'pov': None, 'fragments': []}
+                          'pov': pointofview.NONE, 'fragments': []}
         self._narrative = {'character_count': 0, 'syllable_count': 0,
-                          'word_count': 0, 'first_person_word_count': 0,
-                          'second_person_word_count': 0, 'third_person_word_count': 0,
-                          'pov': None, 'fragments': []}
+                           'word_count': 0, 'first_person_word_count': 0,
+                           'second_person_word_count': 0, 'third_person_word_count': 0,
+                           'pov': pointofview.NONE, 'fragments': []}
         n = narrative.split(paragraph_string)
+
         for dialogue_fragment in n['dialogue']:
             dialogue_sentence = Sentence(dialogue_fragment, self._dictionary)
             self._dialogue['fragments'].append(dialogue_sentence)
@@ -58,13 +61,13 @@ class Paragraph():
             self._dialogue['first_person_word_count'] += dialogue_sentence.first_person_word_count
             self._dialogue['second_person_word_count'] += dialogue_sentence.second_person_word_count
             self._dialogue['third_person_word_count'] += dialogue_sentence.third_person_word_count
-            self._dialogue['pov'] = None
-            if (self._dialogue['first_person_word_count'] > 0):
-                self._dialogue['pov'] = 'first'
-            elif (self._dialogue['second_person_word_count'] > 0):
-                self._dialogue['pov'] = 'second'
-            elif (self._dialogue['third_person_word_count'] > 0):
-                self._dialogue['pov'] = 'third'
+        if (self._dialogue['first_person_word_count'] > 0):
+            self._dialogue['pov'] = pointofview.FIRST
+        elif (self._dialogue['second_person_word_count'] > 0):
+            self._dialogue['pov'] = pointofview.SECOND
+        elif (self._dialogue['third_person_word_count'] > 0):
+            self._dialogue['pov'] = pointofview.THIRD
+
         for narrative_fragment in n['narrative']:
             narrative_sentence = Sentence(narrative_fragment, self._dictionary)
             self._narrative['fragments'].append(narrative_sentence)
@@ -74,13 +77,12 @@ class Paragraph():
             self._narrative['first_person_word_count'] += narrative_sentence.first_person_word_count
             self._narrative['second_person_word_count'] += narrative_sentence.second_person_word_count
             self._narrative['third_person_word_count'] += narrative_sentence.third_person_word_count
-            self._narrative['pov'] = None
-            if (self._narrative['first_person_word_count'] > 0):
-                self._narrative['pov'] = 'first'
-            elif (self._narrative['second_person_word_count'] > 0):
-                self._narrative['pov'] = 'second'
-            elif (self._narrative['third_person_word_count'] > 0):
-                self._narrative['pov'] = 'third'
+        if (self._narrative['first_person_word_count'] > 0):
+            self._narrative['pov'] = pointofview.FIRST
+        elif (self._narrative['second_person_word_count'] > 0):
+            self._narrative['pov'] = pointofview.SECOND
+        elif (self._narrative['third_person_word_count'] > 0):
+            self._narrative['pov'] = pointofview.THIRD
 
     def __str__(self):
         return str(self.__dict__)
