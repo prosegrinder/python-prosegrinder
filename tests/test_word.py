@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from bookworm import Word
+from prosegrinder import Word
 
 def test_equality():
     w1 = Word('frowning', 2, True, False)

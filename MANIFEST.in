@@ -1,7 +1,7 @@
 include MANIFEST.in
 include README.rst
 include LICENSE
-graft bookworm
+graft prosegrinder
 graft tests
 global-exclude .git
 global-exclude __pycache__

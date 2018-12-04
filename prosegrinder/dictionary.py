@@ -5,7 +5,7 @@ import re
 import cmudict
 import syllables
 
-from bookworm.word import Word
+from prosegrinder.word import Word
 
 
 class Dictionary():

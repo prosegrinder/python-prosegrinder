@@ -5,8 +5,8 @@ from collections import Counter
 
 import pointofview
 
-from bookworm.dictionary import Dictionary
-from bookworm.word import Word
+from prosegrinder.dictionary import Dictionary
+from prosegrinder.word import Word
 
 
 class Sentence():

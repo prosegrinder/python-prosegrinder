@@ -3,9 +3,9 @@
 import re
 from collections import Counter
 
-from bookworm.dictionary import Dictionary
-from bookworm.paragraph import Paragraph
-from bookworm.readability_scores import ReadabilityScores
+from prosegrinder.dictionary import Dictionary
+from prosegrinder.paragraph import Paragraph
+from prosegrinder.readability_scores import ReadabilityScores
 import narrative
 
 

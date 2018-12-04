@@ -5,7 +5,7 @@ from os import path
 from setuptools import setup
 
 # Version
-with open(path.join(path.dirname(__file__), 'bookworm', 'VERSION')) as version_file:
+with open(path.join(path.dirname(__file__), 'prosegrinder', 'VERSION')) as version_file:
     VERSION = version_file.read().strip()
 # Long Description
 with open(path.join(path.dirname(__file__), 'README.rst')) as readme_file:
@@ -13,9 +13,9 @@ with open(path.join(path.dirname(__file__), 'README.rst')) as readme_file:
 
 
 setup(
-    name="bookworm",
+    name="prosegrinder",
     version=VERSION,
-    url="https://github.com/prosegrinder/python-bookworm",
+    url="https://github.com/prosegrinder/python-prosegrinder",
 
     author="David L. Day",
     author_email="dday376@gmail.com",
@@ -25,9 +25,9 @@ setup(
 
     python_requires='>=3.4',
     packages=[
-        'bookworm'
+        'prosegrinder'
     ],
-    package_dir={'bookworm': 'bookworm'},
+    package_dir={'prosegrinder': 'prosegrinder'},
     package_data={
         '': ['LICENSE', '*.rst', 'MANIFEST.in'],
     },

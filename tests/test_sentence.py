@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from bookworm import Dictionary
-from bookworm import Sentence
+from prosegrinder import Dictionary
+from prosegrinder import Sentence
 
 dictionary = Dictionary()
 text = "This is a sentence of twelve words, and let's add some complexity."

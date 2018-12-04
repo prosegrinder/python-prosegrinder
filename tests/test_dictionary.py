@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from bookworm import Dictionary
-from bookworm import Word
+from prosegrinder import Dictionary
+from prosegrinder import Word
 
 dictionary = Dictionary()
 

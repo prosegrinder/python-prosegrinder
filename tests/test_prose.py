@@ -2,7 +2,7 @@
 
 import os
 
-from bookworm import Dictionary, Prose, ReadabilityScores
+from prosegrinder import Dictionary, Prose, ReadabilityScores
 
 dictionary = Dictionary()
 SHORTSTORY = os.path.join(os.path.dirname(

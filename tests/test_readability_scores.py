@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from bookworm import ReadabilityScores
+from prosegrinder import ReadabilityScores
 
 
 COMPLEX_WORD_COUNT = 202

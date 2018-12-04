@@ -3,8 +3,8 @@
 import re
 from collections import Counter
 
-from bookworm.dictionary import Dictionary
-from bookworm.sentence import Sentence
+from prosegrinder.dictionary import Dictionary
+from prosegrinder.sentence import Sentence
 import narrative
 
 
