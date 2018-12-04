@@ -3,22 +3,21 @@
 import re
 from collections import Counter
 
+import narrative
+import pointofview
+
 from prosegrinder.dictionary import Dictionary
 from prosegrinder.paragraph import Paragraph
 from prosegrinder.readability_scores import ReadabilityScores
-import narrative
 
 
 class Prose():
 
-    def __init__(self, prose_string, dictionary=None):
+    def __init__(self, prose_string, dictionary=Dictionary()):
         self._prose_string = prose_string
-        self._dictionary = dictionary if dictionary else Dictionary()
+        self._dictionary = dictionary
         self._paragraphs = [Paragraph(paragraph, self._dictionary) for paragraph in re.findall(
             Paragraph.RE_PARAGRAPH, self._prose_string)]
-        n = narrative.split(prose_string)
-        self._dialogue = [frag != '' for frag in n['dialogue']]
-        self._narrative = [frag != '' for frag in n['narrative']]
         self._character_count = sum(
             [paragraph.character_count for paragraph in self._paragraphs])
         self._syllable_count = sum(
@@ -47,6 +46,43 @@ class Prose():
         self._readability_scores = ReadabilityScores(
             self._character_count, self._syllable_count, self._word_count,
             self._complex_word_count, self._long_word_count, self._sentence_count)
+
+        self._dialogue = {'character_count': 0, 'syllable_count': 0,
+                          'word_count': 0, 'first_person_word_count': 0,
+                          'second_person_word_count': 0, 'third_person_word_count': 0,
+                          'pov': pointofview.NONE, 'fragments': []}
+        self._narrative = {'character_count': 0, 'syllable_count': 0,
+                           'word_count': 0, 'first_person_word_count': 0,
+                           'second_person_word_count': 0, 'third_person_word_count': 0,
+                           'pov': pointofview.NONE, 'fragments': []}
+
+        for paragraph in self._paragraphs:
+            self._dialogue['character_count'] += paragraph.dialogue['character_count']
+            self._dialogue['syllable_count'] += paragraph.dialogue['syllable_count']
+            self._dialogue['word_count'] += paragraph.dialogue['word_count']
+            self._dialogue['first_person_word_count'] += paragraph.dialogue['first_person_word_count']
+            self._dialogue['second_person_word_count'] += paragraph.dialogue['second_person_word_count']
+            self._dialogue['third_person_word_count'] += paragraph.dialogue['third_person_word_count']
+            self._narrative['character_count'] += paragraph.narrative['character_count']
+            self._narrative['syllable_count'] += paragraph.narrative['syllable_count']
+            self._narrative['word_count'] += paragraph.narrative['word_count']
+            self._narrative['first_person_word_count'] += paragraph.narrative['first_person_word_count']
+            self._narrative['second_person_word_count'] += paragraph.narrative['second_person_word_count']
+            self._narrative['third_person_word_count'] += paragraph.narrative['third_person_word_count']
+        if (self._dialogue['first_person_word_count'] > 0):
+            self._dialogue['pov'] = pointofview.FIRST
+        elif (self._dialogue['second_person_word_count'] > 0):
+            self._dialogue['pov'] = pointofview.SECOND
+        elif (self._dialogue['third_person_word_count'] > 0):
+            self._dialogue['pov'] = pointofview.THIRD
+        if (self._narrative['first_person_word_count'] > 0):
+            self._narrative['pov'] = pointofview.FIRST
+        elif (self._narrative['second_person_word_count'] > 0):
+            self._narrative['pov'] = pointofview.SECOND
+        elif (self._narrative['third_person_word_count'] > 0):
+            self._narrative['pov'] = pointofview.THIRD
+
+        self._pov = self._narrative['pov']
 
     def __str__(self):
         return str(self.__dict__)
@@ -116,3 +152,7 @@ class Prose():
     @property
     def narrative(self):
         return self._narrative
+
+    @property
+    def pov(self):
+        return self._pov
