@@ -28,9 +28,9 @@ class Sentence():
 
     RE_SMART_QUOTES = re.compile("[“”]")
 
-    def __init__(self, sentence_string, dictionary=None):
+    def __init__(self, sentence_string, dictionary=Dictionary()):
         self._sentence_string = sentence_string
-        self._dictionary = dictionary if dictionary else Dictionary()
+        self._dictionary = dictionary
         self._normalized_sentence = dictionary.normalize_text(sentence_string)
         self._words = [self._dictionary.get_word(word) for word in re.findall(
             Word.RE_WORD, self._normalized_sentence)]
