@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+from collections import Counter
 
 from prosegrinder import Dictionary, Prose, ReadabilityScores
 
@@ -17,7 +18,7 @@ LONG_WORD_COUNT = 275
 SENTENCE_COUNT = 90
 WORD_COUNT = 1528
 UNIQUE_WORD_COUNT = 526
-POV_INDICATOR_COUNT = 113  # was 104
+POV_WORD_COUNT = 113  # was 104
 FIRST_PERSON_INDICATOR_COUNT = 8  # was 6
 SECOND_PERSON_INDICATOR_COUNT = 74  # was 73
 THIRD_PERSON_INDICATOR_COUNT = 31  # was 25
@@ -50,7 +51,7 @@ def test_words():
 
 
 def test_pov():
-    assert(POV_INDICATOR_COUNT == prose.pov_word_count)
+    assert(POV_WORD_COUNT == prose.pov_word_count)
     assert(FIRST_PERSON_INDICATOR_COUNT == prose.first_person_word_count)
     assert(SECOND_PERSON_INDICATOR_COUNT == prose.second_person_word_count)
     assert(THIRD_PERSON_INDICATOR_COUNT == prose.third_person_word_count)
@@ -64,12 +65,29 @@ def test_paragraphs():
     assert(PARAGRAPH_COUNT == prose.paragrah_count)
 
 
-def test_dialogue():
-    pass
-
-
-def test_narrative():
-    pass
+def test_dialogue_narrative():
+    assert(CHARACTER_COUNT == prose.dialogue.character_count +
+           prose.narrative.character_count)
+    assert(SYLLABLE_COUNT == prose.dialogue.syllable_count +
+           prose.narrative.syllable_count)
+    assert(WORD_COUNT == prose.dialogue.word_count +
+           prose.narrative.word_count)
+    assert(LONG_WORD_COUNT == prose.dialogue.long_word_count +
+           prose.narrative.long_word_count)
+    assert(COMPLEX_WORD_COUNT == prose.dialogue.complex_word_count +
+           prose.narrative.complex_word_count)
+    combined_word_frequency = Counter()
+    combined_word_frequency.update(prose.dialogue.word_frequency)
+    combined_word_frequency.update(prose.narrative.word_frequency)
+    assert(UNIQUE_WORD_COUNT == len(combined_word_frequency))
+    assert(POV_WORD_COUNT == prose.dialogue.pov_word_count +
+           prose.narrative.pov_word_count)
+    assert(FIRST_PERSON_INDICATOR_COUNT == prose.dialogue.first_person_word_count +
+           prose.narrative.first_person_word_count)
+    assert(SECOND_PERSON_INDICATOR_COUNT == prose.dialogue.second_person_word_count +
+           prose.narrative.second_person_word_count)
+    assert(THIRD_PERSON_INDICATOR_COUNT == prose.dialogue.third_person_word_count +
+           prose.narrative.third_person_word_count)
 
 
 def test_readability_scores():
