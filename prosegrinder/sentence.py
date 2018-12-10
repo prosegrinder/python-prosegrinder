@@ -5,6 +5,7 @@ from collections import Counter
 
 import pointofview
 
+from prosegrinder.dictionary import Dictionary
 from prosegrinder.fragment import Fragment
 
 
@@ -30,3 +31,8 @@ class Sentence(Fragment):
     @property
     def sentence_string(self):
         return self.fragment_string
+
+    @staticmethod
+    def parse_sentences(text, dictionary=Dictionary()):
+        return [Sentence(sentence, dictionary) for sentence in re.findall(
+            Sentence.RE_SENTENCE, text)]
