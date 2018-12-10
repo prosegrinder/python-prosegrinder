@@ -52,6 +52,10 @@ class Fragment():
         return hash(self._fragment_string)
 
     @property
+    def dictionary(self):
+        return self._dictionary
+
+    @property
     def word_count(self):
         return self._word_count
 
