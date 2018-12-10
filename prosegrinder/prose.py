@@ -18,8 +18,8 @@ class Prose():
     def __init__(self, prose_string, dictionary=Dictionary()):
         self._prose_string = prose_string
         self._dictionary = dictionary
-        self._paragraphs = [Paragraph(paragraph, self._dictionary) for paragraph in re.findall(
-            Paragraph.RE_PARAGRAPH, self._prose_string)]
+        self._paragraphs = Paragraph.parse_paragraphs(
+            self._prose_string, self._dictionary)
         self._character_count = sum(
             [paragraph.character_count for paragraph in self._paragraphs])
         self._syllable_count = sum(
@@ -67,6 +67,10 @@ class Prose():
 
     def __hash__(self):
         return hash(self._prose_string)
+
+    @property
+    def dictionary(self):
+        return self._dictionary
 
     @property
     def character_count(self):
