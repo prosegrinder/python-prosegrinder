@@ -19,8 +19,8 @@ class Paragraph():
     def __init__(self, paragraph_string, dictionary=Dictionary()):
         self._paragraph_string = paragraph_string
         self._dictionary = dictionary
-        self._sentences = [Sentence(sentence, self._dictionary) for sentence in re.findall(
-            Sentence.RE_SENTENCE, self._paragraph_string)]
+        self._sentences = Sentence.parse_sentences(
+            self._paragraph_string, self._dictionary)
         self._word_count = sum([sentence.word_count
                                 for sentence in self._sentences])
         self._character_count = sum(
@@ -62,6 +62,10 @@ class Paragraph():
 
     def __hash__(self):
         return hash(self._paragraph_string)
+
+    @property
+    def dictionary(self):
+        return self._dictionary
 
     @property
     def word_count(self):
@@ -134,3 +138,8 @@ class Paragraph():
     @property
     def narrative(self):
         return self._narrative
+
+    @staticmethod
+    def parse_paragraphs(text, dictionary=Dictionary()):
+        return [Paragraph(paragraph, dictionary) for paragraph in re.findall(
+            Paragraph.RE_PARAGRAPH, text)]
