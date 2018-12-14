@@ -8,38 +8,43 @@ class ReadabilityScores():
     NDIGITS = 3  # Default for round(number,[ndigits])
 
     def __init__(self, word_character_count, syllable_count, word_count,
-                 complex_word_count, long_word_count, sentence_count):
+                 complex_word_count, long_word_count, sentence_count, ndigits=NDIGITS):
         self._word_character_count = word_character_count
         self._syllable_count = syllable_count
         self._word_count = word_count
         self._complex_word_count = complex_word_count
         self._long_word_count = long_word_count
         self._sentence_count = sentence_count
+        self._ndigits = ndigits
 
         self._automated_readability_index = self.calculate_automated_readability_index(
-            self._word_character_count, self._word_count, self._sentence_count
+            self._word_character_count, self._word_count, self._sentence_count, self._ndigits
         )
         self._coleman_liau_index = self.calculate_coleman_liau_index(
-            self._word_character_count, self._word_count, self._sentence_count
+            self._word_character_count, self._word_count, self._sentence_count, self._ndigits
         )
         self._flesch_kincaid_grade_level = self.calculate_flesch_kincaid_grade_level(
-            self._syllable_count, self._word_count, self._sentence_count
+            self._syllable_count, self._word_count, self._sentence_count, self._ndigits
         )
         self._flesch_reading_ease = self.calculate_flesch_reading_ease(
-            self._syllable_count, self._word_count, self._sentence_count
+            self._syllable_count, self._word_count, self._sentence_count, self._ndigits
         )
         self._gunning_fog_index = self.calculate_gunning_fog_index(
-            self._word_count, self._complex_word_count, self._sentence_count
+            self._word_count, self._complex_word_count, self._sentence_count, self._ndigits
         )
         self._lix = self.calculate_lix(
-            self._word_count, self._long_word_count, self._sentence_count
+            self._word_count, self._long_word_count, self._sentence_count, self._ndigits
         )
         self._rix = self.calculate_rix(
-            self._long_word_count, self._sentence_count
+            self._long_word_count, self._sentence_count, self._ndigits
         )
         self._smog = self.calculate_smog(
-            self._complex_word_count, self._sentence_count
+            self._complex_word_count, self._sentence_count, self._ndigits
         )
+
+    @property
+    def ndigits(self):
+        return self._ndigits
 
     @property
     def automated_readability_index(self):
