@@ -15,11 +15,11 @@ from prosegrinder.readability_scores import ReadabilityScores
 
 class Prose():
 
-    def __init__(self, prose_string, dictionary=Dictionary()):
-        self._prose_string = prose_string
+    def __init__(self, text, dictionary=Dictionary()):
+        self._text = text
         self._dictionary = dictionary
         self._paragraphs = Paragraph.parse_paragraphs(
-            self._prose_string, self._dictionary)
+            self._text, self._dictionary)
         self._word_character_count = sum(
             [paragraph.word_character_count for paragraph in self._paragraphs])
         self._syllable_count = sum(
@@ -48,25 +48,21 @@ class Prose():
         self._readability_scores = ReadabilityScores(
             self._word_character_count, self._syllable_count, self._word_count,
             self._complex_word_count, self._long_word_count, self._sentence_count)
-        n = narrative.split(prose_string)
-        dialogue_fragments = []
-        for dialogue_fragment_string in n['dialogue']:
-            dialogue_fragments.append(Fragment(dialogue_fragment_string))
-        self._dialogue = FragmentContainer(dialogue_fragments)
-        narrative_fragments = []
-        for narrative_fragment_string in n['narrative']:
-            narrative_fragments.append(Fragment(narrative_fragment_string))
-        self._narrative = FragmentContainer(narrative_fragments)
+        n = narrative.split(self._text)
+        self._dialogue = FragmentContainer(
+            [Fragment(fragment_text) for fragment_text in n['dialogue']])
+        self._narrative = FragmentContainer(
+            [Fragment(fragment_text) for fragment_text in n['narrative']])
         self._pov = self._narrative.pov
 
     def __str__(self):
         return str(self.__dict__)
 
     def __eq__(self, other):
-        return self._prose_string == other._prose_string
+        return self._text == other._text
 
     def __hash__(self):
-        return hash(self._prose_string)
+        return hash(self._text)
 
     @property
     def dictionary(self):
@@ -135,3 +131,7 @@ class Prose():
     @property
     def pov(self):
         return self._pov
+
+    @property
+    def text(self):
+        return self._text

@@ -16,11 +16,11 @@ class Paragraph():
 
     RE_PARAGRAPH = re.compile(".*(?=\\n|$)")
 
-    def __init__(self, paragraph_string, dictionary=Dictionary()):
-        self._paragraph_string = paragraph_string
+    def __init__(self, text, dictionary=Dictionary()):
+        self._text = text
         self._dictionary = dictionary
         self._sentences = Sentence.parse_sentences(
-            self._paragraph_string, self._dictionary)
+            self._text, self._dictionary)
         self._word_count = sum([sentence.word_count
                                 for sentence in self._sentences])
         self._word_character_count = sum(
@@ -43,25 +43,21 @@ class Paragraph():
         for sentence in self._sentences:
             wf.update(sentence.words)
         self._word_frequency = dict(wf)
-        n = narrative.split(paragraph_string)
-        dialogue_fragments = []
-        for dialogue_fragment_string in n['dialogue']:
-            dialogue_fragments.append(Fragment(dialogue_fragment_string))
-        self._dialogue = FragmentContainer(dialogue_fragments)
-        narrative_fragments = []
-        for narrative_fragment_string in n['narrative']:
-            narrative_fragments.append(Fragment(narrative_fragment_string))
-        self._narrative = FragmentContainer(narrative_fragments)
+        n = narrative.split(self._text)
+        self._dialogue = FragmentContainer(
+            [Fragment(fragment_text) for fragment_text in n['dialogue']])
+        self._narrative = FragmentContainer(
+            [Fragment(fragment_text) for fragment_text in n['narrative']])
         self._pov = self._narrative.pov
 
     def __str__(self):
         return str(self.__dict__)
 
     def __eq__(self, other):
-        return self._paragraph_string == other._paragraph_string
+        return self._text == other._text
 
     def __hash__(self):
-        return hash(self._paragraph_string)
+        return hash(self._text)
 
     @property
     def dictionary(self):
@@ -104,8 +100,8 @@ class Paragraph():
         return self._pov_word_count
 
     @property
-    def paragraph_string(self):
-        return self._paragraph_string
+    def text(self):
+        return self._text
 
     @property
     def frequency(self, word_string):
