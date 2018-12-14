@@ -102,7 +102,7 @@ class FragmentContainer():
         return self._word_frequency[self._dictionary.get_word(word_string)]
 
     @property
-    def sentence_count(self):
+    def fragment_count(self):
         return len(self._fragments)
 
     @property
