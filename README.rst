@@ -28,7 +28,7 @@ Usage
 The main use is via the prosegrinder.Prose object.
 
     >>> from prosegrinder import Prose
-    >>> p = Prose('Some lengthy text that's actual prose, like a novel or article.')
+    >>> p = Prose("Some lengthy text that's actual prose, like a novel or article.")
 
 The Prose object will parse everything down and compute basic staticstics, including word count,
 sentence count, paragraph count, syllable count, point of view, dialogue, narrative, and a set
