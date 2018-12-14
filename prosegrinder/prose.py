@@ -20,8 +20,8 @@ class Prose():
         self._dictionary = dictionary
         self._paragraphs = Paragraph.parse_paragraphs(
             self._prose_string, self._dictionary)
-        self._character_count = sum(
-            [paragraph.character_count for paragraph in self._paragraphs])
+        self._word_character_count = sum(
+            [paragraph.word_character_count for paragraph in self._paragraphs])
         self._syllable_count = sum(
             [paragraph.syllable_count for paragraph in self._paragraphs])
         self._word_count = sum(
@@ -46,7 +46,7 @@ class Prose():
             [paragraph.sentence_count for paragraph in self._paragraphs])
         self._paragraph_count = len(self._paragraphs)
         self._readability_scores = ReadabilityScores(
-            self._character_count, self._syllable_count, self._word_count,
+            self._word_character_count, self._syllable_count, self._word_count,
             self._complex_word_count, self._long_word_count, self._sentence_count)
         n = narrative.split(prose_string)
         dialogue_fragments = []
@@ -73,8 +73,8 @@ class Prose():
         return self._dictionary
 
     @property
-    def character_count(self):
-        return self._character_count
+    def word_character_count(self):
+        return self._word_character_count
 
     @property
     def syllable_count(self):

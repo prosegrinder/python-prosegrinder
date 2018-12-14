@@ -28,10 +28,6 @@ class Sentence(Fragment):
 
     RE_SMART_QUOTES = re.compile("[“”]")
 
-    @property
-    def sentence_string(self):
-        return self.fragment_string
-
     @staticmethod
     def parse_sentences(text, dictionary=Dictionary()):
         return [Sentence(sentence, dictionary) for sentence in re.findall(

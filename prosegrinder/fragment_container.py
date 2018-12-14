@@ -16,8 +16,8 @@ class FragmentContainer():
         self._fragments = fragments
         self._word_count = sum(
             [fragment.word_count for fragment in self._fragments])
-        self._character_count = sum(
-            [fragment.character_count for fragment in self._fragments])
+        self._word_character_count = sum(
+            [fragment.word_character_count for fragment in self._fragments])
         self._syllable_count = sum(
             [fragment.syllable_count for fragment in self._fragments])
         self._complex_word_count = sum(
@@ -62,8 +62,8 @@ class FragmentContainer():
         return self._word_count
 
     @property
-    def character_count(self):
-        return self._character_count
+    def word_character_count(self):
+        return self._word_character_count
 
     @property
     def syllable_count(self):

@@ -23,8 +23,8 @@ class Paragraph():
             self._paragraph_string, self._dictionary)
         self._word_count = sum([sentence.word_count
                                 for sentence in self._sentences])
-        self._character_count = sum(
-            [sentence.character_count for sentence in self._sentences])
+        self._word_character_count = sum(
+            [sentence.word_character_count for sentence in self._sentences])
         self._syllable_count = sum(
             [sentence.syllable_count for sentence in self._sentences])
         self._complex_word_count = sum(
@@ -72,8 +72,8 @@ class Paragraph():
         return self._word_count
 
     @property
-    def character_count(self):
-        return self._character_count
+    def word_character_count(self):
+        return self._word_character_count
 
     @property
     def syllable_count(self):

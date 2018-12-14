@@ -11,14 +11,14 @@ from prosegrinder.word import Word
 
 class Fragment():
 
-    def __init__(self, fragment_string, dictionary=Dictionary()):
-        self._fragment_string = fragment_string
+    def __init__(self, text, dictionary=Dictionary()):
+        self._text = text
         self._dictionary = dictionary
-        self._normalized_sentence = dictionary.normalize_text(fragment_string)
+        self._normalized_sentence = dictionary.normalize_text(text)
         self._words = [self._dictionary.get_word(word) for word in re.findall(
             Word.RE_WORD, self._normalized_sentence)]
         self._word_count = len(self._words)
-        self._character_count = sum(
+        self._word_character_count = sum(
             [word.character_count for word in self._words])
         self._syllable_count = sum(
             [word.syllable_count for word in self._words])
@@ -46,10 +46,10 @@ class Fragment():
         return str(self.__dict__)
 
     def __eq__(self, other):
-        return self._fragment_string == other._fragment_string
+        return self._text == other._text
 
     def __hash__(self):
-        return hash(self._fragment_string)
+        return hash(self._text)
 
     @property
     def dictionary(self):
@@ -60,8 +60,8 @@ class Fragment():
         return self._word_count
 
     @property
-    def character_count(self):
-        return self._character_count
+    def word_character_count(self):
+        return self._word_character_count
 
     @property
     def syllable_count(self):
@@ -88,8 +88,8 @@ class Fragment():
         return self._pov_word_count
 
     @property
-    def fragment_string(self):
-        return self._fragment_string
+    def text(self):
+        return self._text
 
     @property
     def frequency(self, word_string):

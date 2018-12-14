@@ -4,37 +4,6 @@ import re
 
 import pointofview
 
-'''
-@startuml
-class Word {
-    +int MIN_SYLLABLES_COMPLEX_WORD
-    +int MIN_CHARS_LONG_WORD
-    +re RE_WORD
-    -str _word_string
-    -int _syllable_count
-    -bool _is_dictionary_word
-    -bool _is_numeric
-    -int _character_count
-    -str _pov
-
-    +str word_string()
-    +int syllable_count()
-    +int syllable_count()
-    +bool is_dictionary_word()
-    +bool is_numeric()
-    +str initial_word()
-    +int character_count()
-    +bool is_complex_word()
-    +bool is_long_word()
-    +bool is_first_person_word()
-    +bool is_second_person_word()
-    +bool is_third_person_word()
-    +bool is_pov_word()
-    +str pov()
-}
-@enduml
-'''
-
 
 class Word():
     """A Word, the base unit for measuring fiction prose."""
@@ -45,14 +14,14 @@ class Word():
     RE_WORD = re.compile(
         "[\\w’'\u0391-\u03ce\u0400-\u0481\u048a-\u04ff]+")
 
-    def __init__(self, word_string, syllable_count, is_dictionary_word, is_numeric):
-        """ Assumes word_string is normalized."""
-        self._word_string = word_string
+    def __init__(self, text, syllable_count, is_dictionary_word, is_numeric):
+        """ Assumes text is a single word, normalized."""
+        self._text = text
         self._syllable_count = syllable_count
         self._is_dictionary_word = is_dictionary_word
         self._is_numeric = is_numeric
-        self._character_count = len(self._word_string)
-        self._pov = pointofview.get_word_pov(self._word_string)
+        self._character_count = len(self._text)
+        self._pov = pointofview.get_word_pov(self._text)
 
     def __str__(self):
         return str(self.__dict__)
@@ -61,12 +30,12 @@ class Word():
         return self.__dict__ == other.__dict__
 
     def __hash__(self):
-        return hash(self._word_string)
+        return hash(self._text)
 
     @property
-    def word_string(self):
-        """Return the word string initially used to create the Word."""
-        return self._word_string
+    def text(self):
+        """Return the text initially used to create the Word."""
+        return self._text
 
     @property
     def syllable_count(self):
@@ -82,11 +51,6 @@ class Word():
     def is_numeric(self):
         """Returns whether or not the Word is numeric per the Dictionary."""
         return self._is_numeric
-
-    @property
-    def initial_word(self):
-        """Returns the normalized string of the initial word."""
-        return self._word_string
 
     @property
     def character_count(self):

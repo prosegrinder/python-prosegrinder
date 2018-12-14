@@ -5,9 +5,9 @@ from math import sqrt
 
 class ReadabilityScores():
 
-    def __init__(self, character_count, syllable_count, word_count,
+    def __init__(self, word_character_count, syllable_count, word_count,
                  complex_word_count, long_word_count, sentence_count):
-        self._character_count = character_count
+        self._word_character_count = word_character_count
         self._syllable_count = syllable_count
         self._word_count = word_count
         self._complex_word_count = complex_word_count
@@ -15,10 +15,10 @@ class ReadabilityScores():
         self._sentence_count = sentence_count
 
         self._automated_readability_index = self.calculate_automated_readability_index(
-            self._character_count, self._word_count, self._sentence_count
+            self._word_character_count, self._word_count, self._sentence_count
         )
         self._coleman_liau_index = self.calculate_coleman_liau_index(
-            self._character_count, self._word_count, self._sentence_count
+            self._word_character_count, self._word_count, self._sentence_count
         )
         self._flesch_kincaid_grade_level = self.calculate_flesch_kincaid_grade_level(
             self._syllable_count, self._word_count, self._sentence_count
@@ -44,11 +44,11 @@ class ReadabilityScores():
         return self._automated_readability_index
 
     @staticmethod
-    def calculate_automated_readability_index(character_count, word_count, sentence_count):
+    def calculate_automated_readability_index(word_character_count, word_count, sentence_count):
         score = 0.0
         if (word_count > 0):
-            avg_characters_per_word = character_count / word_count
-            avg_words_per_sentence = word_count / character_count
+            avg_characters_per_word = word_character_count / word_count
+            avg_words_per_sentence = word_count / word_character_count
             score = (4.71 * avg_characters_per_word) + \
                 (0.5 * avg_words_per_sentence) - 21.43
         return score
@@ -58,10 +58,10 @@ class ReadabilityScores():
         return self._coleman_liau_index
 
     @staticmethod
-    def calculate_coleman_liau_index(character_count, word_count, sentence_count):
+    def calculate_coleman_liau_index(word_character_count, word_count, sentence_count):
         score = 0.0
         if (word_count > 0):
-            avg_letters_per_word = character_count / word_count * 100.0
+            avg_letters_per_word = word_character_count / word_count * 100.0
             avg_sentences_per_word = sentence_count / word_count * 100.0
             score = (0.0588 * avg_letters_per_word) - \
                 (0.296 * avg_sentences_per_word) - 15.8

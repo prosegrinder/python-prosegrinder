@@ -11,7 +11,7 @@ SHORTSTORY = os.path.join(os.path.dirname(
 text = open(SHORTSTORY).read()
 prose = Prose(text)
 
-CHARACTER_COUNT = 7008
+WORD_CHARACTER_COUNT = 7008
 SYLLABLE_COUNT = 2287
 COMPLEX_WORD_COUNT = 202
 LONG_WORD_COUNT = 275
@@ -36,7 +36,7 @@ SMOG = 11.687633713980063
 
 
 def test_characters():
-    assert(CHARACTER_COUNT == prose.character_count)
+    assert(WORD_CHARACTER_COUNT == prose.word_character_count)
 
 
 def test_syllables():
@@ -66,8 +66,8 @@ def test_paragraphs():
 
 
 def test_dialogue_narrative():
-    assert(CHARACTER_COUNT == prose.dialogue.character_count +
-           prose.narrative.character_count)
+    assert(WORD_CHARACTER_COUNT == prose.dialogue.word_character_count +
+           prose.narrative.word_character_count)
     assert(SYLLABLE_COUNT == prose.dialogue.syllable_count +
            prose.narrative.syllable_count)
     assert(WORD_COUNT == prose.dialogue.word_count +

@@ -8,7 +8,7 @@ dictionary = Dictionary()
 text = """For easy readability, limit your choice of font to either Courier or Times New Roman. Courier (my strong preference) is a monospaced font, which means that every character is exactly as wide as every other. It's easier for an editor to detect spelling errors in a monospaced font than in a proportional font like Times New Roman (in which the "i" uses less horizontal space than the "m" does). With a monospaced font, there will also be fewer characters on each line, which can make your manuscript easier to scan. Still, many writers have come to prefer Times New Roman, and either is usually acceptable. (If in doubt, consult your intended market's submission guidelines.) Set your font size to 12 points."""
 paragraph = Paragraph(text, dictionary)
 
-CHARACTER_COUNT = 563
+WORD_CHARACTER_COUNT = 563
 SYLLABLE_COUNT = 195
 WORD_COUNT = 121
 COMPLEX_WORD_COUNT = 22
@@ -22,7 +22,7 @@ SENTENCE_COUNT = 7
 
 
 def test_characters():
-    assert(CHARACTER_COUNT == paragraph.character_count)
+    assert(WORD_CHARACTER_COUNT == paragraph.word_character_count)
 
 
 def test_syllables():
@@ -48,8 +48,8 @@ def test_sentences():
 
 
 def test_dialogue_narrative():
-    assert(CHARACTER_COUNT == paragraph.dialogue.character_count +
-           paragraph.narrative.character_count)
+    assert(WORD_CHARACTER_COUNT == paragraph.dialogue.word_character_count +
+           paragraph.narrative.word_character_count)
     assert(SYLLABLE_COUNT == paragraph.dialogue.syllable_count +
            paragraph.narrative.syllable_count)
     assert(WORD_COUNT == paragraph.dialogue.word_count +
