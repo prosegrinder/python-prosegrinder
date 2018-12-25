@@ -1,19 +1,17 @@
 # -*- coding: utf-8 -*-
 
-import re
 from collections import Counter
 
 import pointofview
 
 from prosegrinder.dictionary import Dictionary
-from prosegrinder.fragment import Fragment
 
 
 class FragmentContainer():
 
-    def __init__(self, fragments=[], dictionary=Dictionary()):
+    def __init__(self, fragments, dictionary=Dictionary()):
         self._dictionary = dictionary
-        self._fragments = fragments
+        self._fragments = fragments or []
         self._word_count = sum(
             [fragment.word_count for fragment in self._fragments])
         self._word_character_count = sum(
