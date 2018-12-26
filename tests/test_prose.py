@@ -3,7 +3,7 @@
 import os
 from collections import Counter
 
-from prosegrinder import Dictionary, Prose, ReadabilityScores
+from prosegrinder import Dictionary, Prose
 
 dictionary = Dictionary()
 SHORTSTORY = os.path.join(os.path.dirname(

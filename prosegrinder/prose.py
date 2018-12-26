@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 
-import re
 from collections import Counter
 
 import narrative
-import pointofview
 
 from prosegrinder.dictionary import Dictionary
 from prosegrinder.fragment import Fragment

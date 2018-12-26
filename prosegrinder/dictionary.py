@@ -19,15 +19,15 @@ class Dictionary():
 
     @staticmethod
     def is_numeric(word):
-        return re.match(Dictionary.RE_NUMERIC, word) != None
+        return re.match(Dictionary.RE_NUMERIC, word) is not None
 
-    def __init__(self, cmudict=cmudict.dict()):
-        self._cmudict = cmudict
+    def __init__(self, cmudictdict=None):
+        self._cmudictdict = cmudictdict or cmudict.dict()
 
     def syllable_count(self, word):
         syllable_count = 0
-        if word in self._cmudict:
-            phones = self._cmudict[word][0]
+        if word in self._cmudictdict:
+            phones = self._cmudictdict[word][0]
             # There's a more Pythonic way of doing this.
             for phone in phones:
                 syllable_count += len(re.sub("[^012]", "", phone))
@@ -38,13 +38,13 @@ class Dictionary():
         return syllable_count
 
     @property
-    def cmudict(self):
-        return self._cmudict
+    def cmudictdict(self):
+        return self._cmudictdict
 
     def get_word(self, word):
         normalized_word = self.normalize_text(word)
         syllable_count = self.syllable_count(normalized_word)
-        is_dictionary_word = normalized_word in self._cmudict
+        is_dictionary_word = normalized_word in self._cmudictdict
         is_numeric = self.is_numeric(normalized_word)
         word = Word(normalized_word, syllable_count,
                     is_dictionary_word, is_numeric)
