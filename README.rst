@@ -5,9 +5,9 @@ Prosegrinder
   :target: https://pypi.python.org/pypi/prosegrinder
   :alt: Latest PyPI version
 
-.. image:: https://travis-ci.org/prosegrinder/python-prosegrinder.svg?branch=master
-  :target: https://travis-ci.org/prosegrinder/python-prosegrinder
-  :alt: Latest Travis CI build status
+.. image:: https://github.com/prosegrinder/python-prosegrinder/workflows/Python%20CI/badge.svg?branch=master
+    :target: https://github.com/prosegrinder/python-prosegrinder/actions?query=workflow%3A%22Python+CI%22+branch%3Amaster
+    :alt: GitHub Workflow Status
 
 .. image:: https://api.codacy.com/project/badge/Grade/d005ccb2840340718fcf3ab3a383a225
   :target: https://www.codacy.com/app/ProseGrinder/python-prosegrinder?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=prosegrinder/python-prosegrinder&amp;utm_campaign=Badge_Grade
