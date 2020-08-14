@@ -35,3 +35,18 @@ sentence count, paragraph count, syllable count, point of view, dialogue, narrat
 of readabilit scores. All objects and attributes should be treated as immutable.
 
 I know this isn't great documentation, but it should be enough to get you going.
+
+Readbility scores
+~~~~~~~~~~~~~~~~~
+
+The set of scores automatically calculated:
+
+* Automated Readability Index
+* Coleman Liau Index
+* Flesch Kincaid Grade Level
+* Flesch Reading Ease
+* Gunning Fog Index
+* Linsear Write
+* LIX
+* RIX
+* SMOG
