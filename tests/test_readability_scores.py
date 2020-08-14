@@ -15,6 +15,7 @@ COLEMAN_LIAU_INDEX = 9.425
 FLESCH_KINCAID_GRADE_LEVEL = 8.693
 FLESCH_READING_EASE = 62.979
 GUNNING_FOG_INDEX = 12.079
+LINSEAR_WRITE = 10.733
 LIX = 34.975
 RIX = 3.056
 SMOG = 11.688
@@ -49,6 +50,11 @@ def test_calculate_gunning_fog_index():
         WORD_COUNT, COMPLEX_WORD_COUNT, SENTENCE_COUNT)
     assert(GUNNING_FOG_INDEX == score)
 
+
+def test_linsear_write():
+    score = ReadabilityScores.calculate_linsear_write(
+        WORD_COUNT, COMPLEX_WORD_COUNT,SENTENCE_COUNT)
+    assert(LINSEAR_WRITE == score)
 
 def test_calculate_lix():
     score = ReadabilityScores.calculate_lix(

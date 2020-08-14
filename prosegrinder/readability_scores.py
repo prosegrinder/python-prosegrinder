@@ -32,6 +32,9 @@ class ReadabilityScores():
         self._gunning_fog_index = self.calculate_gunning_fog_index(
             self._word_count, self._complex_word_count, self._sentence_count, self._ndigits
         )
+        self._linsear_write = self.calculate_linsear_write(
+            self._word_count, self._complex_word_count, self._sentence_count, self._ndigits
+        )
         self._lix = self.calculate_lix(
             self._word_count, self._long_word_count, self._sentence_count, self._ndigits
         )
@@ -113,6 +116,22 @@ class ReadabilityScores():
             avg_sentence_length = word_count / sentence_count
             pct_hard_words = complex_word_count / word_count * 100.0
             score = 0.4 * (avg_sentence_length + pct_hard_words)
+        return round(score, ndigits)
+
+    @property
+    def linsear_write(self):
+        return self._linsear_write
+
+    @staticmethod
+    def calculate_linsear_write(word_count, complex_word_count, sentence_count, ndigits=NDIGITS):
+        score = 0.0
+        hard_word_count = complex_word_count
+        easy_word_count = (word_count - complex_word_count)
+        if (sentence_count > 0):
+            r = (easy_word_count + (hard_word_count * 3)) / sentence_count
+            if (r <= 20):
+                r = r - 2
+            score = r / 2
         return round(score, ndigits)
 
     @property

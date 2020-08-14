@@ -9,6 +9,7 @@ from prosegrinder.word import Word
 
 
 class Dictionary():
+
     """A reference containing Words."""
 
     RE_NUMERIC = re.compile("^[+-]{0,1}\\d{1,3}(?:[,]\\d{3})*(?:[.]\\d*)*$")
