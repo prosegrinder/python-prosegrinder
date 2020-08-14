@@ -6,6 +6,7 @@ import pointofview
 
 
 class Word():
+
     """A Word, the base unit for measuring fiction prose."""
 
     MIN_SYLLABLES_COMPLEX_WORD = 3
@@ -15,7 +16,7 @@ class Word():
         "[\\w’'\u0391-\u03ce\u0400-\u0481\u048a-\u04ff]+")
 
     def __init__(self, text, syllable_count, is_dictionary_word, is_numeric):
-        """ Assumes text is a single word, normalized."""
+        """Assumes text is a single word, normalized."""
         self._text = text
         self._syllable_count = syllable_count
         self._is_dictionary_word = is_dictionary_word
