@@ -127,7 +127,7 @@ class ReadabilityScores():
         score = 0.0
         hard_word_count = complex_word_count
         easy_word_count = (word_count - complex_word_count)
-        if (word_count > 0):
+        if (sentence_count > 0):
             r = (easy_word_count + (hard_word_count * 3)) / sentence_count
             if (r <= 20):
                 r = r - 2
