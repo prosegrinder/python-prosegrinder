@@ -5,8 +5,8 @@ Prosegrinder
     :target: https://pypi.python.org/pypi/prosegrinder
     :alt: Latest PyPI version
 
-.. image:: https://github.com/prosegrinder/python-prosegrinder/workflows/Python%20CI/badge.svg?branch=master
-    :target: https://github.com/prosegrinder/python-prosegrinder/actions?query=workflow%3A%22Python+CI%22+branch%3Amaster
+.. image:: https://github.com/prosegrinder/python-prosegrinder/workflows/Python%20CI/badge.svg?branch=main
+    :target: https://github.com/prosegrinder/python-prosegrinder/actions?query=workflow%3A%22Python+CI%22+branch%3Amain
     :alt: GitHub Workflow Status
 
 .. image:: https://app.codacy.com/project/badge/Grade/fbb22c1d33a34aa3bee095fc3ff62bc9
