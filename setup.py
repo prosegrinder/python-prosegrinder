@@ -39,10 +39,10 @@ setup(
         'Programming Language :: Python :: 3.8',
     ],
     install_requires=[
-        'cmudict>=0.4.0',
-        'narrative>=0.1.2',
-        'pointofview>=0.3.0',
-        'syllables>=0.1.0'
+        'cmudict>=1.0.0',
+        'narrative>=1.0.0',
+        'pointofview>=1.0.0',
+        'syllables>=1.0.0'
     ],
-    python_requires='>=3.5',
+    python_requires='>=3.6',
 )
