@@ -15,9 +15,11 @@ class Word():
     RE_WORD = re.compile(
         "[\\w’'\u0391-\u03ce\u0400-\u0481\u048a-\u04ff]+")
 
-    def __init__(self, text, syllable_count, is_dictionary_word, is_numeric):
+    def __init__(self, text, phones, normalized_phones, syllable_count, is_dictionary_word, is_numeric):
         """Assumes text is a single word, normalized."""
         self._text = text
+        self._phones = phones
+        self._normalized_phones = normalized_phones
         self._syllable_count = syllable_count
         self._is_dictionary_word = is_dictionary_word
         self._is_numeric = is_numeric
@@ -37,6 +39,16 @@ class Word():
     def text(self):
         """Return the text initially used to create the Word."""
         return self._text
+
+    @property
+    def phones(self):
+        """Return the Word's phones with syllable marks."""
+        return self._phones
+
+    @property
+    def normalized_phones(self):
+        """Return the Word's phones without syllable marks."""
+        return self._normalized_phones
 
     @property
     def syllable_count(self):
