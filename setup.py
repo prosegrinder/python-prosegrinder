@@ -2,7 +2,7 @@
 
 from os import path
 
-from setuptools import setup
+from setuptools import setup, find_packages
 
 # Version
 with open(path.join(path.dirname(__file__), 'prosegrinder', 'VERSION')) as version_file:
@@ -19,9 +19,12 @@ setup(
     author='David L. Day',
     author_email='dday376@gmail.com',
     url='https://github.com/prosegrinder/python-prosegrinder',
-    packages=[
-        'prosegrinder'
-    ],
+    packages=find_packages(include=['prosegrinder', 'prosegrinder.*']),
+    entry_points={
+        'console_scripts': [
+            'prosegrinder = prosegrinder.__main__:cli',
+        ],
+    },
     package_dir={'prosegrinder': 'prosegrinder'},
     package_data={
         '': ['LICENSE', '*.rst', 'MANIFEST.in'],
@@ -42,7 +45,8 @@ setup(
         'cmudict>=1.0.0',
         'narrative>=1.0.0',
         'pointofview>=1.0.0',
-        'syllables>=1.0.0'
+        'syllables>=1.0.0',
+        'click>=8.0.1'
     ],
     python_requires='>=3.6',
 )
