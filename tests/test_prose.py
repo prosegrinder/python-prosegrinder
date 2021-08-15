@@ -2,6 +2,7 @@
 
 import os
 from collections import Counter
+from tests.test_paragraph import PHONE_COUNT
 
 from prosegrinder import Dictionary, Prose
 
@@ -12,6 +13,7 @@ text = open(SHORTSTORY).read()
 prose = Prose(text)
 
 WORD_CHARACTER_COUNT = 7008
+PHONE_COUNT = 5747
 SYLLABLE_COUNT = 2287
 COMPLEX_WORD_COUNT = 202
 LONG_WORD_COUNT = 275
@@ -36,6 +38,10 @@ SMOG = 11.688
 
 def test_characters():
     assert(WORD_CHARACTER_COUNT == prose.word_character_count)
+
+
+def test_phones():
+    assert(PHONE_COUNT == prose.phone_count)
 
 
 def test_syllables():
