@@ -31,9 +31,15 @@ class FragmentContainer():
         self._third_person_word_count = sum(
             [fragment.third_person_word_count for fragment in self._fragments])
         wf = Counter()
+        pf = Counter()
+        pc = 0
         for fragment in self._fragments:
             wf.update(fragment.words)
+            pf.update(fragment.phone_frequency)
+            pc += fragment.phone_count
         self._word_frequency = dict(wf)
+        self._phone_frequency = dict(pf)
+        self._phone_count = pc
         self._pov = pointofview.NONE
         if (self._first_person_word_count > 0):
             self._pov = pointofview.FIRST
@@ -54,6 +60,14 @@ class FragmentContainer():
     @property
     def dictionary(self):
         return self._dictionary
+
+    @property
+    def phone_frequency(self):
+        return self._phone_frequency
+
+    @property
+    def phone_count(self):
+        return self._phone_count
 
     @property
     def word_count(self):
