@@ -37,9 +37,15 @@ class Prose():
         self._third_person_word_count = sum(
             [paragraph.third_person_word_count for paragraph in self._paragraphs])
         wf = Counter()
+        pf = Counter()
+        pc = 0
         for paragraph in self._paragraphs:
             wf.update(paragraph.word_frequency)
+            pf.update(paragraph.phone_frequency)
+            pc += paragraph.phone_count
         self._word_frequency = dict(wf)
+        self._phone_frequency = dict(pf)
+        self._phone_count = pc
         self._sentence_count = sum(
             [paragraph.sentence_count for paragraph in self._paragraphs])
         self._paragraph_count = len(self._paragraphs)
@@ -65,6 +71,14 @@ class Prose():
     @property
     def dictionary(self):
         return self._dictionary
+
+    @property
+    def phone_frequency(self):
+        return self._phone_frequency
+
+    @property
+    def phone_count(self):
+        return self._phone_count
 
     @property
     def word_character_count(self):
