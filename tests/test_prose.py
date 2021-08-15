@@ -2,7 +2,6 @@
 
 import os
 from collections import Counter
-from tests.test_paragraph import PHONE_COUNT
 
 from prosegrinder import Dictionary, Prose
 
