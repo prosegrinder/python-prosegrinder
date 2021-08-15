@@ -19,11 +19,21 @@ class Dictionary():
         return text.strip().lower()
 
     @staticmethod
+    def normalize_phones(phones):
+        return [re.sub("\d", "", phone) for phone in phones]
+
+    @staticmethod
     def is_numeric(word):
         return re.match(Dictionary.RE_NUMERIC, word) is not None
 
     def __init__(self, cmudictdict=None):
         self._cmudictdict = cmudictdict or cmudict.dict()
+
+    def phones(self, word):
+        if word in self._cmudictdict:
+            return self._cmudictdict[word][0]
+        else:
+            return ['?']
 
     def syllable_count(self, word):
         syllable_count = 0
@@ -44,9 +54,11 @@ class Dictionary():
 
     def get_word(self, word):
         normalized_word = self.normalize_text(word)
+        phones = self.phones(normalized_word)
+        normalized_phones = self.normalize_phones(phones)
         syllable_count = self.syllable_count(normalized_word)
         is_dictionary_word = normalized_word in self._cmudictdict
         is_numeric = self.is_numeric(normalized_word)
-        word = Word(normalized_word, syllable_count,
+        word = Word(normalized_word, phones, normalized_phones, syllable_count,
                     is_dictionary_word, is_numeric)
         return word
