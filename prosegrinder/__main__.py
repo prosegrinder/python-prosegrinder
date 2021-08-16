@@ -2,18 +2,20 @@
 
 import click
 import json
-import jsonpickle
 
 from prosegrinder.prose import Prose
 
 @click.command()
-@click.option('-f', '--file', required=True, type=click.File())
-def cli(file):
-    click.echo("Grinding {}".format(click.format_filename(file.name)))
+@click.argument('file', required=True, type=click.File('r'))
+@click.option('-s', '--save', required=False, type=click.File('w'))
+@click.option('-i', '--indent', required=False, type=int, default=2)
+def cli(file, save, indent):
+    filename = click.format_filename(file.name)
     text = file.read()
-    # click.echo(text)
     p = Prose(text)
     d = {
+        "filename":
+            filename,
         "sha256":
             p.sha256,
         "word_character_count":
@@ -63,4 +65,7 @@ def cli(file):
                 p.readability_scores.smog
         }
     }
-    click.echo(json.dumps(d))
+    if (save):
+        save.write(json.dumps(d, indent=indent))
+    else:
+        click.echo(json.dumps(d, indent=indent))
