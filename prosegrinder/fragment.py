@@ -20,6 +20,13 @@ class Fragment(object):
         self._word_count = len(self._words)
         self._word_character_count = sum(
             [word.character_count for word in self._words])
+        pf = Counter()
+        pc = 0
+        for word in self._words:
+            pf.update(word.phone_frequency)
+            pc += word.phone_count
+        self._phone_fequency = pf
+        self._phone_count = pc
         self._syllable_count = sum(
             [word.syllable_count for word in self._words])
         self._complex_word_count = sum(
@@ -62,6 +69,14 @@ class Fragment(object):
     @property
     def word_character_count(self):
         return self._word_character_count
+
+    @property
+    def phone_frequency(self):
+        return self._phone_fequency
+
+    @property
+    def phone_count(self):
+        return self._phone_count
 
     @property
     def syllable_count(self):

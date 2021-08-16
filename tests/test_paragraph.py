@@ -9,6 +9,7 @@ text = """For easy readability, limit your choice of font to either Courier or T
 paragraph = Paragraph(text, dictionary)
 
 WORD_CHARACTER_COUNT = 563
+PHONE_COUNT = 55 + 72 + 118 + 73 + 63 + 47 + 21
 SYLLABLE_COUNT = 195
 WORD_COUNT = 121
 COMPLEX_WORD_COUNT = 22
@@ -23,6 +24,10 @@ SENTENCE_COUNT = 7
 
 def test_characters():
     assert(WORD_CHARACTER_COUNT == paragraph.word_character_count)
+
+
+def test_phones():
+    assert(PHONE_COUNT == paragraph.phone_count)
 
 
 def test_syllables():
