@@ -66,7 +66,7 @@ def test_sentences():
 
 
 def test_paragraphs():
-    assert(PARAGRAPH_COUNT == prose.paragrah_count)
+    assert(PARAGRAPH_COUNT == prose.paragraph_count)
 
 
 def test_dialogue_narrative():

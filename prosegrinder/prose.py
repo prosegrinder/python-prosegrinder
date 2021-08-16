@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from collections import Counter
+import hashlib
 
 import narrative
 
@@ -15,6 +16,7 @@ class Prose(object):
 
     def __init__(self, text, dictionary=Dictionary()):
         self._text = text
+        self._sha256 = hashlib.sha256(self._text.encode()).hexdigest()
         self._dictionary = dictionary
         self._paragraphs = Paragraph.parse_paragraphs(
             self._text, self._dictionary)
@@ -125,7 +127,7 @@ class Prose(object):
         return self._sentence_count
 
     @property
-    def paragrah_count(self):
+    def paragraph_count(self):
         return self._paragraph_count
 
     @property
@@ -148,11 +150,6 @@ class Prose(object):
     def text(self):
         return self._text
 
-    def as_dict(self):
-        d = {
-            "word_count": self.word_count,
-            "word_character_count": self.word_character_count,
-            "sentence_count": self.sentence_count,
-            "syllable_count": self.syllable_count,
-        }
-        return d
+    @property
+    def sha256(self):
+        return self._sha256
