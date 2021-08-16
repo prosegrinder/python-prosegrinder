@@ -49,9 +49,6 @@ class Fragment(object):
         elif self._third_person_word_count > 0:
             self._pov = pointofview.THIRD
 
-    def __str__(self):
-        return str(self.__dict__)
-
     def __eq__(self, other):
         return self._text == other._text
 

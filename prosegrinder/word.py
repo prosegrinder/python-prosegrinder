@@ -29,9 +29,6 @@ class Word(object):
         self._character_count = len(self._text)
         self._pov = pointofview.get_word_pov(self._text)
 
-    def __str__(self):
-        return str(self.__dict__)
-
     def __eq__(self, other):
         return self.__dict__ == other.__dict__
 
