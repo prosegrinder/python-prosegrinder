@@ -5,7 +5,7 @@ import re
 import pointofview
 
 
-class Word():
+class Word(object):
 
     """A Word, the base unit for measuring fiction prose."""
 

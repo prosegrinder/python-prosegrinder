@@ -11,7 +11,7 @@ from prosegrinder.paragraph import Paragraph
 from prosegrinder.readability_scores import ReadabilityScores
 
 
-class Prose():
+class Prose(object):
 
     def __init__(self, text, dictionary=Dictionary()):
         self._text = text
@@ -133,3 +133,12 @@ class Prose():
     @property
     def text(self):
         return self._text
+
+    def as_dict(self):
+        d = {
+            "word_count": self.word_count,
+            "word_character_count": self.word_character_count,
+            "sentence_count": self.sentence_count,
+            "syllable_count": self.syllable_count,
+        }
+        return d
