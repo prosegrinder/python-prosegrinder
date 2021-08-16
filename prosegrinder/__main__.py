@@ -2,6 +2,7 @@
 
 import click
 import json
+import jsonpickle
 
 from prosegrinder.prose import Prose
 
@@ -12,4 +13,6 @@ def cli(file):
     text = file.read()
     # click.echo(text)
     p = Prose(text)
-    click.echo(p.readability_scores)
+    click.echo(p.toJSON)
+    # p_dict = p.readability_scores.__dict__
+    # click.echo(json.dumps(p_dict))
