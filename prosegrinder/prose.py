@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from collections import Counter
+import hashlib
 
 import narrative
 
@@ -11,10 +12,11 @@ from prosegrinder.paragraph import Paragraph
 from prosegrinder.readability_scores import ReadabilityScores
 
 
-class Prose():
+class Prose(object):
 
     def __init__(self, text, dictionary=Dictionary()):
         self._text = text
+        self._sha256 = hashlib.sha256(self._text.encode()).hexdigest()
         self._dictionary = dictionary
         self._paragraphs = Paragraph.parse_paragraphs(
             self._text, self._dictionary)
@@ -58,9 +60,6 @@ class Prose():
         self._narrative = FragmentContainer(
             [Fragment(fragment_text) for fragment_text in n['narrative']])
         self._pov = self._narrative.pov
-
-    def __str__(self):
-        return str(self.__dict__)
 
     def __eq__(self, other):
         return self._text == other._text
@@ -125,7 +124,7 @@ class Prose():
         return self._sentence_count
 
     @property
-    def paragrah_count(self):
+    def paragraph_count(self):
         return self._paragraph_count
 
     @property
@@ -147,3 +146,7 @@ class Prose():
     @property
     def text(self):
         return self._text
+
+    @property
+    def sha256(self):
+        return self._sha256

@@ -9,7 +9,7 @@ from prosegrinder.dictionary import Dictionary
 from prosegrinder.word import Word
 
 
-class Fragment():
+class Fragment(object):
 
     def __init__(self, text, dictionary=Dictionary()):
         self._text = text
@@ -48,9 +48,6 @@ class Fragment():
             self._pov = pointofview.SECOND
         elif self._third_person_word_count > 0:
             self._pov = pointofview.THIRD
-
-    def __str__(self):
-        return str(self.__dict__)
 
     def __eq__(self, other):
         return self._text == other._text

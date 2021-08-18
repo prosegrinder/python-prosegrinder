@@ -6,7 +6,7 @@ from collections import Counter
 import pointofview
 
 
-class Word():
+class Word(object):
 
     """A Word, the base unit for measuring fiction prose."""
 
@@ -28,9 +28,6 @@ class Word():
         self._is_numeric = is_numeric
         self._character_count = len(self._text)
         self._pov = pointofview.get_word_pov(self._text)
-
-    def __str__(self):
-        return str(self.__dict__)
 
     def __eq__(self, other):
         return self.__dict__ == other.__dict__

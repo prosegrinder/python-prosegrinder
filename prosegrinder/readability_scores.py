@@ -3,7 +3,7 @@
 from math import sqrt
 
 
-class ReadabilityScores():
+class ReadabilityScores(object):
 
     NDIGITS = 3  # Default for round(number,[ndigits])
 

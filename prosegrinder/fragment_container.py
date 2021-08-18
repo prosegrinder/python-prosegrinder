@@ -7,7 +7,7 @@ import pointofview
 from prosegrinder.dictionary import Dictionary
 
 
-class FragmentContainer():
+class FragmentContainer(object):
 
     def __init__(self, fragments, dictionary=Dictionary()):
         self._dictionary = dictionary
@@ -47,9 +47,6 @@ class FragmentContainer():
             self._pov = pointofview.SECOND
         elif (self._third_person_word_count > 0):
             self._pov = pointofview.THIRD
-
-    def __str__(self):
-        return str(self.__dict__)
 
     def __eq__(self, other):
         return self._fragments == other._fragments

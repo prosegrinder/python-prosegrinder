@@ -36,6 +36,51 @@ of readabilit scores. All objects and attributes should be treated as immutable.
 
 I know this isn't great documentation, but it should be enough to get you going.
 
+Command Line Interaface
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Prosegrinder now includes a simple CLI for analyzing text in a file:::
+
+    Usage: prosegrinder [OPTIONS] FILE
+
+    Options:
+        -s, --save FILENAME
+        -i, --indent INTEGER
+        --help                Show this message and exit.
+
+Will provide basic statistics on text from a file, the filename, and the sh256 of text analyzed. Output is json to help facilitate use in automation:::
+
+    {
+        "filename": "./tests/resources/shortstory.txt",
+        "sha256": "5b756dea7c7f0088ff3692e402466af7f4fc493fa357c1ae959fa4493943fc03",
+        "word_character_count": 7008,
+        "phone_count": 5747,
+        "syllable_count": 2287,
+        "word_count": 1528,
+        "sentence_count": 90,
+        "paragraph_count": 77,
+        "complex_word_count": 202,
+        "long_word_count": 275,
+        "pov_word_count": 113,
+        "first_person_word_count": 8,
+        "second_person_word_count": 74,
+        "third_person_word_count": 31,
+        "pov": "first",
+            "readability_scores": {
+                "automated_readability_index": 0.281,
+                "coleman_liau_index": 9.425,
+                "flesch_kincaid_grade_level": 8.693,
+                "flesch_reading_ease": 62.979,
+                "gunning_fog_index": 12.079,
+                "linsear_write": 10.733,
+                "lix": 34.975,
+                "rix": 3.056,
+                "smog": 11.688
+            }
+    }
+
+
+
 Readbility scores
 ~~~~~~~~~~~~~~~~~
 
