@@ -37,6 +37,7 @@ of readabilit scores. All objects and attributes should be treated as immutable.
 I know this isn't great documentation, but it should be enough to get you going.
 
 Command Line Interaface
+~~~~~~~~~~~~~~~~~~~~~~~
 
 Prosegrinder now includes a simple CLI for analyzing text in a file:::
 
