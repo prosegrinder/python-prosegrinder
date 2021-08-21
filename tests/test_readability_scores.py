@@ -23,7 +23,7 @@ SMOG = 11.688
 
 def test_calculate_automated_readability_index():
     score = ReadabilityScores.calculate_automated_readability_index(
-        CHARACTER_COUNT, WORD_COUNT, SENTENCE_COUNT)
+        CHARACTER_COUNT, WORD_COUNT)
     assert(AUTOMATED_READABILITY_INDEX == score)
 
 
