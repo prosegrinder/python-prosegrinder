@@ -30,8 +30,7 @@ class Dictionary():
     def phones(self, word):
         if word in self.cmudictdict:
             return self.cmudictdict[word][0]
-        else:
-            return ['?']
+        return ['?']
 
     def syllable_count(self, word):
         syllable_count = 0
