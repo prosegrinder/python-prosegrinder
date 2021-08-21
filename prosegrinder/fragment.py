@@ -57,73 +57,26 @@ class Fragment(object):
     def __hash__(self):
         return hash(self.text)
 
-    # @property
-    # def dictionary(self):
-    #     return self.dictionary
-
-    # @property
-    # def word_count(self):
-    #     return self.word_count
-
-    # @property
-    # def word_character_count(self):
-    #     return self.word_character_count
-
-    # @property
-    # def phone_frequency(self):
-    #     return self.phone_fequency
-
-    # @property
-    # def phone_count(self):
-    #     return self.phone_count
-
-    # @property
-    # def syllable_count(self):
-    #     return self.syllable_count
-
-    # @property
-    # def complex_word_count(self):
-    #     return self.complex_word_count
-
-    # @property
-    # def long_word_count(self):
-    #     return self.long_word_count
-
-    # @property
-    # def unique_words(self):
-    #     return self.word_frequency.keys()
-
-    # @property
-    # def word_frequency(self):
-    #     return self.word_frequency
-
-    # @property
-    # def pov_word_count(self):
-    #     return self.pov_word_count
-
-    # @property
-    # def text(self):
-    #     return self.text
-
     def frequency(self, word_string):
         return self.word_frequency[word_string]
 
-    # @property
-    # def first_person_word_count(self):
-    #     return self.first_person_word_count
+    @property
+    def stats(self):
+        '''Returns a light-weight dict with basic stats about the fragment.'''
+        return {
+            "word_character_count": self.word_character_count,
+            "phone_frequency": self.phone_frequency,
+            "phone_count": self.phone_count,
+            "syllable_count": self.syllable_count,
+            "complex_word_count": self.complex_word_count,
+            "long_word_count": self.long_word_count,
+            "pov_word_count": self.pov_word_count,
+            "first_person_word_count": self.first_person_word_count,
+            "second_person_word_count": self.second_person_word_count,
+            "third_person_word_count": self.third_person_word_count,
+            "word_frequency": self.word_frequency,
+            "unique_words": self.unique_words,
+            "unique_word_count": self.unique_word_count,
+            "pov": self.pov,
+        }
 
-    # @property
-    # def second_person_word_count(self):
-    #     return self.second_person_word_count
-
-    # @property
-    # def third_person_word_count(self):
-    #     return self.third_person_word_count
-
-    # @property
-    # def words(self):
-    #     return self.words
-
-    # @property
-    # def pov(self):
-    #     return self.pov

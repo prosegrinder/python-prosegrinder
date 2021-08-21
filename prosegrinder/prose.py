@@ -69,86 +69,56 @@ class Prose(object):
     def __hash__(self):
         return hash(self.text)
 
-    # @property
-    # def dictionary(self):
-    #     return self.dictionary
-
-    # @property
-    # def phone_frequency(self):
-    #     return self.phone_frequency
-
-    # @property
-    # def phone_count(self):
-    #     return self.phone_count
-
-    # @property
-    # def word_character_count(self):
-    #     return self.word_character_count
-
-    # @property
-    # def syllable_count(self):
-    #     return self.syllable_count
-
-    # @property
-    # def word_count(self):
-    #     return self.word_count
-
-    # @property
-    # def complex_word_count(self):
-    #     return self.complex_word_count
-
-    # @property
-    # def long_word_count(self):
-    #     return self.long_word_count
-
-    # @property
-    # def unique_word_count(self):
-    #     return len(self.word_frequency)
-
-    # @property
-    # def pov_word_count(self):
-    #     return self.pov_word_count
-
-    # @property
-    # def first_person_word_count(self):
-    #     return self.first_person_word_count
-
-    # @property
-    # def second_person_word_count(self):
-    #     return self.second_person_word_count
-
-    # @property
-    # def third_person_word_count(self):
-    #     return self.third_person_word_count
-
-    # @property
-    # def sentence_count(self):
-    #     return self.sentence_count
-
-    # @property
-    # def paragraph_count(self):
-    #     return self.paragraph_count
-
-    # @property
-    # def readability_scores(self):
-    #     return self.readability_scores
-
-    # @property
-    # def dialogue(self):
-    #     return self.dialogue
-
-    # @property
-    # def narrative(self):
-    #     return self.narrative
-
-    # @property
-    # def pov(self):
-    #     return self.pov
-
-    # @property
-    # def text(self):
-    #     return self.text
-
-    # @property
-    # def sha256(self):
-    #     return self.sha256
+    @property
+    def stats(self):
+        '''Returns a light-weight dict with basic stats about the prose.'''
+        return {
+            "sha256":
+                self.sha256,
+            "word_character_count":
+                self.word_character_count,
+            "phone_count":
+                self.phone_count,
+            "syllable_count":
+                self.syllable_count,
+            "word_count":
+                self.word_count,
+            "sentence_count":
+                self.sentence_count,
+            "paragraph_count":
+                self.paragraph_count,
+            "complex_word_count":
+                self.complex_word_count,
+            "long_word_count":
+                self.long_word_count,
+            "pov_word_count":
+                self.pov_word_count,
+            "first_person_word_count":
+                self.first_person_word_count,
+            "second_person_word_count":
+                self.second_person_word_count,
+            "third_person_word_count":
+                self.third_person_word_count,
+            "pov":
+                self.pov,
+            "readability_scores": {
+                "automated_readability_index":
+                    self.readability_scores.automated_readability_index,
+                "coleman_liau_index":
+                    self.readability_scores.coleman_liau_index,
+                "flesch_kincaid_grade_level":
+                    self.readability_scores.flesch_kincaid_grade_level,
+                "flesch_reading_ease":
+                    self.readability_scores.flesch_reading_ease,
+                "gunning_fog_index":
+                    self.readability_scores.gunning_fog_index,
+                "linsear_write":
+                    self.readability_scores.linsear_write,
+                "lix":
+                    self.readability_scores.lix,
+                "rix":
+                    self.readability_scores.rix,
+                "smog":
+                    self.readability_scores.smog,
+            },
+        }
