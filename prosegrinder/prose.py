@@ -71,7 +71,7 @@ class Prose(object):
 
     @property
     def stats(self):
-        '''Returns a light-weight dict with basic stats about the prose.'''
+        """Returns a light-weight dict with basic stats about the prose."""
         return {
             "sha256":
                 self.sha256,

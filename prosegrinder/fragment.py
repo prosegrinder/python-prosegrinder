@@ -62,7 +62,7 @@ class Fragment(object):
 
     @property
     def stats(self):
-        '''Returns a light-weight dict with basic stats about the fragment.'''
+        """Returns a light-weight dict with basic stats about the fragment."""
         return {
             "word_character_count": self.word_character_count,
             "phone_frequency": self.phone_frequency,

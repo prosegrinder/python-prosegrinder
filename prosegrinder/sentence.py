@@ -37,5 +37,5 @@ class Sentence(Fragment):
 
     @property
     def stats(self):
-        '''Returns a light-weight dict with basic stats about the sentence.'''
+        """Returns a light-weight dict with basic stats about the sentence."""
         return super().stats
