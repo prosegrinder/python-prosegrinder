@@ -7,7 +7,7 @@ import pointofview
 from prosegrinder.dictionary import Dictionary
 
 
-class FragmentContainer(object):
+class FragmentContainer():
 
     def __init__(self, fragments, dictionary=Dictionary()):
         self.dictionary = dictionary
