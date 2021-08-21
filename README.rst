@@ -51,7 +51,8 @@ Prosegrinder now includes a simple CLI for analyzing text in a file:::
 Will provide basic statistics on text from a file, the filename, and the sh256 of text analyzed. Output is json to help facilitate use in automation:::
 
     {
-        "filename": "./tests/resources/shortstory.txt",
+      "filename": "shortstory.txt",
+      "statistics": {
         "sha256": "5b756dea7c7f0088ff3692e402466af7f4fc493fa357c1ae959fa4493943fc03",
         "word_character_count": 7008,
         "phone_count": 5747,
@@ -66,18 +67,20 @@ Will provide basic statistics on text from a file, the filename, and the sh256 o
         "second_person_word_count": 74,
         "third_person_word_count": 31,
         "pov": "first",
-            "readability_scores": {
-                "automated_readability_index": 0.281,
-                "coleman_liau_index": 9.425,
-                "flesch_kincaid_grade_level": 8.693,
-                "flesch_reading_ease": 62.979,
-                "gunning_fog_index": 12.079,
-                "linsear_write": 10.733,
-                "lix": 34.975,
-                "rix": 3.056,
-                "smog": 11.688
-            }
+        "readability_scores": {
+          "automated_readability_index": 0.281,
+          "coleman_liau_index": 9.425,
+          "flesch_kincaid_grade_level": 8.693,
+          "flesch_reading_ease": 62.979,
+          "gunning_fog_index": 12.079,
+          "linsear_write": 10.733,
+          "lix": 34.975,
+          "rix": 3.056,
+          "smog": 11.688
+        }
+      }
     }
+
 
 
 
