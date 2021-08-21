@@ -39,7 +39,7 @@ class Paragraph(FragmentContainer):
     @property
     def stats(self):
         """Returns a light-weight dict with basic stats about the paragraph."""
-        d = {
+        return {
             "sentence_count": self.sentence_count,
             "word_count": self.word_count,
             "word_character_count": self.word_character_count,
