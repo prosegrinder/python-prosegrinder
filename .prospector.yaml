@@ -1,0 +1,9 @@
+# output-format: json
+
+strictness: medium
+test-warnings: true
+doc-warnings: true
+
+pep257:
+  disable:
+    - D211
