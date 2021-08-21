@@ -12,7 +12,7 @@ from prosegrinder.paragraph import Paragraph
 from prosegrinder.readability_scores import ReadabilityScores
 
 
-class Prose(object):
+class Prose():
 
     def __init__(self, text, dictionary=Dictionary()):
         self.text = text
