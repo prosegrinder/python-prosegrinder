@@ -9,49 +9,49 @@ class ReadabilityScores(object):
 
     def __init__(self, word_character_count, syllable_count, word_count,
                  complex_word_count, long_word_count, sentence_count, ndigits=NDIGITS):
-        self._word_character_count = word_character_count
-        self._syllable_count = syllable_count
-        self._word_count = word_count
-        self._complex_word_count = complex_word_count
-        self._long_word_count = long_word_count
-        self._sentence_count = sentence_count
-        self._ndigits = ndigits
+        self.word_character_count = word_character_count
+        self.syllable_count = syllable_count
+        self.word_count = word_count
+        self.complex_word_count = complex_word_count
+        self.long_word_count = long_word_count
+        self.sentence_count = sentence_count
+        self.ndigits = ndigits
 
-        self._automated_readability_index = self.calculate_automated_readability_index(
-            self._word_character_count, self._word_count, self._sentence_count, self._ndigits
+        self.automated_readability_index = self.calculate_automated_readability_index(
+            self.word_character_count, self.word_count, self.sentence_count, self.ndigits
         )
-        self._coleman_liau_index = self.calculate_coleman_liau_index(
-            self._word_character_count, self._word_count, self._sentence_count, self._ndigits
+        self.coleman_liau_index = self.calculate_coleman_liau_index(
+            self.word_character_count, self.word_count, self.sentence_count, self.ndigits
         )
-        self._flesch_kincaid_grade_level = self.calculate_flesch_kincaid_grade_level(
-            self._syllable_count, self._word_count, self._sentence_count, self._ndigits
+        self.flesch_kincaid_grade_level = self.calculate_flesch_kincaid_grade_level(
+            self.syllable_count, self.word_count, self.sentence_count, self.ndigits
         )
-        self._flesch_reading_ease = self.calculate_flesch_reading_ease(
-            self._syllable_count, self._word_count, self._sentence_count, self._ndigits
+        self.flesch_reading_ease = self.calculate_flesch_reading_ease(
+            self.syllable_count, self.word_count, self.sentence_count, self.ndigits
         )
-        self._gunning_fog_index = self.calculate_gunning_fog_index(
-            self._word_count, self._complex_word_count, self._sentence_count, self._ndigits
+        self.gunning_fog_index = self.calculate_gunning_fog_index(
+            self.word_count, self.complex_word_count, self.sentence_count, self.ndigits
         )
-        self._linsear_write = self.calculate_linsear_write(
-            self._word_count, self._complex_word_count, self._sentence_count, self._ndigits
+        self.linsear_write = self.calculate_linsear_write(
+            self.word_count, self.complex_word_count, self.sentence_count, self.ndigits
         )
-        self._lix = self.calculate_lix(
-            self._word_count, self._long_word_count, self._sentence_count, self._ndigits
+        self.lix = self.calculate_lix(
+            self.word_count, self.long_word_count, self.sentence_count, self.ndigits
         )
-        self._rix = self.calculate_rix(
-            self._long_word_count, self._sentence_count, self._ndigits
+        self.rix = self.calculate_rix(
+            self.long_word_count, self.sentence_count, self.ndigits
         )
-        self._smog = self.calculate_smog(
-            self._complex_word_count, self._sentence_count, self._ndigits
+        self.smog = self.calculate_smog(
+            self.complex_word_count, self.sentence_count, self.ndigits
         )
 
-    @property
-    def ndigits(self):
-        return self._ndigits
+    # @property
+    # def ndigits(self):
+    #     return self.ndigits
 
-    @property
-    def automated_readability_index(self):
-        return self._automated_readability_index
+    # @property
+    # def automated_readability_index(self):
+    #     return self.automated_readability_index
 
     @staticmethod
     def calculate_automated_readability_index(word_character_count, word_count, sentence_count, ndigits=NDIGITS):
@@ -63,9 +63,9 @@ class ReadabilityScores(object):
                 (0.5 * avg_words_per_sentence) - 21.43
         return round(score, ndigits)
 
-    @property
-    def coleman_liau_index(self):
-        return self._coleman_liau_index
+    # @property
+    # def coleman_liau_index(self):
+    #     return self.coleman_liau_index
 
     @staticmethod
     def calculate_coleman_liau_index(word_character_count, word_count, sentence_count, ndigits=NDIGITS):
@@ -77,9 +77,9 @@ class ReadabilityScores(object):
                 (0.296 * avg_sentences_per_word) - 15.8
         return round(score, ndigits)
 
-    @property
-    def flesch_kincaid_grade_level(self):
-        return self._flesch_kincaid_grade_level
+    # @property
+    # def flesch_kincaid_grade_level(self):
+    #     return self.flesch_kincaid_grade_level
 
     @staticmethod
     def calculate_flesch_kincaid_grade_level(syllable_count, word_count, sentence_count, ndigits=NDIGITS):
@@ -91,9 +91,9 @@ class ReadabilityScores(object):
                 (11.8 * avg_syllables_per_word) - 15.59
         return round(score, ndigits)
 
-    @property
-    def flesch_reading_ease(self):
-        return self._flesch_reading_ease
+    # @property
+    # def flesch_reading_ease(self):
+    #     return self.flesch_reading_ease
 
     @staticmethod
     def calculate_flesch_reading_ease(syllable_count, word_count, sentence_count, ndigits=NDIGITS):
@@ -105,9 +105,9 @@ class ReadabilityScores(object):
                 (84.6 * avg_syllables_per_word)
         return round(score, ndigits)
 
-    @property
-    def gunning_fog_index(self):
-        return self._gunning_fog_index
+    # @property
+    # def gunning_fog_index(self):
+    #     return self.gunning_fog_index
 
     @staticmethod
     def calculate_gunning_fog_index(word_count, complex_word_count, sentence_count, ndigits=NDIGITS):
@@ -118,9 +118,9 @@ class ReadabilityScores(object):
             score = 0.4 * (avg_sentence_length + pct_hard_words)
         return round(score, ndigits)
 
-    @property
-    def linsear_write(self):
-        return self._linsear_write
+    # @property
+    # def linsear_write(self):
+    #     return self.linsear_write
 
     @staticmethod
     def calculate_linsear_write(word_count, complex_word_count, sentence_count, ndigits=NDIGITS):
@@ -134,9 +134,9 @@ class ReadabilityScores(object):
             score = r / 2
         return round(score, ndigits)
 
-    @property
-    def lix(self):
-        return self._lix
+    # @property
+    # def lix(self):
+    #     return self.lix
 
     @staticmethod
     def calculate_lix(word_count, long_word_count, sentence_count, ndigits=NDIGITS):
@@ -146,9 +146,9 @@ class ReadabilityScores(object):
                 (100 * long_word_count) / word_count
         return round(score, ndigits)
 
-    @property
-    def rix(self):
-        return self._rix
+    # @property
+    # def rix(self):
+    #     return self.rix
 
     @staticmethod
     def calculate_rix(long_word_count, sentence_count, ndigits=NDIGITS):
@@ -157,9 +157,9 @@ class ReadabilityScores(object):
             score = long_word_count / sentence_count
         return round(score, ndigits)
 
-    @property
-    def smog(self):
-        return self._smog
+    # @property
+    # def smog(self):
+    #     return self.smog
 
     @staticmethod
     def calculate_smog(complex_word_count, sentence_count, ndigits=NDIGITS):
