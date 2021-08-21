@@ -1,0 +1,30 @@
+{
+  "filename": "shortstory.txt",
+  "statistics": {
+    "sha256": "5b756dea7c7f0088ff3692e402466af7f4fc493fa357c1ae959fa4493943fc03",
+    "word_character_count": 7008,
+    "phone_count": 5747,
+    "syllable_count": 2287,
+    "word_count": 1528,
+    "sentence_count": 90,
+    "paragraph_count": 77,
+    "complex_word_count": 202,
+    "long_word_count": 275,
+    "pov_word_count": 113,
+    "first_person_word_count": 8,
+    "second_person_word_count": 74,
+    "third_person_word_count": 31,
+    "pov": "first",
+    "readability_scores": {
+      "automated_readability_index": 0.281,
+      "coleman_liau_index": 9.425,
+      "flesch_kincaid_grade_level": 8.693,
+      "flesch_reading_ease": 62.979,
+      "gunning_fog_index": 12.079,
+      "linsear_write": 10.733,
+      "lix": 34.975,
+      "rix": 3.056,
+      "smog": 11.688
+    }
+  }
+}
