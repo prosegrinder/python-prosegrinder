@@ -9,7 +9,7 @@ from prosegrinder.dictionary import Dictionary
 from prosegrinder.word import Word
 
 
-class Fragment(object):
+class Fragment():
 
     def __init__(self, text, dictionary=Dictionary()):
         self.text = text
