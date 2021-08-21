@@ -3,7 +3,7 @@
 from math import sqrt
 
 
-class ReadabilityScores(object):
+class ReadabilityScores():
 
     NDIGITS = 3  # Default for round(number,[ndigits])
 
@@ -18,10 +18,12 @@ class ReadabilityScores(object):
         self.ndigits = ndigits
 
         self.automated_readability_index = self.calculate_automated_readability_index(
-            self.word_character_count, self.word_count, self.sentence_count, self.ndigits
+            self.word_character_count, self.word_count,
+            self.ndigits
         )
         self.coleman_liau_index = self.calculate_coleman_liau_index(
-            self.word_character_count, self.word_count, self.sentence_count, self.ndigits
+            self.word_character_count, self.word_count,
+            self.sentence_count, self.ndigits
         )
         self.flesch_kincaid_grade_level = self.calculate_flesch_kincaid_grade_level(
             self.syllable_count, self.word_count, self.sentence_count, self.ndigits
@@ -54,7 +56,8 @@ class ReadabilityScores(object):
     #     return self.automated_readability_index
 
     @staticmethod
-    def calculate_automated_readability_index(word_character_count, word_count, sentence_count, ndigits=NDIGITS):
+    def calculate_automated_readability_index(word_character_count,
+            word_count, ndigits=NDIGITS):
         score = 0.0
         if (word_count > 0):
             avg_characters_per_word = word_character_count / word_count
@@ -68,7 +71,8 @@ class ReadabilityScores(object):
     #     return self.coleman_liau_index
 
     @staticmethod
-    def calculate_coleman_liau_index(word_character_count, word_count, sentence_count, ndigits=NDIGITS):
+    def calculate_coleman_liau_index(word_character_count,
+            word_count, sentence_count, ndigits=NDIGITS):
         score = 0.0
         if (word_count > 0):
             avg_letters_per_word = word_character_count / word_count * 100.0
@@ -82,7 +86,8 @@ class ReadabilityScores(object):
     #     return self.flesch_kincaid_grade_level
 
     @staticmethod
-    def calculate_flesch_kincaid_grade_level(syllable_count, word_count, sentence_count, ndigits=NDIGITS):
+    def calculate_flesch_kincaid_grade_level(syllable_count,
+            word_count, sentence_count, ndigits=NDIGITS):
         score = 0.0
         if (word_count > 0):
             avg_sentence_length = word_count / sentence_count
@@ -96,7 +101,8 @@ class ReadabilityScores(object):
     #     return self.flesch_reading_ease
 
     @staticmethod
-    def calculate_flesch_reading_ease(syllable_count, word_count, sentence_count, ndigits=NDIGITS):
+    def calculate_flesch_reading_ease(syllable_count, word_count,
+            sentence_count, ndigits=NDIGITS):
         score = 0.0
         if (word_count > 0):
             avg_sentence_length = word_count / sentence_count
@@ -110,7 +116,8 @@ class ReadabilityScores(object):
     #     return self.gunning_fog_index
 
     @staticmethod
-    def calculate_gunning_fog_index(word_count, complex_word_count, sentence_count, ndigits=NDIGITS):
+    def calculate_gunning_fog_index(word_count,
+            complex_word_count, sentence_count, ndigits=NDIGITS):
         score = 0.0
         if (word_count > 0):
             avg_sentence_length = word_count / sentence_count
@@ -123,7 +130,8 @@ class ReadabilityScores(object):
     #     return self.linsear_write
 
     @staticmethod
-    def calculate_linsear_write(word_count, complex_word_count, sentence_count, ndigits=NDIGITS):
+    def calculate_linsear_write(word_count,
+            complex_word_count, sentence_count, ndigits=NDIGITS):
         score = 0.0
         hard_word_count = complex_word_count
         easy_word_count = (word_count - complex_word_count)
