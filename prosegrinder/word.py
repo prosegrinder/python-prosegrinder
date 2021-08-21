@@ -6,7 +6,7 @@ from collections import Counter
 import pointofview
 
 
-class Word(object):
+class Word():
 
     """A Word, the base unit for measuring fiction prose."""
 
@@ -16,7 +16,8 @@ class Word(object):
     RE_WORD = re.compile(
         "[\\w’'\u0391-\u03ce\u0400-\u0481\u048a-\u04ff]+")
 
-    def __init__(self, text, phones, normalized_phones, syllable_count, is_dictionary_word, is_numeric):
+    def __init__(self, text, phones, normalized_phones,
+            syllable_count, is_dictionary_word, is_numeric):
         """Assumes text is a single word, normalized."""
         self.text = text
         self.character_count = len(self.text)
