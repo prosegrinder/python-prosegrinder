@@ -15,7 +15,7 @@ def test_cli_defaults():
     with open(JSON_FILENAME) as json_file:
         JSON_CONTENTS = json_file.read()
     runner = CliRunner()
-    with runner.isolated_filesystem() as ifs:
+    with runner.isolated_filesystem():
         shutil.copyfile(TXT_FILENAME, "shortstory.txt")
         result = runner.invoke(main.cli, ['shortstory.txt'])
         assert result.exit_code == 0
