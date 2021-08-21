@@ -79,4 +79,3 @@ class Fragment():
             "unique_word_count": self.unique_word_count,
             "pov": self.pov,
         }
-
