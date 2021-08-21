@@ -12,117 +12,71 @@ from prosegrinder.word import Word
 class Fragment(object):
 
     def __init__(self, text, dictionary=Dictionary()):
-        self._text = text
-        self._dictionary = dictionary
-        self._normalized_sentence = dictionary.normalize_text(text)
-        self._words = [self._dictionary.get_word(word) for word in re.findall(
-            Word.RE_WORD, self._normalized_sentence)]
-        self._word_count = len(self._words)
-        self._word_character_count = sum(
-            [word.character_count for word in self._words])
+        self.text = text
+        self.dictionary = dictionary
+        self.normalized_sentence = dictionary.normalize_text(text)
+        self.words = [self.dictionary.get_word(word) for word in re.findall(
+            Word.RE_WORD, self.normalized_sentence)]
+        self.word_count = len(self.words)
+        self.word_character_count = sum(
+            [word.character_count for word in self.words])
         pf = Counter()
         pc = 0
-        for word in self._words:
+        for word in self.words:
             pf.update(word.phone_frequency)
             pc += word.phone_count
-        self._phone_fequency = pf
-        self._phone_count = pc
-        self._syllable_count = sum(
-            [word.syllable_count for word in self._words])
-        self._complex_word_count = sum(
-            [word.is_complex_word for word in self._words])
-        self._long_word_count = sum(
-            [word.is_long_word for word in self._words])
-        self._pov_word_count = sum([word.is_pov_word for word in self._words])
-        self._first_person_word_count = sum(
-            [word.is_first_person_word for word in self._words])
-        self._second_person_word_count = sum(
-            [word.is_second_person_word for word in self._words])
-        self._third_person_word_count = sum(
-            [word.is_third_person_word for word in self._words])
-        self._word_frequency = dict(Counter(self._words))
-        self._pov = pointofview.NONE
-        if self._first_person_word_count > 0:
-            self._pov = pointofview.FIRST
-        elif self._second_person_word_count > 0:
-            self._pov = pointofview.SECOND
-        elif self._third_person_word_count > 0:
-            self._pov = pointofview.THIRD
+        self.phone_frequency = pf
+        self.phone_count = pc
+        self.syllable_count = sum(
+            [word.syllable_count for word in self.words])
+        self.complex_word_count = sum(
+            [word.is_complex_word for word in self.words])
+        self.long_word_count = sum(
+            [word.is_long_word for word in self.words])
+        self.pov_word_count = sum([word.is_pov_word for word in self.words])
+        self.first_person_word_count = sum(
+            [word.is_first_person_word for word in self.words])
+        self.second_person_word_count = sum(
+            [word.is_second_person_word for word in self.words])
+        self.third_person_word_count = sum(
+            [word.is_third_person_word for word in self.words])
+        self.word_frequency = dict(Counter(self.words))
+        self.unique_words = self.word_frequency.keys()
+        self.unique_word_count = len(self.unique_words)
+        self.pov = pointofview.NONE
+        if self.first_person_word_count > 0:
+            self.pov = pointofview.FIRST
+        elif self.second_person_word_count > 0:
+            self.pov = pointofview.SECOND
+        elif self.third_person_word_count > 0:
+            self.pov = pointofview.THIRD
 
     def __eq__(self, other):
-        return self._text == other._text
+        return self.text == other.text
 
     def __hash__(self):
-        return hash(self._text)
+        return hash(self.text)
 
-    @property
-    def dictionary(self):
-        return self._dictionary
-
-    @property
-    def word_count(self):
-        return self._word_count
-
-    @property
-    def word_character_count(self):
-        return self._word_character_count
-
-    @property
-    def phone_frequency(self):
-        return self._phone_fequency
-
-    @property
-    def phone_count(self):
-        return self._phone_count
-
-    @property
-    def syllable_count(self):
-        return self._syllable_count
-
-    @property
-    def complex_word_count(self):
-        return self._complex_word_count
-
-    @property
-    def long_word_count(self):
-        return self._long_word_count
-
-    @property
-    def unique_words(self):
-        return self._word_frequency.keys()
-
-    @property
-    def word_frequency(self):
-        return self._word_frequency
-
-    @property
-    def pov_word_count(self):
-        return self._pov_word_count
-
-    @property
-    def text(self):
-        return self._text
-
-    @property
     def frequency(self, word_string):
-        return self._word_frequency[word_string]
+        return self.word_frequency[word_string]
 
     @property
-    def first_person_word_count(self):
-        return self._first_person_word_count
+    def stats(self):
+        """Returns a light-weight dict with basic stats about the fragment."""
+        return {
+            "word_character_count": self.word_character_count,
+            "phone_frequency": self.phone_frequency,
+            "phone_count": self.phone_count,
+            "syllable_count": self.syllable_count,
+            "complex_word_count": self.complex_word_count,
+            "long_word_count": self.long_word_count,
+            "pov_word_count": self.pov_word_count,
+            "first_person_word_count": self.first_person_word_count,
+            "second_person_word_count": self.second_person_word_count,
+            "third_person_word_count": self.third_person_word_count,
+            "word_frequency": self.word_frequency,
+            "unique_words": self.unique_words,
+            "unique_word_count": self.unique_word_count,
+            "pov": self.pov,
+        }
 
-    @property
-    def second_person_word_count(self):
-        return self._second_person_word_count
-
-    @property
-    def third_person_word_count(self):
-        return self._third_person_word_count
-
-    @property
-    def words(self):
-        return self._words
-
-    @property
-    def pov(self):
-        return self._pov

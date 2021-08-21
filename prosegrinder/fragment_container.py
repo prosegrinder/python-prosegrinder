@@ -10,122 +10,53 @@ from prosegrinder.dictionary import Dictionary
 class FragmentContainer(object):
 
     def __init__(self, fragments, dictionary=Dictionary()):
-        self._dictionary = dictionary
-        self._fragments = fragments or []
-        self._word_count = sum(
-            [fragment.word_count for fragment in self._fragments])
-        self._word_character_count = sum(
-            [fragment.word_character_count for fragment in self._fragments])
-        self._syllable_count = sum(
-            [fragment.syllable_count for fragment in self._fragments])
-        self._complex_word_count = sum(
-            [fragment.complex_word_count for fragment in self._fragments])
-        self._long_word_count = sum(
-            [fragment.long_word_count for fragment in self._fragments])
-        self._pov_word_count = sum(
-            [fragment.pov_word_count for fragment in self._fragments])
-        self._first_person_word_count = sum(
-            [fragment.first_person_word_count for fragment in self._fragments])
-        self._second_person_word_count = sum(
-            [fragment.second_person_word_count for fragment in self._fragments])
-        self._third_person_word_count = sum(
-            [fragment.third_person_word_count for fragment in self._fragments])
+        self.dictionary = dictionary
+        self.fragments = fragments or []
+        self.fragment_count = len(self.fragments)
+        self.word_count = sum(
+            [fragment.word_count for fragment in self.fragments])
+        self.word_character_count = sum(
+            [fragment.word_character_count for fragment in self.fragments])
+        self.syllable_count = sum(
+            [fragment.syllable_count for fragment in self.fragments])
+        self.complex_word_count = sum(
+            [fragment.complex_word_count for fragment in self.fragments])
+        self.long_word_count = sum(
+            [fragment.long_word_count for fragment in self.fragments])
+        self.pov_word_count = sum(
+            [fragment.pov_word_count for fragment in self.fragments])
+        self.first_person_word_count = sum(
+            [fragment.first_person_word_count for fragment in self.fragments])
+        self.second_person_word_count = sum(
+            [fragment.second_person_word_count for fragment in self.fragments])
+        self.third_person_word_count = sum(
+            [fragment.third_person_word_count for fragment in self.fragments])
         wf = Counter()
         pf = Counter()
         pc = 0
-        for fragment in self._fragments:
+        for fragment in self.fragments:
             wf.update(fragment.words)
             pf.update(fragment.phone_frequency)
             pc += fragment.phone_count
-        self._word_frequency = dict(wf)
-        self._phone_frequency = dict(pf)
-        self._phone_count = pc
-        self._pov = pointofview.NONE
-        if (self._first_person_word_count > 0):
-            self._pov = pointofview.FIRST
-        elif (self._second_person_word_count > 0):
-            self._pov = pointofview.SECOND
-        elif (self._third_person_word_count > 0):
-            self._pov = pointofview.THIRD
+        self.word_frequency = dict(wf)
+        self.phone_frequency = dict(pf)
+        self.phone_count = pc
+        self.unique_words = self.word_frequency.keys()
+        self.unique_word_count = len(self.unique_words)
+        if (self.first_person_word_count > 0):
+            self.pov = pointofview.FIRST
+        elif (self.second_person_word_count > 0):
+            self.pov = pointofview.SECOND
+        elif (self.third_person_word_count > 0):
+            self.pov = pointofview.THIRD
+        else:
+            self.pov = pointofview.NONE
 
     def __eq__(self, other):
-        return self._fragments == other._fragments
+        return self.fragments == other.fragments
 
     def __hash__(self):
-        return hash(self._fragments)
+        return hash(self.fragments)
 
-    @property
-    def dictionary(self):
-        return self._dictionary
-
-    @property
-    def phone_frequency(self):
-        return self._phone_frequency
-
-    @property
-    def phone_count(self):
-        return self._phone_count
-
-    @property
-    def word_count(self):
-        return self._word_count
-
-    @property
-    def word_character_count(self):
-        return self._word_character_count
-
-    @property
-    def syllable_count(self):
-        return self._syllable_count
-
-    @property
-    def complex_word_count(self):
-        return self._complex_word_count
-
-    @property
-    def long_word_count(self):
-        return self._long_word_count
-
-    @property
-    def unique_word_count(self):
-        return len(self.unique_words)
-
-    @property
-    def unique_words(self):
-        return self._word_frequency.keys()
-
-    @property
-    def word_frequency(self):
-        return self._word_frequency
-
-    @property
-    def pov_word_count(self):
-        return self._pov_word_count
-
-    @property
-    def fragments(self):
-        return self._fragments
-
-    @property
     def frequency(self, word_string):
-        return self._word_frequency[self._dictionary.get_word(word_string)]
-
-    @property
-    def fragment_count(self):
-        return len(self._fragments)
-
-    @property
-    def first_person_word_count(self):
-        return self._first_person_word_count
-
-    @property
-    def second_person_word_count(self):
-        return self._second_person_word_count
-
-    @property
-    def third_person_word_count(self):
-        return self._third_person_word_count
-
-    @property
-    def pov(self):
-        return self._pov
+        return self.word_frequency[self.dictionary.get_word(word_string)]
