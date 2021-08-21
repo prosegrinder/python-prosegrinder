@@ -9,9 +9,7 @@ from prosegrinder.word import Word
 
 
 class Dictionary():
-
     """A reference containing Words."""
-
     RE_NUMERIC = re.compile("^[+-]{0,1}\\d{1,3}(?:[,]\\d{3})*(?:[.]\\d*)*$")
 
     @staticmethod
@@ -20,7 +18,7 @@ class Dictionary():
 
     @staticmethod
     def normalize_phones(phones):
-        return [re.sub("\d", "", phone) for phone in phones]
+        return [re.sub(r"\d", "", phone) for phone in phones]
 
     @staticmethod
     def is_numeric(word):
