@@ -6,7 +6,7 @@ name: Python Lint
 on: [push, pull_request]
 
 jobs:
-  deploy:
+  lint:
     runs-on: ubuntu-latest
 
     steps:
