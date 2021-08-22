@@ -41,19 +41,20 @@ class FragmentContainer():
         self.phone_count = pc
         self.unique_words = self.word_frequency.keys()
         self.unique_word_count = len(self.unique_words)
+        self.pov = pointofview.NONE
         if (self.first_person_word_count > 0):
             self.pov = pointofview.FIRST
         elif (self.second_person_word_count > 0):
             self.pov = pointofview.SECOND
         elif (self.third_person_word_count > 0):
             self.pov = pointofview.THIRD
-        else:
-            self.pov = pointofview.NONE
 
     def __eq__(self, other):
+        """Equals overload."""
         return self.fragments == other.fragments
 
     def __hash__(self):
+        """Hash overload."""
         return hash(self.fragments)
 
     def frequency(self, word_string):

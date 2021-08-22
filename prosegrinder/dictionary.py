@@ -7,7 +7,9 @@ from prosegrinder.word import Word
 
 
 class Dictionary():
+
     """A reference containing Words."""
+
     RE_NUMERIC = re.compile("^[+-]{0,1}\\d{1,3}(?:[,]\\d{3})*(?:[.]\\d*)*$")
 
     @staticmethod
@@ -23,6 +25,14 @@ class Dictionary():
         return re.match(Dictionary.RE_NUMERIC, word) is not None
 
     def __init__(self, cmudictdict=None):
+        """
+        Dictionary constructor.
+
+        Arguments:
+        ---------
+        cmudictdict: a cmudict-compatible dictionary
+
+        """
         self.cmudictdict = cmudictdict or cmudict.dict()
 
     def phones(self, word):

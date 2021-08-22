@@ -50,9 +50,11 @@ class Fragment():
             self.pov = pointofview.THIRD
 
     def __eq__(self, other):
+        """Equals overload."""
         return self.text == other.text
 
     def __hash__(self):
+        """Hash overload."""
         return hash(self.text)
 
     def frequency(self, word_string):

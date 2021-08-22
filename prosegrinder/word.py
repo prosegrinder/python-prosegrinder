@@ -56,14 +56,7 @@ class Word():
             self.is_third_person_word)
 
     def __eq__(self, other):
-        """
-        Equals overload.
-
-        Arguments:
-        ---------
-        other: the Word to compare to
-
-        """
+        """Equals overload."""
         return self.__dict__ == other.__dict__
 
     def __hash__(self):
