@@ -1,5 +1,5 @@
-from collections import Counter
 import hashlib
+from collections import Counter
 
 import narrative
 
