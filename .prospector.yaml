@@ -2,7 +2,8 @@ output-format: grouped
 
 strictness: medium
 test-warnings: false
-doc-warnings: true
+# docs will be cleaned in a subsequent branch
+doc-warnings: false
 member-warnings: true
 inherits:
   - default
@@ -20,4 +21,10 @@ pep257:
     - D212
 
 pylint:
+  run: true
+  disable:
+    - missing-module-docstring
+    - too-many-arguments
+
+pyflakes:
   run: false
