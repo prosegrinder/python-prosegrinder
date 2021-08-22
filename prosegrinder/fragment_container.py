@@ -50,11 +50,11 @@ class FragmentContainer():
             self.pov = pointofview.THIRD
 
     def __eq__(self, other):
-        """Equals overload."""
+        """Equality operator for instance variables."""
         return self.fragments == other.fragments
 
     def __hash__(self):
-        """Hash overload."""
+        """Hash operator for instance variables."""
         return hash(self.fragments)
 
     def frequency(self, word_string):

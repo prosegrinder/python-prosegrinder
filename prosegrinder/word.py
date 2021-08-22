@@ -6,7 +6,43 @@ import pointofview
 
 class Word():
 
-    """A Word, the base unit for measuring fiction prose."""
+    """
+    A class to represent a natural-language word.
+
+    Attributes
+    ----------
+    text : str
+        a single word, normalized
+    character_count : int
+        number of characters in the word
+    phones : list[str]
+        the word's phones with syllable marks
+    normalized_phones : list[str]
+        the word's phone without syllable marks
+    phone_count : int
+        number of phones in the word
+    phone_frequency : dict
+    syllable_count : int
+        number of syllables in the word
+    is_dictionary_word : bool
+        is it in the underlying dictionary
+    is_numeric : bool
+        is it a word representing a number
+    is_complex_word : bool
+        is it a complex word (>= 3 syllables)
+    is_long_word : bool
+        is it a long word (>= 7 characters)
+    pov : str
+        the word's point of view
+    is_first_person_word : bool
+        is the word a first person pov indicator
+    is_second_person_word : bool
+        is the word a second person pov indicator
+    is_third_person_word : bool
+        is the word a third person pov indicator
+    is_pov_word : bool
+        is the word a pov indicator
+    """
 
     MIN_SYLLABLES_COMPLEX_WORD = 3
     MIN_CHARS_LONG_WORD = 7
@@ -14,19 +50,26 @@ class Word():
     RE_WORD = re.compile(
         "[\\w’'\u0391-\u03ce\u0400-\u0481\u048a-\u04ff]+")
 
+    # pylint:disable=too-many-arguments
     def __init__(self, text, phones, normalized_phones,
             syllable_count, is_dictionary_word, is_numeric):
         """
         Word constructor.
 
-        Arguments:
-        ---------
-        text: a single word, normalized
-        phones: the word's phones with syllable marks
-        normalized_phones: the word's phone without syllable marks
-        syllable_count: number of syllables in the word
-        is_dictionary_word: is it in the underlying dictionary
-        is_numeric: is it a word representing a number
+        Argument:
+        --------
+        text : str
+            a single word, normalized
+        phones : list[str]
+            the word's phones with syllable marks
+        normalized_phones : list[str]
+            the word's phone without syllable marks
+        syllable_count : int
+            umber of syllables in the word
+        is_dictionary_word : bool
+            is it in the underlying dictionary
+        is_numeric : bool
+            is it a word representing a number
 
         """
         # Assumes text is a single word, normalized.
@@ -56,9 +99,9 @@ class Word():
             self.is_third_person_word)
 
     def __eq__(self, other):
-        """Equals overload."""
+        """Equality operator for instance variables."""
         return self.__dict__ == other.__dict__
 
     def __hash__(self):
-        """Hash overload."""
+        """Hash operator for instance variables."""
         return hash(self.text)

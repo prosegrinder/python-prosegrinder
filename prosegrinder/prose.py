@@ -62,11 +62,11 @@ class Prose():
         self.pov = self.narrative.pov
 
     def __eq__(self, other):
-        """Equals overload."""
+        """Equality operator for instance variables."""
         return self.text == other.text
 
     def __hash__(self):
-        """Hash overload."""
+        """Hash operator for instance variables."""
         return hash(self.text)
 
     @property

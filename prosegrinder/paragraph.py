@@ -27,7 +27,7 @@ class Paragraph(FragmentContainer):
         super().__init__(self.sentences, self.dictionary)
 
     def __eq__(self, other):
-        """Equals overload."""
+        """Equality operator for instance variables."""
         return self.text == other.text
 
     @staticmethod
