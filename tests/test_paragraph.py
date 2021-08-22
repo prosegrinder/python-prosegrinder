@@ -23,55 +23,75 @@ SENTENCE_COUNT = 7
 
 
 def test_characters():
-    assert(WORD_CHARACTER_COUNT == paragraph.word_character_count)
+    assert WORD_CHARACTER_COUNT == paragraph.word_character_count
 
 
 def test_phones():
-    assert(PHONE_COUNT == paragraph.phone_count)
+    assert PHONE_COUNT == paragraph.phone_count
 
 
 def test_syllables():
-    assert(SYLLABLE_COUNT == paragraph.syllable_count)
+    assert SYLLABLE_COUNT == paragraph.syllable_count
 
 
 def test_words():
-    assert(WORD_COUNT == paragraph.word_count)
-    assert(COMPLEX_WORD_COUNT == paragraph.complex_word_count)
-    assert(LONG_WORD_COUNT == paragraph.long_word_count)
-    assert(UNIQUE_WORD_COUNT == paragraph.unique_word_count)
+    assert WORD_COUNT == paragraph.word_count
+    assert COMPLEX_WORD_COUNT == paragraph.complex_word_count
+    assert LONG_WORD_COUNT == paragraph.long_word_count
+    assert UNIQUE_WORD_COUNT == paragraph.unique_word_count
 
 
 def test_pov():
-    assert(POV_WORD_COUNT == paragraph.pov_word_count)
-    assert(FIRST_PERSON_INDICATOR_COUNT == paragraph.first_person_word_count)
-    assert(SECOND_PERSON_INDICATOR_COUNT == paragraph.second_person_word_count)
-    assert(THIRD_PERSON_INDICATOR_COUNT == paragraph.third_person_word_count)
+    assert POV_WORD_COUNT == paragraph.pov_word_count
+    assert FIRST_PERSON_INDICATOR_COUNT == paragraph.first_person_word_count
+    assert SECOND_PERSON_INDICATOR_COUNT == paragraph.second_person_word_count
+    assert THIRD_PERSON_INDICATOR_COUNT == paragraph.third_person_word_count
 
 
 def test_sentences():
-    assert(SENTENCE_COUNT == paragraph.sentence_count)
+    assert SENTENCE_COUNT == paragraph.sentence_count
 
 
 def test_dialogue_narrative():
-    assert(WORD_CHARACTER_COUNT == paragraph.dialogue.word_character_count +
-           paragraph.narrative.word_character_count)
-    assert(SYLLABLE_COUNT == paragraph.dialogue.syllable_count +
-           paragraph.narrative.syllable_count)
-    assert(WORD_COUNT == paragraph.dialogue.word_count +
-           paragraph.narrative.word_count)
-    assert(LONG_WORD_COUNT == paragraph.dialogue.long_word_count +
-           paragraph.narrative.long_word_count)
-    assert(COMPLEX_WORD_COUNT == paragraph.dialogue.complex_word_count +
-           paragraph.narrative.complex_word_count)
+    assert (
+        WORD_CHARACTER_COUNT
+        == paragraph.dialogue.word_character_count
+        + paragraph.narrative.word_character_count
+    )
+    assert (
+        SYLLABLE_COUNT
+        == paragraph.dialogue.syllable_count + paragraph.narrative.syllable_count
+    )
+    assert WORD_COUNT == paragraph.dialogue.word_count + paragraph.narrative.word_count
+    assert (
+        LONG_WORD_COUNT
+        == paragraph.dialogue.long_word_count + paragraph.narrative.long_word_count
+    )
+    assert (
+        COMPLEX_WORD_COUNT
+        == paragraph.dialogue.complex_word_count
+        + paragraph.narrative.complex_word_count
+    )
     combined_word_frequency = Counter()
     combined_word_frequency.update(paragraph.dialogue.word_frequency)
     combined_word_frequency.update(paragraph.narrative.word_frequency)
-    assert(UNIQUE_WORD_COUNT == len(combined_word_frequency))
-    assert(POV_WORD_COUNT == paragraph.dialogue.pov_word_count +
-           paragraph.narrative.pov_word_count)
-    assert(FIRST_PERSON_INDICATOR_COUNT == paragraph.dialogue.first_person_word_count +
-           paragraph.narrative.first_person_word_count)
-    assert(SECOND_PERSON_INDICATOR_COUNT == paragraph.dialogue.second_person_word_count +
-           paragraph.narrative.second_person_word_count)
-    assert(THIRD_PERSON_INDICATOR_COUNT == paragraph.dialogue.third_person_word_count +
-           paragraph.narrative.third_person_word_count)
+    assert UNIQUE_WORD_COUNT == len(combined_word_frequency)
+    assert (
+        POV_WORD_COUNT
+        == paragraph.dialogue.pov_word_count + paragraph.narrative.pov_word_count
+    )
+    assert (
+        FIRST_PERSON_INDICATOR_COUNT
+        == paragraph.dialogue.first_person_word_count
+        + paragraph.narrative.first_person_word_count
+    )
+    assert (
+        SECOND_PERSON_INDICATOR_COUNT
+        == paragraph.dialogue.second_person_word_count
+        + paragraph.narrative.second_person_word_count
+    )
+    assert (
+        THIRD_PERSON_INDICATOR_COUNT
+        == paragraph.dialogue.third_person_word_count
+        + paragraph.narrative.third_person_word_count
+    )

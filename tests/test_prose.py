@@ -6,8 +6,7 @@ from collections import Counter
 from prosegrinder import Dictionary, Prose
 
 dictionary = Dictionary()
-SHORTSTORY = os.path.join(os.path.dirname(
-    __file__), 'resources', 'shortstory.txt')
+SHORTSTORY = os.path.join(os.path.dirname(__file__), "resources", "shortstory.txt")
 text = open(SHORTSTORY).read()
 prose = Prose(text)
 
@@ -36,72 +35,92 @@ SMOG = 11.688
 
 
 def test_characters():
-    assert(WORD_CHARACTER_COUNT == prose.word_character_count)
+    assert WORD_CHARACTER_COUNT == prose.word_character_count
 
 
 def test_phones():
-    assert(PHONE_COUNT == prose.phone_count)
+    assert PHONE_COUNT == prose.phone_count
 
 
 def test_syllables():
-    assert(SYLLABLE_COUNT == prose.syllable_count)
+    assert SYLLABLE_COUNT == prose.syllable_count
 
 
 def test_words():
-    assert(WORD_COUNT == prose.word_count)
-    assert(COMPLEX_WORD_COUNT == prose.complex_word_count)
-    assert(LONG_WORD_COUNT == prose.long_word_count)
-    assert(UNIQUE_WORD_COUNT == prose.unique_word_count)
+    assert WORD_COUNT == prose.word_count
+    assert COMPLEX_WORD_COUNT == prose.complex_word_count
+    assert LONG_WORD_COUNT == prose.long_word_count
+    assert UNIQUE_WORD_COUNT == prose.unique_word_count
 
 
 def test_pov():
-    assert(POV_WORD_COUNT == prose.pov_word_count)
-    assert(FIRST_PERSON_INDICATOR_COUNT == prose.first_person_word_count)
-    assert(SECOND_PERSON_INDICATOR_COUNT == prose.second_person_word_count)
-    assert(THIRD_PERSON_INDICATOR_COUNT == prose.third_person_word_count)
+    assert POV_WORD_COUNT == prose.pov_word_count
+    assert FIRST_PERSON_INDICATOR_COUNT == prose.first_person_word_count
+    assert SECOND_PERSON_INDICATOR_COUNT == prose.second_person_word_count
+    assert THIRD_PERSON_INDICATOR_COUNT == prose.third_person_word_count
 
 
 def test_sentences():
-    assert(SENTENCE_COUNT == prose.sentence_count)
+    assert SENTENCE_COUNT == prose.sentence_count
 
 
 def test_paragraphs():
-    assert(PARAGRAPH_COUNT == prose.paragraph_count)
+    assert PARAGRAPH_COUNT == prose.paragraph_count
 
 
 def test_dialogue_narrative():
-    assert(WORD_CHARACTER_COUNT == prose.dialogue.word_character_count +
-           prose.narrative.word_character_count)
-    assert(SYLLABLE_COUNT == prose.dialogue.syllable_count +
-           prose.narrative.syllable_count)
-    assert(WORD_COUNT == prose.dialogue.word_count +
-           prose.narrative.word_count)
-    assert(LONG_WORD_COUNT == prose.dialogue.long_word_count +
-           prose.narrative.long_word_count)
-    assert(COMPLEX_WORD_COUNT == prose.dialogue.complex_word_count +
-           prose.narrative.complex_word_count)
+    assert (
+        WORD_CHARACTER_COUNT
+        == prose.dialogue.word_character_count + prose.narrative.word_character_count
+    )
+    assert (
+        SYLLABLE_COUNT == prose.dialogue.syllable_count + prose.narrative.syllable_count
+    )
+    assert WORD_COUNT == prose.dialogue.word_count + prose.narrative.word_count
+    assert (
+        LONG_WORD_COUNT
+        == prose.dialogue.long_word_count + prose.narrative.long_word_count
+    )
+    assert (
+        COMPLEX_WORD_COUNT
+        == prose.dialogue.complex_word_count + prose.narrative.complex_word_count
+    )
     combined_word_frequency = Counter()
     combined_word_frequency.update(prose.dialogue.word_frequency)
     combined_word_frequency.update(prose.narrative.word_frequency)
-    assert(UNIQUE_WORD_COUNT == len(combined_word_frequency))
-    assert(POV_WORD_COUNT == prose.dialogue.pov_word_count +
-           prose.narrative.pov_word_count)
-    assert(FIRST_PERSON_INDICATOR_COUNT == prose.dialogue.first_person_word_count +
-           prose.narrative.first_person_word_count)
-    assert(SECOND_PERSON_INDICATOR_COUNT == prose.dialogue.second_person_word_count +
-           prose.narrative.second_person_word_count)
-    assert(THIRD_PERSON_INDICATOR_COUNT == prose.dialogue.third_person_word_count +
-           prose.narrative.third_person_word_count)
+    assert UNIQUE_WORD_COUNT == len(combined_word_frequency)
+    assert (
+        POV_WORD_COUNT == prose.dialogue.pov_word_count + prose.narrative.pov_word_count
+    )
+    assert (
+        FIRST_PERSON_INDICATOR_COUNT
+        == prose.dialogue.first_person_word_count
+        + prose.narrative.first_person_word_count
+    )
+    assert (
+        SECOND_PERSON_INDICATOR_COUNT
+        == prose.dialogue.second_person_word_count
+        + prose.narrative.second_person_word_count
+    )
+    assert (
+        THIRD_PERSON_INDICATOR_COUNT
+        == prose.dialogue.third_person_word_count
+        + prose.narrative.third_person_word_count
+    )
 
 
 def test_readability_scores():
-    assert(AUTOMATED_READABILITY_INDEX ==
-           prose.readability_scores.automated_readability_index)
-    assert(COLEMAN_LIAU_INDEX == prose.readability_scores.coleman_liau_index)
-    assert(FLESCH_KINCAID_GRADE_LEVEL ==
-           prose.readability_scores.flesch_kincaid_grade_level)
-    assert(FLESCH_READING_EASE == prose.readability_scores.flesch_reading_ease)
-    assert(GUNNING_FOG_INDEX == prose.readability_scores.gunning_fog_index)
-    assert(LIX == prose.readability_scores.lix)
-    assert(RIX == prose.readability_scores.rix)
-    assert(SMOG == prose.readability_scores.smog)
+    assert (
+        AUTOMATED_READABILITY_INDEX
+        == prose.readability_scores.automated_readability_index
+    )
+    assert COLEMAN_LIAU_INDEX == prose.readability_scores.coleman_liau_index
+    assert (
+        FLESCH_KINCAID_GRADE_LEVEL
+        == prose.readability_scores.flesch_kincaid_grade_level
+    )
+    assert FLESCH_READING_EASE == prose.readability_scores.flesch_reading_ease
+    assert GUNNING_FOG_INDEX == prose.readability_scores.gunning_fog_index
+    assert LIX == prose.readability_scores.lix
+    assert RIX == prose.readability_scores.rix
+    assert SMOG == prose.readability_scores.smog
