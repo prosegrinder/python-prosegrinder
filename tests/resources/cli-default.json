@@ -28,3 +28,33 @@
     }
   }
 }
+{
+  "filename": "copyright.txt",
+  "statistics": {
+    "sha256": "553bfd087a2736e4bbe2f312e3d3a5b763fb57caa54e3626da03b0fd3f42e017",
+    "word_character_count": 222,
+    "phone_count": 169,
+    "syllable_count": 78,
+    "word_count": 46,
+    "sentence_count": 7,
+    "paragraph_count": 16,
+    "complex_word_count": 10,
+    "long_word_count": 12,
+    "pov_word_count": 1,
+    "first_person_word_count": 1,
+    "second_person_word_count": 0,
+    "third_person_word_count": 0,
+    "pov": "first",
+    "readability_scores": {
+      "automated_readability_index": 1.404,
+      "coleman_liau_index": 8.073,
+      "flesch_kincaid_grade_level": 6.982,
+      "flesch_reading_ease": 56.713,
+      "gunning_fog_index": 11.324,
+      "linsear_write": 3.714,
+      "lix": 32.658,
+      "rix": 1.714,
+      "smog": 9.957
+    }
+  }
+}
