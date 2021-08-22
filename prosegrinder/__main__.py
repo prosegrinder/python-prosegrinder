@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
+import json
 
 import click
-import json
 
 from prosegrinder.prose import Prose
 

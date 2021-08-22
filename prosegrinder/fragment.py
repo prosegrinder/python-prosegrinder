@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 import re
 from collections import Counter
 
@@ -9,17 +7,17 @@ from prosegrinder.dictionary import Dictionary
 from prosegrinder.word import Word
 
 
-class Fragment(object):
-
+class Fragment:
     def __init__(self, text, dictionary=Dictionary()):
         self.text = text
         self.dictionary = dictionary
         self.normalized_sentence = dictionary.normalize_text(text)
-        self.words = [self.dictionary.get_word(word) for word in re.findall(
-            Word.RE_WORD, self.normalized_sentence)]
+        self.words = [
+            self.dictionary.get_word(word)
+            for word in re.findall(Word.RE_WORD, self.normalized_sentence)
+        ]
         self.word_count = len(self.words)
-        self.word_character_count = sum(
-            [word.character_count for word in self.words])
+        self.word_character_count = sum([word.character_count for word in self.words])
         pf = Counter()
         pc = 0
         for word in self.words:
@@ -27,19 +25,19 @@ class Fragment(object):
             pc += word.phone_count
         self.phone_frequency = pf
         self.phone_count = pc
-        self.syllable_count = sum(
-            [word.syllable_count for word in self.words])
-        self.complex_word_count = sum(
-            [word.is_complex_word for word in self.words])
-        self.long_word_count = sum(
-            [word.is_long_word for word in self.words])
+        self.syllable_count = sum([word.syllable_count for word in self.words])
+        self.complex_word_count = sum([word.is_complex_word for word in self.words])
+        self.long_word_count = sum([word.is_long_word for word in self.words])
         self.pov_word_count = sum([word.is_pov_word for word in self.words])
         self.first_person_word_count = sum(
-            [word.is_first_person_word for word in self.words])
+            [word.is_first_person_word for word in self.words]
+        )
         self.second_person_word_count = sum(
-            [word.is_second_person_word for word in self.words])
+            [word.is_second_person_word for word in self.words]
+        )
         self.third_person_word_count = sum(
-            [word.is_third_person_word for word in self.words])
+            [word.is_third_person_word for word in self.words]
+        )
         self.word_frequency = dict(Counter(self.words))
         self.unique_words = self.word_frequency.keys()
         self.unique_word_count = len(self.unique_words)
@@ -52,9 +50,11 @@ class Fragment(object):
             self.pov = pointofview.THIRD
 
     def __eq__(self, other):
+        """Equality operator for instance variables."""
         return self.text == other.text
 
     def __hash__(self):
+        """Hash operator for instance variables."""
         return hash(self.text)
 
     def frequency(self, word_string):
@@ -79,4 +79,3 @@ class Fragment(object):
             "unique_word_count": self.unique_word_count,
             "pov": self.pov,
         }
-
