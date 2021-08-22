@@ -15,14 +15,15 @@ class Paragraph(FragmentContainer):
     def __init__(self, text, dictionary=Dictionary()):
         self.text = text
         self.dictionary = dictionary
-        self.sentences = Sentence.parse_sentences(
-            self.text, self.dictionary)
+        self.sentences = Sentence.parse_sentences(self.text, self.dictionary)
         self.sentence_count = len(self.sentences)
         n = narrative.split(self.text)
         self.dialogue = FragmentContainer(
-            [Fragment(fragment_text) for fragment_text in n['dialogue']])
+            [Fragment(fragment_text) for fragment_text in n["dialogue"]]
+        )
         self.narrative = FragmentContainer(
-            [Fragment(fragment_text) for fragment_text in n['narrative']])
+            [Fragment(fragment_text) for fragment_text in n["narrative"]]
+        )
         self.pov = self.narrative.pov
         super().__init__(self.sentences, self.dictionary)
 
@@ -32,8 +33,10 @@ class Paragraph(FragmentContainer):
 
     @staticmethod
     def parse_paragraphs(text, dictionary=Dictionary()):
-        return [Paragraph(paragraph, dictionary) for paragraph in re.findall(
-            Paragraph.RE_PARAGRAPH, text)]
+        return [
+            Paragraph(paragraph, dictionary)
+            for paragraph in re.findall(Paragraph.RE_PARAGRAPH, text)
+        ]
 
     @property
     def stats(self):
