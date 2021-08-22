@@ -8,5 +8,6 @@ from prosegrinder.prose import Prose
 from prosegrinder.readability_scores import ReadabilityScores
 
 
-__version__ = pkg_resources.resource_string(
-    'prosegrinder', 'VERSION').decode('utf-8').strip()
+__version__ = (
+    pkg_resources.resource_string("prosegrinder", "VERSION").decode("utf-8").strip()
+)

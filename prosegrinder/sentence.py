@@ -6,7 +6,8 @@ from prosegrinder.fragment import Fragment
 
 class Sentence(Fragment):
 
-    RE_SENTENCE = re.compile("""
+    RE_SENTENCE = re.compile(
+        """
         # Match a sentence ending in punctuation or EOS.
         [^.!?…\\s]        # First char is non-punct, non-ws
         [^.!?…]*          # Greedily consume up to punctuation.
@@ -19,14 +20,17 @@ class Sentence(Fragment):
         ['\")]?           # Optional closing quote.
         (?=\\s|$)
         """,
-        flags=re.MULTILINE | re.VERBOSE)
+        flags=re.MULTILINE | re.VERBOSE,
+    )
 
     RE_SMART_QUOTES = re.compile("[“”]")
 
     @staticmethod
     def parse_sentences(text, dictionary=Dictionary()):
-        return [Sentence(sentence, dictionary) for sentence in re.findall(
-            Sentence.RE_SENTENCE, text)]
+        return [
+            Sentence(sentence, dictionary)
+            for sentence in re.findall(Sentence.RE_SENTENCE, text)
+        ]
 
     @property
     def stats(self):

@@ -6,7 +6,7 @@ import syllables
 from prosegrinder.word import Word
 
 
-class Dictionary():
+class Dictionary:
 
     """A reference containing Words."""
 
@@ -38,7 +38,7 @@ class Dictionary():
     def phones(self, word):
         if word in self.cmudictdict:
             return self.cmudictdict[word][0]
-        return ['?']
+        return ["?"]
 
     def syllable_count(self, word):
         syllable_count = 0
@@ -48,7 +48,7 @@ class Dictionary():
             for phone in phones:
                 syllable_count += len(re.sub("[^012]", "", phone))
         elif self.is_numeric(word):
-            syllable_count = len(re.sub('[^\\d\\+-]', '', word))
+            syllable_count = len(re.sub("[^\\d\\+-]", "", word))
         else:
             syllable_count = syllables.estimate(word)
         return syllable_count
@@ -60,6 +60,12 @@ class Dictionary():
         syllable_count = self.syllable_count(normalized_word)
         is_dictionary_word = normalized_word in self.cmudictdict
         is_numeric = self.is_numeric(normalized_word)
-        word = Word(normalized_word, phones, normalized_phones, syllable_count,
-                    is_dictionary_word, is_numeric)
+        word = Word(
+            normalized_word,
+            phones,
+            normalized_phones,
+            syllable_count,
+            is_dictionary_word,
+            is_numeric,
+        )
         return word
