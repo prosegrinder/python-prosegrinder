@@ -16,7 +16,20 @@ class Word():
 
     def __init__(self, text, phones, normalized_phones,
             syllable_count, is_dictionary_word, is_numeric):
-        """Assumes text is a single word, normalized."""
+        """
+        Word constructor.
+
+        Arguments:
+        ---------
+        text: a single word, normalized
+        phones: the word's phones with syllable marks
+        normalized_phones: the word's phone without syllable marks
+        syllable_count: number of syllables in the word
+        is_dictionary_word: is it in the underlying dictionary
+        is_numeric: is it a word representing a number
+
+        """
+        # Assumes text is a single word, normalized.
         self.text = text
         self.character_count = len(self.text)
         self.phones = phones
@@ -43,7 +56,16 @@ class Word():
             self.is_third_person_word)
 
     def __eq__(self, other):
+        """
+        Equals overload.
+
+        Arguments:
+        ---------
+        other: the Word to compare to
+
+        """
         return self.__dict__ == other.__dict__
 
     def __hash__(self):
+        """Hash overload."""
         return hash(self.text)

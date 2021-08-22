@@ -7,6 +7,20 @@ class ReadabilityScores():
 
     def __init__(self, word_character_count, syllable_count, word_count,
                  complex_word_count, long_word_count, sentence_count, ndigits=NDIGITS):
+        """
+        Readability Scores constructor.
+
+        Arguments:
+        ---------
+        word_character_count: number of characters across all words
+        syllable_count: total number of syllables
+        word_count: total number of words
+        complex_word_count: total number of complex words
+        long_word_count: total number of long words
+        sentence_count: total number of sentences
+        ndigits: rounding precision
+
+        """
         self.word_character_count = word_character_count
         self.syllable_count = syllable_count
         self.word_count = word_count
