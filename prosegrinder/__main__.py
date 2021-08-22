@@ -16,11 +16,7 @@ from prosegrinder.prose import Prose
     help="Python pretty-print json indent level.",
 )
 @click.option(
-    "-s",
-    "--save",
-    required=False,
-    type=click.File("w"),
-    help="File to save output to."
+    "-s", "--save", required=False, type=click.File("w"), help="File to save output to."
 )
 def cli(files, save, indent):
     """Setup the command line interface"""
