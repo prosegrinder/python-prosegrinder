@@ -7,7 +7,7 @@ from prosegrinder.prose import Prose
 
 
 @click.command()
-@click.argument("files", required=True, type=click.File("r"))
+@click.argument("files", nargs=-1, required=True, type=click.File("r"))
 @click.option(
     "-i",
     "--indent",
@@ -23,7 +23,7 @@ from prosegrinder.prose import Prose
     type=click.File("w"),
     help="File to save output to."
 )
-def cli(file, save, indent):
+def cli(files, save, indent):
     """setup the command line interface"""
     for file in files:
         filename = click.format_filename(file.name)
