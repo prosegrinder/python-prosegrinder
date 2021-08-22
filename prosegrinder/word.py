@@ -42,6 +42,7 @@ class Word:
         is the word a third person pov indicator
     is_pov_word : bool
         is the word a pov indicator
+
     """
 
     MIN_SYLLABLES_COMPLEX_WORD = 3
