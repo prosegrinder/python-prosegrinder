@@ -20,7 +20,7 @@ class Fragment:
             for word in re.findall(Word.RE_WORD, self.normalized_sentence)
         ]
         self.word_count = len(self.words)
-        self.word_character_count = sum([word.character_count for word in self.words])
+        self.word_character_count = sum(word.character_count for word in self.words)
         _pf = Counter()
         _pc = 0
         for word in self.words:
@@ -28,18 +28,18 @@ class Fragment:
             _pc += word.phone_count
         self.phone_frequency = _pf
         self.phone_count = _pc
-        self.syllable_count = sum([word.syllable_count for word in self.words])
-        self.complex_word_count = sum([word.is_complex_word for word in self.words])
-        self.long_word_count = sum([word.is_long_word for word in self.words])
-        self.pov_word_count = sum([word.is_pov_word for word in self.words])
+        self.syllable_count = sum(word.syllable_count for word in self.words)
+        self.complex_word_count = sum(word.is_complex_word for word in self.words)
+        self.long_word_count = sum(word.is_long_word for word in self.words)
+        self.pov_word_count = sum(word.is_pov_word for word in self.words)
         self.first_person_word_count = sum(
-            [word.is_first_person_word for word in self.words]
+            word.is_first_person_word for word in self.words
         )
         self.second_person_word_count = sum(
-            [word.is_second_person_word for word in self.words]
+            word.is_second_person_word for word in self.words
         )
         self.third_person_word_count = sum(
-            [word.is_third_person_word for word in self.words]
+            word.is_third_person_word for word in self.words
         )
         self.word_frequency = dict(Counter(self.words))
         self.unique_words = self.word_frequency.keys()

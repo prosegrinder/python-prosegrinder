@@ -20,29 +20,29 @@ class Prose:
         self.dictionary = dictionary
         self.paragraphs = Paragraph.parse_paragraphs(self.text, self.dictionary)
         self.word_character_count = sum(
-            [paragraph.word_character_count for paragraph in self.paragraphs]
+            paragraph.word_character_count for paragraph in self.paragraphs
         )
         self.syllable_count = sum(
-            [paragraph.syllable_count for paragraph in self.paragraphs]
+            paragraph.syllable_count for paragraph in self.paragraphs
         )
-        self.word_count = sum([paragraph.word_count for paragraph in self.paragraphs])
+        self.word_count = sum(paragraph.word_count for paragraph in self.paragraphs)
         self.complex_word_count = sum(
-            [paragraph.complex_word_count for paragraph in self.paragraphs]
+            paragraph.complex_word_count for paragraph in self.paragraphs
         )
         self.long_word_count = sum(
-            [paragraph.long_word_count for paragraph in self.paragraphs]
+            paragraph.long_word_count for paragraph in self.paragraphs
         )
         self.pov_word_count = sum(
-            [paragraph.pov_word_count for paragraph in self.paragraphs]
+            paragraph.pov_word_count for paragraph in self.paragraphs
         )
         self.first_person_word_count = sum(
-            [paragraph.first_person_word_count for paragraph in self.paragraphs]
+            paragraph.first_person_word_count for paragraph in self.paragraphs
         )
         self.second_person_word_count = sum(
-            [paragraph.second_person_word_count for paragraph in self.paragraphs]
+            paragraph.second_person_word_count for paragraph in self.paragraphs
         )
         self.third_person_word_count = sum(
-            [paragraph.third_person_word_count for paragraph in self.paragraphs]
+            paragraph.third_person_word_count for paragraph in self.paragraphs
         )
         _wf = Counter()
         _pf = Counter()
@@ -57,7 +57,7 @@ class Prose:
         self.unique_words = self.word_frequency.keys()
         self.unique_word_count = len(self.unique_words)
         self.sentence_count = sum(
-            [paragraph.sentence_count for paragraph in self.paragraphs]
+            paragraph.sentence_count for paragraph in self.paragraphs
         )
         self.paragraph_count = len(self.paragraphs)
         self.readability_scores = ReadabilityScores(
