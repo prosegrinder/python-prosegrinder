@@ -1,3 +1,4 @@
+"""Paragraph class for prosegrinder."""
 import re
 
 import narrative
@@ -9,6 +10,7 @@ from prosegrinder.sentence import Sentence
 
 
 class Paragraph(FragmentContainer):
+    """A paragraph of text."""
 
     RE_PARAGRAPH = re.compile(".*(?=\\n|$)")
 
@@ -17,12 +19,12 @@ class Paragraph(FragmentContainer):
         self.dictionary = dictionary
         self.sentences = Sentence.parse_sentences(self.text, self.dictionary)
         self.sentence_count = len(self.sentences)
-        n = narrative.split(self.text)
+        _n = narrative.split(self.text)
         self.dialogue = FragmentContainer(
-            [Fragment(fragment_text) for fragment_text in n["dialogue"]]
+            [Fragment(fragment_text) for fragment_text in _n["dialogue"]]
         )
         self.narrative = FragmentContainer(
-            [Fragment(fragment_text) for fragment_text in n["narrative"]]
+            [Fragment(fragment_text) for fragment_text in _n["narrative"]]
         )
         self.pov = self.narrative.pov
         super().__init__(self.sentences, self.dictionary)
@@ -33,6 +35,7 @@ class Paragraph(FragmentContainer):
 
     @staticmethod
     def parse_paragraphs(text, dictionary=Dictionary()):
+        """Parses a text into a list of Paragraph objects."""
         return [
             Paragraph(paragraph, dictionary)
             for paragraph in re.findall(Paragraph.RE_PARAGRAPH, text)

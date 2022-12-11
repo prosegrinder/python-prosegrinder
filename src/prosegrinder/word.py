@@ -1,3 +1,5 @@
+"""Word class for prosegrinder."""
+
 import re
 from collections import Counter
 

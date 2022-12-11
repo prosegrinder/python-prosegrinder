@@ -1,3 +1,5 @@
+"""Sentence class for prosegrinder."""
+
 import re
 
 from prosegrinder.dictionary import Dictionary
@@ -5,6 +7,7 @@ from prosegrinder.fragment import Fragment
 
 
 class Sentence(Fragment):
+    """A sentence."""
 
     RE_SENTENCE = re.compile(
         """
@@ -27,6 +30,7 @@ class Sentence(Fragment):
 
     @staticmethod
     def parse_sentences(text, dictionary=Dictionary()):
+        """Parses a text into a list of Sentence objects."""
         return [
             Sentence(sentence, dictionary)
             for sentence in re.findall(Sentence.RE_SENTENCE, text)

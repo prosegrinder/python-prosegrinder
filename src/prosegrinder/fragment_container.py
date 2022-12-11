@@ -1,3 +1,4 @@
+"""Fragment container class for prosegrinder."""
 from collections import Counter
 
 import pointofview
@@ -6,6 +7,8 @@ from prosegrinder.dictionary import Dictionary
 
 
 class FragmentContainer:
+    """A container for fragments."""
+
     def __init__(self, fragments, dictionary=Dictionary()):
         self.dictionary = dictionary
         self.fragments = fragments or []
@@ -35,16 +38,16 @@ class FragmentContainer:
         self.third_person_word_count = sum(
             [fragment.third_person_word_count for fragment in self.fragments]
         )
-        wf = Counter()
-        pf = Counter()
-        pc = 0
+        _wf = Counter()
+        _pf = Counter()
+        _pc = 0
         for fragment in self.fragments:
-            wf.update(fragment.words)
-            pf.update(fragment.phone_frequency)
-            pc += fragment.phone_count
-        self.word_frequency = dict(wf)
-        self.phone_frequency = dict(pf)
-        self.phone_count = pc
+            _wf.update(fragment.words)
+            _pf.update(fragment.phone_frequency)
+            _pc += fragment.phone_count
+        self.word_frequency = dict(_wf)
+        self.phone_frequency = dict(_pf)
+        self.phone_count = _pc
         self.unique_words = self.word_frequency.keys()
         self.unique_word_count = len(self.unique_words)
         self.pov = pointofview.NONE
@@ -64,4 +67,5 @@ class FragmentContainer:
         return hash(self.fragments)
 
     def frequency(self, word_string):
+        """Gets the frequency of a word in the fragment container."""
         return self.word_frequency[self.dictionary.get_word(word_string)]

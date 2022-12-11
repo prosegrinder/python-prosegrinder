@@ -1,3 +1,4 @@
+"""Prose class for prosegrinder."""
 import hashlib
 from collections import Counter
 
@@ -11,6 +12,8 @@ from prosegrinder.readability_scores import ReadabilityScores
 
 
 class Prose:
+    """A piece of prose."""
+
     def __init__(self, text, dictionary=Dictionary()):
         self.text = text
         self.sha256 = hashlib.sha256(self.text.encode()).hexdigest()
@@ -41,16 +44,16 @@ class Prose:
         self.third_person_word_count = sum(
             [paragraph.third_person_word_count for paragraph in self.paragraphs]
         )
-        wf = Counter()
-        pf = Counter()
-        pc = 0
+        _wf = Counter()
+        _pf = Counter()
+        _pc = 0
         for paragraph in self.paragraphs:
-            wf.update(paragraph.word_frequency)
-            pf.update(paragraph.phone_frequency)
-            pc += paragraph.phone_count
-        self.word_frequency = dict(wf)
-        self.phone_frequency = dict(pf)
-        self.phone_count = pc
+            _wf.update(paragraph.word_frequency)
+            _pf.update(paragraph.phone_frequency)
+            _pc += paragraph.phone_count
+        self.word_frequency = dict(_wf)
+        self.phone_frequency = dict(_pf)
+        self.phone_count = _pc
         self.unique_words = self.word_frequency.keys()
         self.unique_word_count = len(self.unique_words)
         self.sentence_count = sum(
@@ -65,12 +68,12 @@ class Prose:
             self.long_word_count,
             self.sentence_count,
         )
-        n = narrative.split(self.text)
+        _n = narrative.split(self.text)
         self.dialogue = FragmentContainer(
-            [Fragment(fragment_text) for fragment_text in n["dialogue"]]
+            [Fragment(fragment_text) for fragment_text in _n["dialogue"]]
         )
         self.narrative = FragmentContainer(
-            [Fragment(fragment_text) for fragment_text in n["narrative"]]
+            [Fragment(fragment_text) for fragment_text in _n["narrative"]]
         )
         self.pov = self.narrative.pov
 

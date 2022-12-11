@@ -1,3 +1,4 @@
+"""Fragment class for prosegrinder."""
 import re
 from collections import Counter
 
@@ -8,6 +9,8 @@ from prosegrinder.word import Word
 
 
 class Fragment:
+    """A fragment of text."""
+
     def __init__(self, text, dictionary=Dictionary()):
         self.text = text
         self.dictionary = dictionary
@@ -18,13 +21,13 @@ class Fragment:
         ]
         self.word_count = len(self.words)
         self.word_character_count = sum([word.character_count for word in self.words])
-        pf = Counter()
-        pc = 0
+        _pf = Counter()
+        _pc = 0
         for word in self.words:
-            pf.update(word.phone_frequency)
-            pc += word.phone_count
-        self.phone_frequency = pf
-        self.phone_count = pc
+            _pf.update(word.phone_frequency)
+            _pc += word.phone_count
+        self.phone_frequency = _pf
+        self.phone_count = _pc
         self.syllable_count = sum([word.syllable_count for word in self.words])
         self.complex_word_count = sum([word.is_complex_word for word in self.words])
         self.long_word_count = sum([word.is_long_word for word in self.words])
@@ -58,6 +61,7 @@ class Fragment:
         return hash(self.text)
 
     def frequency(self, word_string):
+        """Returns the frequency of a word in the fragment."""
         return self.word_frequency[word_string]
 
     @property
