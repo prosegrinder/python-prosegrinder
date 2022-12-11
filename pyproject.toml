@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "prosegrinder"
-version = "1.3.3"
+version = "1.3.4"
 description = "A text analytics library for prose fiction."
 authors = ["David L. Day <david@davidlday.com>"]
 license = "GPLv3"
