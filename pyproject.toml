@@ -26,3 +26,6 @@ black = "^22.12.0"
 
 [tool.poetry.scripts]
 prosegrinder = "prosegrinder.__main__:cli"
+
+[tool.pylint."messages control"]
+disable = ["duplicate-code", "too-many-instance-attributes", "too-many-arguments"]
