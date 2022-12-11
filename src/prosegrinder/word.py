@@ -1,3 +1,5 @@
+"""Word class for prosegrinder."""
+
 import re
 from collections import Counter
 
@@ -50,7 +52,6 @@ class Word:
     # See: https://en.wikipedia.org/wiki/List_of_Unicode_characters
     RE_WORD = re.compile("[\\w’'\u0391-\u03ce\u0400-\u0481\u048a-\u04ff]+")
 
-    # pylint:disable=too-many-arguments
     def __init__(
         self,
         text,
@@ -79,7 +80,6 @@ class Word:
             is it a word representing a number
 
         """
-        # pylint:disable=too-many-instance-attributes
         self.text = text
         self.character_count = len(self.text)
         self.phones = phones

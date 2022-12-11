@@ -1,3 +1,5 @@
+"""Command line interface for prosegrinder."""
+
 import json
 
 import click
@@ -24,11 +26,11 @@ def cli(files, save, indent):
     for file in files:
         filename = click.format_filename(file.name)
         text = file.read()
-        p = Prose(text)
-        d = {"filename": filename, "statistics": p.stats}
-        processed_files.append(d)
-    j = json.dumps(processed_files, indent=indent)
+        _p = Prose(text)
+        _d = {"filename": filename, "statistics": _p.stats}
+        processed_files.append(_d)
+    _j = json.dumps(processed_files, indent=indent)
     if save:
-        save.write(j)
+        save.write(_j)
     else:
-        click.echo(j)
+        click.echo(_j)

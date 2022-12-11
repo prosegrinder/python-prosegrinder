@@ -1,3 +1,5 @@
+"""Dictionary class for prosegrinder."""
+
 import re
 
 import cmudict
@@ -14,14 +16,44 @@ class Dictionary:
 
     @staticmethod
     def normalize_text(text):
+        """Normalizes text
+        Parameters:
+        ----------
+        text : str
+            the text to normalize
+        Returns:
+        -------
+        str
+            the normalized text
+        """
         return text.strip().lower()
 
     @staticmethod
     def normalize_phones(phones):
+        """Normalizes phones
+        Parameters:
+        ----------
+        phones : list
+            list of phones to normalize
+        Returns:
+        -------
+        list
+            list of normalized phones
+        """
         return [re.sub(r"\d", "", phone) for phone in phones]
 
     @staticmethod
     def is_numeric(word):
+        """Checks if word is numeric
+        Parameters:
+        ----------
+        word : str
+            word to check
+        Returns:
+        -------
+        bool
+            whether word is numeric
+        """
         return re.match(Dictionary.RE_NUMERIC, word) is not None
 
     def __init__(self, cmudictdict=None):
@@ -36,11 +68,31 @@ class Dictionary:
         self.cmudictdict = cmudictdict or cmudict.dict()
 
     def phones(self, word):
+        """Gets the phones for a word.
+        Parameters:
+        ----------
+        word : str
+            word to get phones for
+        Returns:
+        -------
+        list
+            phones for word (returns "?" if word is not in dictionary)
+        """
         if word in self.cmudictdict:
             return self.cmudictdict[word][0]
         return ["?"]
 
     def syllable_count(self, word):
+        """Guesses the number of syllables in a word.
+        Parameters:
+        ----------
+        word : str
+            word to check
+        Returns:
+        -------
+        int
+            number of syllables in word
+        """
         syllable_count = 0
         if word in self.cmudictdict:
             phones = self.cmudictdict[word][0]
@@ -54,6 +106,16 @@ class Dictionary:
         return syllable_count
 
     def get_word(self, word):
+        """Gets a Word object for a word.
+        Parameters:
+        ----------
+        word : str
+            word to retrieve
+        Returns:
+        -------
+        Word
+            Word object for word
+        """
         normalized_word = self.normalize_text(word)
         phones = self.phones(normalized_word)
         normalized_phones = self.normalize_phones(phones)

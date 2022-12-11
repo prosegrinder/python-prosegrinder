@@ -1,7 +1,10 @@
+"""Readability Scores class for prosegrinder."""
+
 from math import sqrt
 
 
 class ReadabilityScores:
+    """Readability Scores"""
 
     NDIGITS = 3  # Default for round(number,[ndigits])
 
@@ -72,6 +75,7 @@ class ReadabilityScores:
     def calculate_automated_readability_index(
         word_character_count, word_count, ndigits=NDIGITS
     ):
+        """Calculate Automated Readability Index (ARI)."""
         score = 0.0
         if word_count > 0:
             avg_characters_per_word = word_character_count / word_count
@@ -87,6 +91,7 @@ class ReadabilityScores:
     def calculate_coleman_liau_index(
         word_character_count, word_count, sentence_count, ndigits=NDIGITS
     ):
+        """Calculate Coleman-Liau Index (CLI)."""
         score = 0.0
         if word_count > 0:
             avg_letters_per_word = word_character_count / word_count * 100.0
@@ -102,6 +107,7 @@ class ReadabilityScores:
     def calculate_flesch_kincaid_grade_level(
         syllable_count, word_count, sentence_count, ndigits=NDIGITS
     ):
+        """Calculate Flesch-Kincaid Grade Level (FKGL)."""
         score = 0.0
         if word_count > 0:
             avg_sentence_length = word_count / sentence_count
@@ -115,6 +121,7 @@ class ReadabilityScores:
     def calculate_flesch_reading_ease(
         syllable_count, word_count, sentence_count, ndigits=NDIGITS
     ):
+        """Calculate Flesch Reading Ease (FRE)."""
         score = 0.0
         if word_count > 0:
             avg_sentence_length = word_count / sentence_count
@@ -130,6 +137,7 @@ class ReadabilityScores:
     def calculate_gunning_fog_index(
         word_count, complex_word_count, sentence_count, ndigits=NDIGITS
     ):
+        """Calculate Gunning Fog Index (GFI)."""
         score = 0.0
         if word_count > 0:
             avg_sentence_length = word_count / sentence_count
@@ -141,18 +149,20 @@ class ReadabilityScores:
     def calculate_linsear_write(
         word_count, complex_word_count, sentence_count, ndigits=NDIGITS
     ):
+        """Calculate Linsear Write (LW)."""
         score = 0.0
         hard_word_count = complex_word_count
         easy_word_count = word_count - complex_word_count
         if sentence_count > 0:
-            r = (easy_word_count + (hard_word_count * 3)) / sentence_count
-            if r <= 20:
-                r = r - 2
-            score = r / 2
+            _r = (easy_word_count + (hard_word_count * 3)) / sentence_count
+            if _r <= 20:
+                _r = _r - 2
+            score = _r / 2
         return round(score, ndigits)
 
     @staticmethod
     def calculate_lix(word_count, long_word_count, sentence_count, ndigits=NDIGITS):
+        """Calculate Lix (LIX)."""
         score = 0.0
         if word_count > 0:
             score = word_count / sentence_count + (100 * long_word_count) / word_count
@@ -160,6 +170,7 @@ class ReadabilityScores:
 
     @staticmethod
     def calculate_rix(long_word_count, sentence_count, ndigits=NDIGITS):
+        """Calculate Rix (RIX)."""
         score = 0.0
         if sentence_count > 0:
             score = long_word_count / sentence_count
@@ -167,6 +178,7 @@ class ReadabilityScores:
 
     @staticmethod
     def calculate_smog(complex_word_count, sentence_count, ndigits=NDIGITS):
+        """Calculate SMOG (SMOG)."""
         score = 0.0
         if sentence_count > 0:
             score = (1.0430 * sqrt(complex_word_count * (30 / sentence_count))) + 3.1291
