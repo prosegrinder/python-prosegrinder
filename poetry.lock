@@ -240,7 +240,7 @@ testing = ["pytest", "pytest-benchmark"]
 
 [[package]]
 name = "pointofview"
-version = "1.0.2"
+version = "1.0.3"
 description = "A Python package for determining a piece of text's point of view (first, second, third, or unknown)."
 category = "main"
 optional = false
@@ -471,8 +471,8 @@ pluggy = [
     {file = "pluggy-1.0.0.tar.gz", hash = "sha256:4224373bacce55f955a878bf9cfa763c1e360858e330072059e10bad68531159"},
 ]
 pointofview = [
-    {file = "pointofview-1.0.2-py3-none-any.whl", hash = "sha256:a478e24b9cdfad76db22cf0958a7bec15888b711d2cafbf78516aa14de171168"},
-    {file = "pointofview-1.0.2.tar.gz", hash = "sha256:203b5e8c03db581751a6d5d113bcf5ea032075f877ef7dbc0b214070371e31c6"},
+    {file = "pointofview-1.0.3-py3-none-any.whl", hash = "sha256:754860dc90a64f1671059dd85517230843ec05a000e12eee7c7e089355ab0ce8"},
+    {file = "pointofview-1.0.3.tar.gz", hash = "sha256:bb513761c99bacbc8d9548fd2225a94541d275e519efe383d36b22e0d75868f4"},
 ]
 pylint = [
     {file = "pylint-2.15.8-py3-none-any.whl", hash = "sha256:ea82cd6a1e11062dc86d555d07c021b0fb65afe39becbe6fe692efd6c4a67443"},
