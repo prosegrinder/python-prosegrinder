@@ -295,7 +295,7 @@ testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "pygments (>=2.
 
 [[package]]
 name = "syllables"
-version = "1.0.4"
+version = "1.0.5"
 description = "A Python package for estimating the number of syllables in a word."
 category = "main"
 optional = false
@@ -483,8 +483,8 @@ pytest = [
     {file = "pytest-7.2.0.tar.gz", hash = "sha256:c4014eb40e10f11f355ad4e3c2fb2c6c6d1919c73f3b5a433de4708202cade59"},
 ]
 syllables = [
-    {file = "syllables-1.0.4-py3-none-any.whl", hash = "sha256:330ada4f023686f40a7908f0a9473b86d5e7331f330b373ca9cc1f32c60f4856"},
-    {file = "syllables-1.0.4.tar.gz", hash = "sha256:ca31f8b16f3b5bd9d9c5c38f190b41ddab4859f5258740de85790f5e43f7dc7e"},
+    {file = "syllables-1.0.5-py3-none-any.whl", hash = "sha256:fbcac22ae8c4f1120dd8b8cef25bb732ecd02bc3e7ebf412e98b579f337bbd02"},
+    {file = "syllables-1.0.5.tar.gz", hash = "sha256:bb0456a76ec648fa54973032bce6cb06f987843a300ae9729eb9f3267123219f"},
 ]
 tomli = [
     {file = "tomli-2.0.1-py3-none-any.whl", hash = "sha256:939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc"},
