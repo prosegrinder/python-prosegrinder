@@ -419,14 +419,14 @@ testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "pygments (>=2.
 
 [[package]]
 name = "syllables"
-version = "1.0.6"
+version = "1.0.7"
 description = "A Python package for estimating the number of syllables in a word."
 category = "main"
 optional = false
 python-versions = ">=3.7.2,<4.0.0"
 files = [
-    {file = "syllables-1.0.6-py3-none-any.whl", hash = "sha256:59ce3d583d1c17806eca5cd96583fdb15e3601402e482c9eeb2dc31a15d61b8f"},
-    {file = "syllables-1.0.6.tar.gz", hash = "sha256:deaf706aeabd945042afdc3f19b069c38582565e491a6f388c757cc355bcbcea"},
+    {file = "syllables-1.0.7-py3-none-any.whl", hash = "sha256:5840260d8b7a6416baa197980cbd3f88d4e3186c432610ae9e5aa0c05f2f510e"},
+    {file = "syllables-1.0.7.tar.gz", hash = "sha256:0ed0928e95bae0d4dbf11435777ee935012e6a35bf1dae6dd54fc55ddd58cd6c"},
 ]
 
 [package.dependencies]
