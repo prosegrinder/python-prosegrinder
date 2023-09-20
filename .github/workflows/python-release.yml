@@ -7,8 +7,27 @@ on:
 
 jobs:
   release:
+    name: "Bump version and create changelog with commitizen"
     if: "!startsWith(github.event.head_commit.message, 'bump:')"
     # Don't run 'bump:'
-    uses: prosegrinder/.github/.github/workflows/poetry-release.yaml@main
-    secrets:
-      VERSION_BUMP_TAG_TOKEN: "${{ secrets.VERSION_BUMP_TAG_TOKEN }}"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+          submodules: true
+          token: "${{ secrets.VERSION_BUMP_TAG_TOKEN }}"
+      - name: Create bump and changelog
+        id: cz
+        uses: commitizen-tools/commitizen-action@0.18.2
+        with:
+          commit: true
+          push: true
+          github_token: ${{ secrets.VERSION_BUMP_TAG_TOKEN }}
+          changelog_increment_filename: "release-body.md"
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          body_path: "release-body.md"
+          tag_name: v${{ steps.cz.outputs.version }}
