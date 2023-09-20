@@ -16,6 +16,18 @@ jobs:
     uses: prosegrinder/.github/.github/workflows/poetry-test.yaml@main
 
   cz-dry-run:
+    name: "Dry run Commitizen bump"
+    runs-on: ubuntu-latest
     needs: test
-    uses: prosegrinder/.github/.github/workflows/cz-dry-run.yaml@main
-    secrets: inherit
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+          submodules: true
+      - name: Create bump and changelog
+        uses: commitizen-tools/commitizen-action@0.18.2
+        with:
+          github_token: ${{ secrets.VERSION_BUMP_TAG_TOKEN }}
+          check_consistency: true
+          dry_run: true
