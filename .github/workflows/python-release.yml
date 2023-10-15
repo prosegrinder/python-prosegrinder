@@ -20,7 +20,7 @@ jobs:
           token: "${{ secrets.VERSION_BUMP_TAG_TOKEN }}"
       - name: Create bump and changelog
         id: cz
-        uses: commitizen-tools/commitizen-action@0.18.2
+        uses: commitizen-tools/commitizen-action@0.20.0
         with:
           commit: true
           push: true
