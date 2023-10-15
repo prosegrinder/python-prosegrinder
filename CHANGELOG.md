@@ -1,3 +1,10 @@
+## v1.3.6 (2023-10-15)
+
+### Fix
+
+- **deps**: bump cmudict from 1.0.13 to 1.0.15
+- **deps**: bump syllables from 1.0.7 to 1.0.8
+
 ## v1.3.5 (2022-12-19)
 
 ### Fix
