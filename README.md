@@ -1,7 +1,7 @@
 # Prosegrinder
 
 [![Latest PyPI version](https://img.shields.io/pypi/v/prosegrinder.svg)](https://pypi.python.org/pypi/prosegrinder)
-[![GitHub Workflow Status](https://github.com/prosegrinder/python-prosegrinder/workflows/Python%20CI/badge.svg?branch=main)](https://github.com/prosegrinder/python-prosegrinder/actions?query=workflow%3A%22Python+CI%22+branch%3Amain)
+[![Python Poetry CI](https://github.com/prosegrinder/python-prosegrinder/actions/workflows/python-ci.yml/badge.svg)](https://github.com/prosegrinder/python-prosegrinder/actions/workflows/python-ci.yml)
 
 A relatively fast, functional prose text counter with readability scoring.
 
