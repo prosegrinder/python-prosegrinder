@@ -392,18 +392,18 @@ testing = ["argcomplete", "attrs (>=19.2.0)", "hypothesis (>=3.56)", "mock", "no
 
 [[package]]
 name = "syllables"
-version = "1.0.8"
+version = "1.0.9"
 description = "A Python package for estimating the number of syllables in a word."
 optional = false
 python-versions = ">=3.7.2,<4.0.0"
 files = [
-    {file = "syllables-1.0.8-py3-none-any.whl", hash = "sha256:eb93723ecb33dcd6873e7e372a215c5d4eaeb8cb5b66a8a4567e61e486f2285e"},
-    {file = "syllables-1.0.8.tar.gz", hash = "sha256:964805f326294097c26d58caa3bab6cc9cf5268c100fc59aa6d1413dad68baa2"},
+    {file = "syllables-1.0.9-py3-none-any.whl", hash = "sha256:341d1e5dd396589d385a8c462ea483081d344fa5652e02d29d1047a342c88d9b"},
+    {file = "syllables-1.0.9.tar.gz", hash = "sha256:e73be37d7420bd94cae1ec5511dc6392e1305fe0837a89def9bcabad27f91f6f"},
 ]
 
 [package.dependencies]
 cmudict = ">=1.0.11,<2.0.0"
-importlib-metadata = ">=5.1.0,<6.0.0"
+importlib-metadata = ">=5.1,<7.0"
 
 [[package]]
 name = "tomli"
