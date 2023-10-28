@@ -1,3 +1,10 @@
+## v1.3.7 (2023-10-28)
+
+### Fix
+
+- **deps**: bump syllables from 1.0.8 to 1.0.9 (#64)
+- **deps**: bump syllables from 1.0.8 to 1.0.9
+
 ## v1.3.6 (2023-10-15)
 
 ### Fix
