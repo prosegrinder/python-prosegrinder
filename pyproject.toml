@@ -56,5 +56,3 @@ bandit = "^1.8.6"
 pylint = "^3.3.7"
 pytest = "^8.4.1"
 
-[tool.pylint."messages control"]
-disable = ["duplicate-code", "too-many-instance-attributes", "too-many-arguments"]
