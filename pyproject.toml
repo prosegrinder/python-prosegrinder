@@ -54,6 +54,7 @@ pytest = "^7.2.0"
 pylint = "^2.15.8"
 black = ">=22.12,<24.0"
 mypy = "^1.17.0"
+bandit = "^1.8.6"
 
 [tool.pylint."messages control"]
 disable = ["duplicate-code", "too-many-instance-attributes", "too-many-arguments"]
