@@ -1,41 +1,58 @@
+[project]
+name = "prosegrinder"
+dynamic = ["version", "classifiers"]
+description = "A text analytics library for prose fiction."
+license = {text = "GPLv3"}
+readme = "README.md"
+requires-python = ">=3.9,<4.0"
+authors = [
+    {name = "David L. Day", email = "david@davidlday.com"}
+]
+keywords = ["text analytics", "prose fiction", "natural language processing", "NLP", "linguistics"]
+dependencies = [
+    "importlib-metadata>=5.1.0",
+    "cmudict>=1.0.11",
+    "narrative>=1.1.1",
+    "pointofview>=1.0.2",
+    "syllables>=1.0.4",
+    "click>=8.1.3"
+]
+
+[project.scripts]
+prosegrinder = "prosegrinder.__main__:cli"
+
+[project.urls]
+homepage = "https://github.com/prosegrinder/python-prosegrinder"
+repository = "https://github.com/prosegrinder/python-prosegrinder"
+"Bug Tracker" = "https://github.com/prosegrinder/python-prosegrinder/issues"
+
 [tool.commitizen]
-version = "1.3.8"
 tag_format = "v$version"
 update_changelog_on_bump = true
 changelog_incremental = true
 bump_message = "bump: $current_version → $new_version"
-version_files = [
-  "pyproject.toml:version",
-]
+version_provider = "poetry"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
-name = "prosegrinder"
 version = "1.3.8"
-description = "A text analytics library for prose fiction."
-authors = ["David L. Day <david@davidlday.com>"]
-license = "GPLv3"
-readme = "README.md"
-
-[tool.poetry.dependencies]
-python = "^3.7.2"
-importlib-metadata = "^5.1.0"
-cmudict = "^1.0.11"
-narrative = "^1.1.1"
-pointofview = "^1.0.2"
-syllables = "^1.0.4"
-click = "^8.1.3"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Topic :: Text Processing"
+]
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.2.0"
 pylint = "^2.15.8"
 black = ">=22.12,<24.0"
-
-[tool.poetry.scripts]
-prosegrinder = "prosegrinder.__main__:cli"
 
 [tool.pylint."messages control"]
 disable = ["duplicate-code", "too-many-instance-attributes", "too-many-arguments"]
