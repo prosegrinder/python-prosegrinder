@@ -355,14 +355,14 @@ files = [
 
 [[package]]
 name = "narrative"
-version = "1.2.0"
+version = "1.2.1"
 description = "A small Python package for splitting text into dialogue and narrative."
 optional = false
 python-versions = "<4.0,>=3.9"
 groups = ["main"]
 files = [
-    {file = "narrative-1.2.0-py3-none-any.whl", hash = "sha256:68536d9d2ba8d30eb98ee2efd34ff592a7f30312b9d427b59b51eb64b9a4d56a"},
-    {file = "narrative-1.2.0.tar.gz", hash = "sha256:fa41b67199c396c031e805f86185b7c7eb34e563830efdfbaa2c0e1309988d2e"},
+    {file = "narrative-1.2.1-py3-none-any.whl", hash = "sha256:882097e9983d5ed2c33f88060e7a28b51ecbacbad68d44da8a0436f0832cec8d"},
+    {file = "narrative-1.2.1.tar.gz", hash = "sha256:dc746a97fdc5dc0dd3d9e1de8e526be7ddd02f9c6e71e26213f6a78c249467af"},
 ]
 
 [package.dependencies]
