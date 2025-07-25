@@ -50,7 +50,7 @@ classifiers = [
 ]
 
 [tool.poetry.group.dev.dependencies]
-black = ">=22.12,<24.0"
+black = ">=22.12,<25.0"
 mypy = "^1.17.0"
 bandit = "^1.8.6"
 pylint = "^3.3.7"
