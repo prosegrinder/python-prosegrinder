@@ -56,3 +56,5 @@ bandit = "^1.8.6"
 pylint = "^3.3.7"
 pytest = "^8.4.1"
 
+[tool.pylint.'MESSAGES CONTROL']
+disable = "similarities"
