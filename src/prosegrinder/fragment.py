@@ -1,4 +1,5 @@
 """Fragment class for prosegrinder."""
+
 import re
 from collections import Counter
 
@@ -8,10 +9,10 @@ from prosegrinder.dictionary import Dictionary
 from prosegrinder.word import Word
 
 
-class Fragment:
+class Fragment:  # pylint: disable=too-many-instance-attributes
     """A fragment of text."""
 
-    def __init__(self, text, dictionary=Dictionary()):
+    def __init__(self, text: str, dictionary: Dictionary = Dictionary()):
         self.text = text
         self.dictionary = dictionary
         self.normalized_sentence = dictionary.normalize_text(text)
@@ -21,8 +22,8 @@ class Fragment:
         ]
         self.word_count = len(self.words)
         self.word_character_count = sum(word.character_count for word in self.words)
-        _pf = Counter()
-        _pc = 0
+        _pf: Counter = Counter()
+        _pc: int = 0
         for word in self.words:
             _pf.update(word.phone_frequency)
             _pc += word.phone_count
@@ -41,7 +42,7 @@ class Fragment:
         self.third_person_word_count = sum(
             word.is_third_person_word for word in self.words
         )
-        self.word_frequency = dict(Counter(self.words))
+        self.word_frequency = dict(Counter(word.text for word in self.words))
         self.unique_words = self.word_frequency.keys()
         self.unique_word_count = len(self.unique_words)
         self.pov = pointofview.NONE
@@ -52,17 +53,19 @@ class Fragment:
         elif self.third_person_word_count > 0:
             self.pov = pointofview.THIRD
 
-    def __eq__(self, other):
+    def __eq__(self, other: object) -> bool:
         """Equality operator for instance variables."""
+        if not isinstance(other, Fragment):
+            return False
         return self.text == other.text
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         """Hash operator for instance variables."""
         return hash(self.text)
 
-    def frequency(self, word_string):
+    def frequency(self, word_string: str) -> int:
         """Returns the frequency of a word in the fragment."""
-        return self.word_frequency[word_string]
+        return self.word_frequency.get(word_string, 0)
 
     @property
     def stats(self):
