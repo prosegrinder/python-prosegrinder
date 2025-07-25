@@ -1,4 +1,5 @@
 """Paragraph class for prosegrinder."""
+
 import re
 
 import narrative
@@ -14,7 +15,7 @@ class Paragraph(FragmentContainer):
 
     RE_PARAGRAPH = re.compile(".*(?=\\n|$)")
 
-    def __init__(self, text, dictionary=Dictionary()):
+    def __init__(self, text: str, dictionary: Dictionary = Dictionary()):
         self.text = text
         self.dictionary = dictionary
         self.sentences = Sentence.parse_sentences(self.text, self.dictionary)
@@ -29,12 +30,16 @@ class Paragraph(FragmentContainer):
         self.pov = self.narrative.pov
         super().__init__(self.sentences, self.dictionary)
 
-    def __eq__(self, other):
+    def __eq__(self, other: object) -> bool:
         """Equality operator for instance variables."""
+        if not isinstance(other, Paragraph):
+            return False
         return self.text == other.text
 
     @staticmethod
-    def parse_paragraphs(text, dictionary=Dictionary()):
+    def parse_paragraphs(
+        text: str, dictionary: Dictionary = Dictionary()
+    ) -> list["Paragraph"]:
         """Parses a text into a list of Paragraph objects."""
         return [
             Paragraph(paragraph, dictionary)
