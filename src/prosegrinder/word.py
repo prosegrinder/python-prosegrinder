@@ -1,13 +1,13 @@
 """Word class for prosegrinder."""
 
 import re
+
 from collections import Counter
 
 import pointofview
 
 
-class Word:
-
+class Word:  # pylint: disable=too-many-instance-attributes
     """
     A class to represent a natural-language word.
 
@@ -49,18 +49,18 @@ class Word:
 
     MIN_SYLLABLES_COMPLEX_WORD = 3
     MIN_CHARS_LONG_WORD = 7
-    # See: https://en.wikipedia.org/wiki/List_of_Unicode_characters
+    # See: https://en.wikipedia.org/wiki/List_of_Unicode_charactersP
     RE_WORD = re.compile("[\\w’'\u0391-\u03ce\u0400-\u0481\u048a-\u04ff]+")
 
-    def __init__(
+    def __init__(  # pylint: disable=too-many-arguments,too-many-positional-arguments
         self,
-        text,
-        phones,
-        normalized_phones,
-        syllable_count,
-        is_dictionary_word,
-        is_numeric,
-    ):
+        text: str,
+        phones: list[str],
+        normalized_phones: list[str],
+        syllable_count: int,
+        is_dictionary_word: bool,
+        is_numeric: bool,
+    ) -> None:
         """
         Word constructor.
 
@@ -101,10 +101,12 @@ class Word:
             or self.is_third_person_word
         )
 
-    def __eq__(self, other):
+    def __eq__(self, other: object) -> bool:
         """Equality operator for instance variables."""
+        if not isinstance(other, Word):
+            return False
         return self.__dict__ == other.__dict__
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         """Hash operator for instance variables."""
         return hash(self.text)

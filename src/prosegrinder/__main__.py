@@ -20,17 +20,17 @@ from prosegrinder.prose import Prose
 @click.option(
     "-s", "--save", required=False, type=click.File("w"), help="File to save output to."
 )
-def cli(files, save, indent):
+def cli(files: list[click.File], save: click.File, indent: int) -> None:
     """Setup the command line interface"""
     processed_files = []
     for file in files:
         filename = click.format_filename(file.name)
-        text = file.read()
+        text = file.read()  # type: ignore
         _p = Prose(text)
         _d = {"filename": filename, "statistics": _p.stats}
         processed_files.append(_d)
     _j = json.dumps(processed_files, indent=indent)
     if save:
-        save.write(_j)
+        save.write(_j)  # type: ignore
     else:
         click.echo(_j)

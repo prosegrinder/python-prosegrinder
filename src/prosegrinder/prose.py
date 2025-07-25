@@ -1,4 +1,5 @@
 """Prose class for prosegrinder."""
+
 import hashlib
 from collections import Counter
 
@@ -11,10 +12,10 @@ from prosegrinder.paragraph import Paragraph
 from prosegrinder.readability_scores import ReadabilityScores
 
 
-class Prose:
+class Prose:  # pylint: disable=too-many-instance-attributes
     """A piece of prose."""
 
-    def __init__(self, text, dictionary=Dictionary()):
+    def __init__(self, text: str, dictionary: Dictionary = Dictionary()):
         self.text = text
         self.sha256 = hashlib.sha256(self.text.encode()).hexdigest()
         self.dictionary = dictionary
@@ -44,9 +45,9 @@ class Prose:
         self.third_person_word_count = sum(
             paragraph.third_person_word_count for paragraph in self.paragraphs
         )
-        _wf = Counter()
-        _pf = Counter()
-        _pc = 0
+        _wf: Counter = Counter()
+        _pf: Counter = Counter()
+        _pc: int = 0
         for paragraph in self.paragraphs:
             _wf.update(paragraph.word_frequency)
             _pf.update(paragraph.phone_frequency)
@@ -86,7 +87,7 @@ class Prose:
         return hash(self.text)
 
     @property
-    def stats(self):
+    def stats(self) -> dict:
         """Returns a light-weight dict with basic stats about the prose."""
         return {
             "sha256": self.sha256,

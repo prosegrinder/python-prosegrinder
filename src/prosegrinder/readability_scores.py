@@ -3,21 +3,22 @@
 from math import sqrt
 
 
-class ReadabilityScores:
+class ReadabilityScores:  # pylint: disable=too-many-instance-attributes
     """Readability Scores"""
 
     NDIGITS = 3  # Default for round(number,[ndigits])
 
+    # pylint: disable-next=too-many-arguments,too-many-positional-arguments
     def __init__(
         self,
-        word_character_count,
-        syllable_count,
-        word_count,
-        complex_word_count,
-        long_word_count,
-        sentence_count,
-        ndigits=NDIGITS,
-    ):
+        word_character_count: int,
+        syllable_count: int,
+        word_count: int,
+        complex_word_count: int,
+        long_word_count: int,
+        sentence_count: int,
+        ndigits: int = NDIGITS,
+    ) -> None:
         """
         Readability Scores constructor.
 
@@ -73,8 +74,8 @@ class ReadabilityScores:
 
     @staticmethod
     def calculate_automated_readability_index(
-        word_character_count, word_count, ndigits=NDIGITS
-    ):
+        word_character_count: int, word_count: int, ndigits: int = NDIGITS
+    ) -> float:
         """Calculate Automated Readability Index (ARI)."""
         score = 0.0
         if word_count > 0:
@@ -89,8 +90,11 @@ class ReadabilityScores:
 
     @staticmethod
     def calculate_coleman_liau_index(
-        word_character_count, word_count, sentence_count, ndigits=NDIGITS
-    ):
+        word_character_count: int,
+        word_count: int,
+        sentence_count: int,
+        ndigits: int = NDIGITS,
+    ) -> float:
         """Calculate Coleman-Liau Index (CLI)."""
         score = 0.0
         if word_count > 0:
@@ -105,8 +109,11 @@ class ReadabilityScores:
 
     @staticmethod
     def calculate_flesch_kincaid_grade_level(
-        syllable_count, word_count, sentence_count, ndigits=NDIGITS
-    ):
+        syllable_count: int,
+        word_count: int,
+        sentence_count: int,
+        ndigits: int = NDIGITS,
+    ) -> float:
         """Calculate Flesch-Kincaid Grade Level (FKGL)."""
         score = 0.0
         if word_count > 0:
@@ -119,8 +126,11 @@ class ReadabilityScores:
 
     @staticmethod
     def calculate_flesch_reading_ease(
-        syllable_count, word_count, sentence_count, ndigits=NDIGITS
-    ):
+        syllable_count: int,
+        word_count: int,
+        sentence_count: int,
+        ndigits: int = NDIGITS,
+    ) -> float:
         """Calculate Flesch Reading Ease (FRE)."""
         score = 0.0
         if word_count > 0:
@@ -135,8 +145,11 @@ class ReadabilityScores:
 
     @staticmethod
     def calculate_gunning_fog_index(
-        word_count, complex_word_count, sentence_count, ndigits=NDIGITS
-    ):
+        word_count: int,
+        complex_word_count: int,
+        sentence_count: int,
+        ndigits: int = NDIGITS,
+    ) -> float:
         """Calculate Gunning Fog Index (GFI)."""
         score = 0.0
         if word_count > 0:
@@ -147,8 +160,11 @@ class ReadabilityScores:
 
     @staticmethod
     def calculate_linsear_write(
-        word_count, complex_word_count, sentence_count, ndigits=NDIGITS
-    ):
+        word_count: int,
+        complex_word_count: int,
+        sentence_count: int,
+        ndigits: int = NDIGITS,
+    ) -> float:
         """Calculate Linsear Write (LW)."""
         score = 0.0
         hard_word_count = complex_word_count
@@ -161,7 +177,12 @@ class ReadabilityScores:
         return round(score, ndigits)
 
     @staticmethod
-    def calculate_lix(word_count, long_word_count, sentence_count, ndigits=NDIGITS):
+    def calculate_lix(
+        word_count: int,
+        long_word_count: int,
+        sentence_count: int,
+        ndigits: int = NDIGITS,
+    ) -> float:
         """Calculate Lix (LIX)."""
         score = 0.0
         if word_count > 0:
@@ -169,7 +190,11 @@ class ReadabilityScores:
         return round(score, ndigits)
 
     @staticmethod
-    def calculate_rix(long_word_count, sentence_count, ndigits=NDIGITS):
+    def calculate_rix(
+        long_word_count: int,
+        sentence_count: int,
+        ndigits: int = NDIGITS,
+    ) -> float:
         """Calculate Rix (RIX)."""
         score = 0.0
         if sentence_count > 0:
@@ -177,7 +202,11 @@ class ReadabilityScores:
         return round(score, ndigits)
 
     @staticmethod
-    def calculate_smog(complex_word_count, sentence_count, ndigits=NDIGITS):
+    def calculate_smog(
+        complex_word_count: int,
+        sentence_count: int,
+        ndigits: int = NDIGITS,
+    ) -> float:
         """Calculate SMOG (SMOG)."""
         score = 0.0
         if sentence_count > 0:
