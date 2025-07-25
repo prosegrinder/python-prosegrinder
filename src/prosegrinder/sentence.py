@@ -26,10 +26,10 @@ class Sentence(Fragment):
         flags=re.MULTILINE | re.VERBOSE,
     )
 
-    RE_SMART_QUOTES = re.compile("[“”]")
+    RE_SMART_QUOTES: re.Pattern = re.compile("[“”]")
 
     @staticmethod
-    def parse_sentences(text, dictionary=Dictionary()):
+    def parse_sentences(text: str, dictionary: Dictionary = Dictionary()):
         """Parses a text into a list of Sentence objects."""
         return [
             Sentence(sentence, dictionary)
