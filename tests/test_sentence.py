@@ -2,9 +2,9 @@
 
 from prosegrinder import Dictionary, Sentence
 
-dictionary = Dictionary()
-text = "This is a sentence of twelve words, and let's add some complexity."
-sentence = Sentence(text, dictionary)
+DICTIONARY = Dictionary()
+TEXT = "This is a sentence of twelve words, and let's add some complexity."
+SENTENCE = Sentence(TEXT, DICTIONARY)
 
 WORD_CHARACTER_COUNT = 53
 WORD_COUNT = 12
@@ -62,8 +62,8 @@ COMPLEX_WORD_COUNT = 1
 
 
 def test_sentence():
-    assert WORD_COUNT == sentence.word_count
-    assert WORD_CHARACTER_COUNT == sentence.word_character_count
-    assert len(PHONES) == sentence.phone_count
-    assert SYLLABLE_COUNT == sentence.syllable_count
-    assert COMPLEX_WORD_COUNT == sentence.complex_word_count
+    assert WORD_COUNT == SENTENCE.word_count
+    assert WORD_CHARACTER_COUNT == SENTENCE.word_character_count
+    assert len(PHONES) == SENTENCE.phone_count
+    assert SYLLABLE_COUNT == SENTENCE.syllable_count
+    assert COMPLEX_WORD_COUNT == SENTENCE.complex_word_count
