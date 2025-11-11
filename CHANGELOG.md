@@ -1,3 +1,10 @@
+## v1.4.1 (2025-11-11)
+
+### Fix
+
+- **deps**: bump pointofview from 1.1.1 to 1.1.2 (#83)
+- **deps**: bump cmudict from 1.1.0 to 1.1.1 (#82)
+
 ## v1.4.0 (2025-07-25)
 
 ### Feat
