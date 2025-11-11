@@ -54,7 +54,7 @@ black = ">=22.12,<26.0"
 mypy = "^1.18.2"
 bandit = "^1.8.6"
 pylint = "^3.3.8"
-pytest = "^8.4.1"
+pytest = "^8.4.2"
 
 [tool.pylint.'MESSAGES CONTROL']
 disable = "similarities"
